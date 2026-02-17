@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "../components/CustomCursor";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "My Digital Agency",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Navbar />
         <CustomCursor />
         {children}
+        <Footer />
       </body>
     </html>
   );
