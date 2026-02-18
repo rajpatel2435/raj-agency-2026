@@ -1,122 +1,163 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"; // Added Image import
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  // Detect scroll to make navbar distinct when moving down
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Work", href: "/work" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const services = [
+    { name: "Search & Growth Strategy", href: "/services/strategy" },
+    { name: "Digital PR", href: "/services/digital-pr" },
+    { name: "Onsite SEO", href: "/services/seo" },
+    { name: "Content Experience", href: "/services/content" },
+    { name: "Data & Insights", href: "/services/data" },
+    { name: "Paid Media", href: "/services/paid" },
+  ];
 
   return (
-    <>
-      {/* Main Navbar */}
-      {/* Removed mix-blend-difference so the white mega-menu colors stay true */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 text-white pointer-events-auto">
-        <Link href="/" className="text-2xl font-black uppercase tracking-tighter hover:opacity-70 transition-opacity relative z-50">
-          AGENCY.
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
+        isScrolled
+          ? "bg-[#050505]/80 backdrop-blur-md border-gray-800 py-4"
+          : "bg-transparent border-transparent py-6"
+      }`}
+    >
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex justify-between items-center relative">
+        
+        {/* LOGO */}
+        <Link href="/" className="text-2xl font-bold tracking-tighter text-white z-50 relative">
+          AGENCY<span className="text-[#FF3300]">.</span>
         </Link>
 
-        {/* Desktop Links (Hidden on Mobile) */}
-        <nav className="hidden md:flex items-center gap-10 font-medium text-sm tracking-widest uppercase relative z-50">
-          <Link href="/work" className="hover:text-[#A855F7] transition-colors">Work</Link>
-
-          {/* SERVICES MEGA MENU WRAPPER */}
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center gap-12">
+          
+          {/* Services Dropdown Trigger */}
           <div 
-            className="relative py-6" // Padding keeps the mouse from falling off the hover area
-            onMouseEnter={() => setIsServicesHovered(true)}
-            onMouseLeave={() => setIsServicesHovered(false)}
+            className="relative h-full flex items-center"
+            onMouseEnter={() => setIsServicesOpen(true)}
+            onMouseLeave={() => setIsServicesOpen(false)}
           >
-            <Link href="/services" className="hover:text-[#A855F7] transition-colors flex items-center gap-1">
-              Services <span className="text-lg leading-none">+</span>
-            </Link>
+            <button 
+              className={`text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-1 ${
+                isServicesOpen ? "text-[#FF3300]" : "text-white hover:text-[#FF3300]"
+              }`}
+            >
+              Services <span className="text-[10px] opacity-70">▼</span>
+            </button>
 
-            {/* The White Dropdown Card */}
+            {/* THE DARK MEGA MENU */}
             <AnimatePresence>
-              {isServicesHovered && (
+              {isServicesOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 15 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="absolute top-[80%] left-1/2 -translate-x-1/2 w-[800px] bg-white text-black rounded-3xl p-8 flex gap-8 shadow-2xl cursor-auto"
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-[-100px] mt-6 w-[800px] bg-[#0a0a0a] border border-gray-800 rounded-2xl shadow-[0px_20px_40px_rgba(0,0,0,0.8)] overflow-hidden grid grid-cols-12"
                 >
-                  {/* Left Side: Service Links */}
-                  <div className="flex-1">
-                    <h4 className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
-                      Core Services
-                    </h4>
-                    <div className="grid grid-cols-2 gap-y-4 gap-x-8 normal-case tracking-normal">
-                      <Link href="/services/search-and-growth" className="text-xl font-medium hover:text-gray-500 transition-colors">Search & Growth Strategy</Link>
-                      <Link href="/services/digital-pr" className="text-xl font-medium hover:text-gray-500 transition-colors">Digital PR</Link>
-                      <Link href="/services/onsite-seo" className="text-xl font-medium hover:text-gray-500 transition-colors">Onsite SEO</Link>
-                      <Link href="/services/content-experience" className="text-xl font-medium hover:text-gray-500 transition-colors">Content Experience</Link>
-                      <Link href="/services/data-insights" className="text-xl font-medium hover:text-gray-500 transition-colors">Data & Insights</Link>
+                  {/* Left Column: Links */}
+                  <div className="col-span-7 p-10 flex flex-col justify-between relative z-10 bg-[#0a0a0a]">
+                    <div>
+                      <p className="text-[#FF3300] text-xs font-bold uppercase tracking-widest mb-6">
+                        Core Capabilities
+                      </p>
+                      <ul className="grid grid-cols-1 gap-4">
+                        {services.map((service) => (
+                          <li key={service.name}>
+                            <Link 
+                              href={service.href}
+                              className="text-lg font-light text-gray-300 hover:text-white hover:pl-2 transition-all block group"
+                            >
+                              <span className="inline-block w-0 opacity-0 group-hover:w-4 group-hover:opacity-100 text-[#FF3300] transition-all">→</span>
+                              {service.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+                    
+                    <Link href="/services" className="mt-8 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">
+                      View All Services →
+                    </Link>
                   </div>
 
-                  {/* Right Side: Featured Image & Button */}
-                  <div className="w-[280px] shrink-0 relative rounded-2xl overflow-hidden group">
-                    <Image 
-                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&auto=format&fit=crop" 
-                      alt="Agency Team" 
-                      fill 
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Overlay Gradient for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  {/* Right Column: Featured Image/Card */}
+                  <div className="col-span-5 relative border-l border-gray-800 p-8 flex flex-col justify-end overflow-hidden">
                     
-                    <Link href="/services" className="absolute bottom-4 left-4 right-4 bg-black text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest flex justify-between items-center hover:bg-gray-800 transition-colors">
-                      View All Services <span>↗</span>
-                    </Link>
+                    {/* --- BACKGROUND IMAGE --- */}
+                    <div className="absolute inset-0 z-0">
+                       <Image 
+                         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
+                         alt="Strategy Roadmap"
+                         fill
+                         className="object-cover grayscale contrast-125 opacity-50 mix-blend-overlay"
+                       />
+                       {/* Subtle Orange Tint Overlay */}
+                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-[#FF3300]/20" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <h4 className="text-xl font-medium text-white mb-2">Need a custom roadmap?</h4>
+                      <p className="text-sm text-gray-300 mb-6 leading-relaxed">
+                        We build bespoke strategies for brands ready to dominate their category.
+                      </p>
+                      <Link 
+                        href="/contact" 
+                        className="inline-block bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#FF3300] transition-colors shadow-[0px_4px_20px_rgba(255,51,0,0.3)] hover:shadow-[0px_4px_25px_rgba(255,51,0,0.6)]"
+                      >
+                        Book a Strategy Call
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          <Link href="/about" className="hover:text-[#A855F7] transition-colors">About</Link>
-          <Link href="/contact" className="hover:text-[#A855F7] transition-colors">Contact</Link>
-        </nav>
-
-        {/* Mobile Menu Button (Hidden on Desktop) */}
-        <button 
-          onClick={toggleMobileMenu}
-          className="md:hidden text-sm font-bold tracking-widest uppercase hover:text-[#A855F7] transition-colors relative z-50"
-        >
-          Menu
-        </button>
-      </header>
-
-      {/* Full-Screen Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 bg-[#050505] flex flex-col justify-center items-center px-6"
-          >
-            <button 
-              onClick={toggleMobileMenu}
-              className="absolute top-6 right-6 text-sm font-bold tracking-widest uppercase text-gray-500 hover:text-white transition-colors"
+          {/* Standard Links */}
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`text-sm font-bold uppercase tracking-widest transition-colors ${
+                pathname === link.href ? "text-[#FF3300]" : "text-white hover:text-[#FF3300]"
+              }`}
             >
-              Close
-            </button>
+              {link.name}
+            </Link>
+          ))}
+        </div>
 
-            <nav className="flex flex-col gap-10 text-center text-5xl md:text-7xl font-black uppercase tracking-tighter">
-              <Link href="/work" onClick={toggleMobileMenu} className="text-white hover:text-[#A855F7] transition-colors">Work</Link>
-              <Link href="/services" onClick={toggleMobileMenu} className="text-white hover:text-[#A855F7] transition-colors">Services</Link>
-              <Link href="/about" onClick={toggleMobileMenu} className="text-white hover:text-[#A855F7] transition-colors">About</Link>
-              <Link href="/contact" onClick={toggleMobileMenu} className="text-white hover:text-[#A855F7] transition-colors">Contact</Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        {/* Mobile Menu Button (Hamburger) */}
+        <button className="md:hidden text-white">
+           <div className="w-8 h-0.5 bg-white mb-1.5"></div>
+           <div className="w-8 h-0.5 bg-white"></div>
+        </button>
+
+      </div>
+    </nav>
   );
 }

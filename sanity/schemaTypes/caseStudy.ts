@@ -1,20 +1,15 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'caseStudy',
-  title: 'Case Study',
+  name: 'work', // This must match the '_type' in your GROQ queries!
+  title: 'Work / Case Study',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Project Title',
       type: 'string',
-      description: 'The name of the campaign or project.',
-    }),
-    defineField({
-      name: 'client',
-      title: 'Client Name',
-      type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -24,21 +19,57 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
-      description: 'Click "Generate" to automatically create a URL from the title.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'client',
+      title: 'Client Name',
+      type: 'string',
+      description: 'e.g. Dojo, Nike, Asos',
+    }),
+    // --- 1. THE MASSIVE METRIC FIELD ---
+    defineField({
+      name: 'metric',
+      title: 'Key Metric',
+      type: 'string',
+      description: 'The big number for the hero (e.g. "+240% Revenue" or "#1 Ranking")',
+    }),
+    // --- 2. THE CATEGORY FIELD ---
+    defineField({
+      name: 'category',
+      title: 'Service Category',
+      type: 'string',
+      description: 'e.g. Technical SEO, Digital PR, Strategy',
     }),
     defineField({
       name: 'mainImage',
-      title: 'Main Image',
+      title: 'Main Hero Image',
       type: 'image',
       options: {
-        hotspot: true, // Allows you to crop the image right inside the Sanity Studio!
+        hotspot: true,
       },
     }),
+    // --- 3. THE BODY CONTENT ---
     defineField({
-      name: 'summary',
-      title: 'Project Summary',
-      type: 'text',
-      description: 'A brief overview of what you achieved for the client.',
+      name: 'body',
+      title: 'Case Study Content',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          // This allows you to add H2/H3 headers in the text editor
+          styles: [
+            {title: 'Normal', value: 'normal'},
+            {title: 'Heading 2', value: 'h2'},
+            {title: 'Heading 3', value: 'h3'},
+            {title: 'Quote', value: 'blockquote'},
+          ],
+        },
+        {
+          type: 'image', // Allows you to drop images inside the text
+          options: { hotspot: true },
+        }
+      ],
     }),
   ],
 })
