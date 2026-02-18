@@ -14,7 +14,7 @@ export default function HelloPage() {
     const formData = new FormData(e.currentTarget);
     
     // --- THIS IS WHERE YOUR KEY GOES ---
-    formData.append("access_key", "a171db70-5b1c-4e6c-8eec-913c14a54c84"); 
+    formData.append("access_key", process.env.NEXT_FORM_KEY || ""); 
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
