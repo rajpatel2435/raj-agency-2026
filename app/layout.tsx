@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google"; // 1. Import the new font
 import "./globals.css";
-import CustomCursor from "../components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+// 2. Configure the font
+const manrope = Manrope({ 
+  subsets: ["latin"],
+  variable: "--font-manrope", // This creates a CSS variable for Tailwind
+});
+
 export const metadata: Metadata = {
-  title: "My Digital Agency",
-  description: "Disruptive marketing and bold design.",
+  title: "Agency | Technical SEO & Development",
+  description: "Engineering Search Dominance.",
 };
 
 export default function RootLayout({
@@ -15,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    // 3. Apply the font variable and base classes to the HTML tag
+    <html lang="en" className={`${manrope.variable} font-sans bg-[#050505] text-white`}>
+      <body className="antialiased selection:bg-[#FF3300] selection:text-black overflow-x-hidden">
         <Navbar />
-        <CustomCursor />
         {children}
         <Footer />
       </body>

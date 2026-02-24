@@ -1,210 +1,244 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "../../sanity/lib/client";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
-// --- CRITICAL: Forces the page to refresh when you click a category ---
-export const dynamic = "force-dynamic";
+export default function BlogPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
 
-export default async function BlogPage({ searchParams }: { searchParams: { page?: string, category?: string } }) {
-  
-  // 1. GET PARAMETERS FROM URL (e.g., ?category=Tech)
-  const currentPage = Number(searchParams?.page) || 1;
-  const currentCategory = searchParams?.category || "All";
+  const categories = [
+    "All", "Technical SEO", "Engineering", "Case Studies", "Web3", "Opinion"
+  ];
 
-  // 2. BUILD SANITY QUERY
-  // If category is "All", fetch everything. If not, add a filter.
-  const filter = currentCategory === "All" ? '' : `&& category == "${currentCategory}"`;
-  
-  const query = `*[_type == "post" ${filter}] | order(publishedAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    publishedAt,
-    "image": mainImage.asset->url,
-    "author": author->name,
-    category
-  }`;
+  // --- UNIQUE CONTENT FOR RAJ (Solo Consultant) ---
+  const featuredPost = {
+    tag: "ENGINEERING",
+    date: "2026.02.19",
+    title: "Why Your Next.js Migration Killed Your Traffic (And How to Fix It)",
+    excerpt: "Moving to a modern JavaScript framework is supposed to make your site faster. So why did your organic traffic drop 40% overnight? A deep dive into server-side rendering, hydration issues, and log file analysis.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop",
+    author: "Raj",
+    readTime: "8 MIN READ"
+  };
 
-  let allPosts = await client.fetch(query);
+  const trendingPosts = [
+    {
+      tag: "OPINION",
+      title: "Stop Hiring Agencies Who Can't Read Log Files",
+      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=200&auto=format&fit=crop",
+    },
+    {
+      tag: "TECHNICAL SEO",
+      title: "The ROI of Fixing Your Core Web Vitals Before Peak Season",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=200&auto=format&fit=crop",
+    },
+    {
+      tag: "CASE STUDIES",
+      title: "Handling Super Bowl Traffic Spikes in the iGaming Sector",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=200&auto=format&fit=crop",
+    }
+  ];
 
-  // 3. FALLBACK DATA (If Sanity is empty, use dummies that MATCH the category)
-  if (!allPosts || allPosts.length === 0) {
-    // We generate 11 dummy posts to fill the layout
-    allPosts = Array.from({ length: 11 }).map((_, i) => ({
-      _id: `dummy-post-${i}`,
-      title: i === 0 
-        ? "The Agency Model Is Resetting - Why I'm Hiring Client-Side Leaders" 
-        : `The Future of ${currentCategory === 'All' ? 'Digital' : currentCategory} in 2026: Trends to Watch`,
-      slug: `dummy-post-${i}`,
-      publishedAt: "2026-02-18",
-      author: "Carrie Rose",
-      // If filtering by "All", assign random categories. If filtering, match the current category.
-      category: currentCategory === "All" ? (i % 2 === 0 ? "Tech" : "News") : currentCategory,
-      image: i % 2 === 0 
-        ? "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200&auto=format&fit=crop" 
-        : "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop"
-    }));
-  }
-
-  // 4. SLICE DATA FOR LAYOUT
-  const heroPost = allPosts[0];           // 1st post = Hero
-  const sidebarPosts = allPosts.slice(1, 5); // Next 4 = Sidebar list
-  const gridPosts = allPosts.slice(5);    // The rest = Bottom Grid
-
-  // The Categories List (Add more here if you want!)
-  const categories = ['All', 'News', 'Case Studies', 'Opinion', 'Tech', 'Culture', 'SEO', 'PPC', 'Social'];
+  const archivePosts = [
+    {
+      tag: "WEB3",
+      title: "Decentralized Architecture: SEO Implications for Web3 Brands",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f4fc286?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "6 MIN READ"
+    },
+    {
+      tag: "ENGINEERING",
+      title: "Headless CMS vs Traditional: A Performance Breakdown",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "10 MIN READ"
+    },
+    {
+      tag: "TECHNICAL SEO",
+      title: "Why Backlinks Without Architecture is Wasted Budget",
+      image: "https://images.unsplash.com/photo-1504384308090-c54be3852f95?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "5 MIN READ"
+    },
+    {
+      tag: "CASE STUDIES",
+      title: "Re-engineering a Casino Platform for 100/100 Lighthouse Scores",
+      image: "https://images.unsplash.com/photo-1596728345706-b25867142475?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "12 MIN READ"
+    },
+    {
+      tag: "ENGINEERING",
+      title: "Sanity vs Contentful: Which Headless CMS Wins for SEO?",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "7 MIN READ"
+    },
+    {
+      tag: "OPINION",
+      title: "The Death of 'Thin Content' and the Rise of Intent Engineering",
+      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=800&auto=format&fit=crop",
+      author: "Raj",
+      readTime: "4 MIN READ"
+    }
+  ];
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white pt-32 md:pt-48 pb-24 px-6 md:px-12 w-full overflow-hidden">
-      <div className="max-w-[1600px] mx-auto">
-        
-        {/* --- HEADER & CATEGORY SCROLL BAR --- */}
-        <div className="mb-16 md:mb-24 border-b border-gray-800 pb-8 flex flex-col xl:flex-row justify-between items-end gap-8">
-          <h1 className="text-6xl md:text-8xl lg:text-[8rem] font-medium tracking-tighter leading-[0.9]">
-            News, views <br/> and everything else.
-          </h1>
+    <main className="min-h-screen bg-[#050505] text-white pt-32 md:pt-48 pb-24 font-sans">
+      
+      {/* --- HERO SECTION & CATEGORY FILTER --- */}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 mb-16 lg:mb-24">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
           
-          {/* Scrollable Container */}
-   <div className="w-full xl:w-auto overflow-x-auto pb-2 -mb-2 no-scrollbar">
-            <div className="flex gap-3 whitespace-nowrap min-w-max px-1">
-              {categories.map((cat) => (
-                <Link 
-                  key={cat} 
-                  href={cat === 'All' ? '/blog' : `/blog?category=${cat}`}
-                  // Active State: Orange Background. Inactive: Gray Border.
-                  className={`border px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 ${
-                    currentCategory === cat 
-                      ? "bg-[#FF3300] border-[#FF3300] text-black" 
-                      : "border-gray-800 text-gray-400 hover:border-white hover:text-white"
-                  }`}
-                >
-                  {cat}
-                </Link>
+          {/* Unique Headline */}
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-8xl font-medium tracking-tighter leading-[0.9]">
+              Raw data. <br />
+              Deep code. <br />
+              <span className="text-gray-600">Real truth.</span>
+            </h1>
+          </div>
+
+          {/* Category Pills */}
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${
+                  activeCategory === cat 
+                    ? "bg-[#FF3300] text-black border-[#FF3300]" 
+                    : "bg-transparent text-gray-400 border-gray-800 hover:border-gray-500 hover:text-white"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* --- TOP SECTION (Featured + Trending) --- */}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          
+          {/* LEFT: Featured Post (8 columns) */}
+          <div className="lg:col-span-8 group cursor-pointer">
+            <div className="relative w-full aspect-[16/10] md:aspect-[21/9] rounded-3xl overflow-hidden mb-8 bg-[#111] border border-gray-800">
+              <Image 
+                src={featuredPost.image} 
+                alt={featuredPost.title} 
+                fill 
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                className="object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="flex items-center gap-4 text-[#FF3300] text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+               {featuredPost.tag} <span className="text-gray-600">•</span> {featuredPost.date}
+            </div>
+            <h2 className="text-3xl md:text-5xl font-medium tracking-tight leading-snug group-hover:text-[#FF3300] transition-colors mb-6">
+              {featuredPost.title}
+            </h2>
+            <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl">
+              {featuredPost.excerpt}
+            </p>
+          </div>
+
+          {/* RIGHT: Trending Sidebar (4 columns) */}
+          <div className="lg:col-span-4">
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-8 border-b border-gray-800 pb-4">
+              Trending in {activeCategory}
+            </h3>
+            <div className="flex flex-col gap-8">
+              {trendingPosts.map((post, idx) => (
+                <div key={idx} className="flex gap-6 group cursor-pointer items-start">
+                  <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-[#111] border border-gray-800">
+                    <Image 
+                      src={post.image} 
+                      alt={post.title} 
+                      fill 
+                      sizes="96px"
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[#FF3300] text-[9px] font-bold uppercase tracking-[0.2em] block mb-2">
+                      {post.tag}
+                    </span>
+                    <h4 className="text-lg font-medium leading-snug group-hover:text-white text-gray-300 transition-colors">
+                      {post.title}
+                    </h4>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
+
+        </div>
+      </div>
+
+      {/* --- ARCHIVE GRID --- */}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-8 border-b border-gray-800 pb-4">
+          All Archive
+        </h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16">
+          {archivePosts.map((post, idx) => (
+            <div key={idx} className="group cursor-pointer flex flex-col h-full">
+              <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-[#111] border border-gray-800">
+                 {/* Floating Tag */}
+                 <div className="absolute top-4 left-4 bg-[#FF3300] text-black px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] z-10 shadow-lg">
+                   {post.tag}
+                 </div>
+                 <Image 
+                   src={post.image} 
+                   alt={post.title} 
+                   fill 
+                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                   className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" 
+                 />
+              </div>
+              
+              <div className="flex items-center gap-3 text-gray-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">
+                 <span className="w-5 h-5 rounded-full bg-gray-800 relative overflow-hidden border border-gray-700">
+                    <Image src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} fill alt={post.author}/>
+                 </span>
+                 {post.author} <span className="w-1 h-1 bg-gray-700 rounded-full" /> {post.readTime}
+              </div>
+              
+              <h3 className="text-2xl font-medium leading-snug group-hover:text-[#FF3300] transition-colors mt-auto">
+                {post.title}
+              </h3>
+            </div>
+          ))}
         </div>
 
-        {/* --- MAIN CONTENT AREA --- */}
-        {!heroPost ? (
-           // Empty State (If filter returns 0 results)
-           <div className="py-24 text-center border-t border-gray-800">
-             <h2 className="text-2xl text-gray-500 mb-4">No articles found in <span className="text-[#FF3300]">{currentCategory}</span>.</h2>
-             <Link href="/blog" className="text-white underline hover:text-[#FF3300]">Reset Filters</Link>
-           </div>
-        ) : (
-          <>
-            {/* SECTION 1: SPLIT "NEWSROOM" LAYOUT */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-32">
-              
-              {/* Left: Massive Hero Post */}
-              <div className="lg:col-span-8 group cursor-pointer">
-                <Link href={`/blog/${heroPost.slug}`}>
-                  <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden mb-8 border border-gray-800">
-                    <Image 
-                      src={heroPost.image} 
-                      alt={heroPost.title} 
-                      fill 
-                      className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                    />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-4">
-                       <p className="text-[#FF3300] text-sm font-bold uppercase tracking-widest">
-                        {heroPost.category || "Featured"}
-                      </p>
-                      <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">
-                        {new Date(heroPost.publishedAt).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight group-hover:underline decoration-2 underline-offset-8 transition-all">
-                      {heroPost.title}
-                    </h2>
-                  </div>
-                </Link>
-              </div>
+        {/* --- PAGINATION --- */}
+        <div className="flex justify-center items-center gap-3 mt-24 border-t border-gray-800 pt-16">
+           <button className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-white transition-all">
+             ←
+           </button>
+           <button className="w-10 h-10 rounded-full bg-[#FF3300] text-black font-bold text-sm flex items-center justify-center shadow-[0_0_15px_rgba(255,51,0,0.4)]">
+             1
+           </button>
+           <button className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-all text-sm font-medium">
+             2
+           </button>
+           <button className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-all text-sm font-medium">
+             3
+           </button>
+           <span className="text-gray-600 px-2">...</span>
+           <button className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-white transition-all">
+             →
+           </button>
+        </div>
 
-              {/* Right: Sidebar List */}
-              <div className="lg:col-span-4 flex flex-col gap-8">
-                <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 border-b border-gray-800 pb-4">
-                  Trending in {currentCategory}
-                </h3>
-                {sidebarPosts.map((post: any) => (
-                  <Link href={`/blog/${post.slug}`} key={post._id} className="group flex gap-6 items-start">
-                    <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden border border-gray-800">
-                      <Image 
-                        src={post.image} 
-                        alt={post.title} 
-                        fill 
-                        className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <p className="text-xs text-[#FF3300] font-mono uppercase">
-                        {post.category}
-                      </p>
-                      <h4 className="text-lg font-medium leading-snug group-hover:text-gray-400 transition-colors line-clamp-2">
-                        {post.title}
-                      </h4>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* SECTION 2: THE ARCHIVE GRID */}
-            <div className="border-t border-gray-800 pt-24">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-12">
-                {currentCategory} Archive
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-                {gridPosts.map((post: any) => (
-                  <Link href={`/blog/${post.slug}`} key={post._id} className="group cursor-pointer">
-                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 border border-gray-800">
-                      <Image 
-                        src={post.image} 
-                        alt={post.title} 
-                        fill 
-                        className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                      />
-                      {/* Floating Category Pill */}
-                      <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-white/10 text-[#FF3300]">
-                        {post.category}
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center gap-3 mb-3">
-                       <div className="w-6 h-6 rounded-full bg-gray-700 relative overflow-hidden">
-                          <Image src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="Author" fill />
-                       </div>
-                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                         {post.author || "Agency Team"} • 5 min read
-                       </p>
-                    </div>
-
-                    <h2 className="text-2xl font-medium tracking-tight leading-snug group-hover:text-[#FF3300] transition-colors">
-                      {post.title}
-                    </h2>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* SECTION 3: PAGINATION UI */}
-            <div className="mt-32 flex justify-center items-center gap-4">
-              <button disabled className="w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center text-gray-600 cursor-not-allowed">←</button>
-              <div className="flex gap-2">
-                <button className="w-12 h-12 rounded-full bg-[#FF3300] text-black font-bold flex items-center justify-center">1</button>
-                <button className="w-12 h-12 rounded-full border border-gray-800 hover:border-white transition-colors flex items-center justify-center">2</button>
-                <button className="w-12 h-12 rounded-full border border-gray-800 hover:border-white transition-colors flex items-center justify-center">3</button>
-              </div>
-              <button className="w-12 h-12 rounded-full border border-gray-800 hover:bg-white hover:text-black transition-colors flex items-center justify-center">→</button>
-            </div>
-
-          </>
-        )}
       </div>
+
     </main>
   );
 }
