@@ -37,7 +37,7 @@ export default function AboutPage() {
   const dragStartX = useRef(0);
   const dragThreshold = 100;
 
-  // --- DATA: TESTIMONIALS ---
+  // --- DATA: TESTIMONIALS (UPDATED AVATARS) ---
   const testimonials = [
     {
       id: 0,
@@ -45,7 +45,7 @@ export default function AboutPage() {
       quote: "Raj re-engineered our core vitals and helped us capture massive organic volume in the most competitive niche.",
       author: "Sarah Jenkins",
       role: "Head of Growth",
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4`,
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&h=150&q=80",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
     },
     {
@@ -54,25 +54,25 @@ export default function AboutPage() {
       quote: "A rare combination of developer and marketer. He understands the code that drives the ranking.",
       author: "Michael Ross",
       role: "CTO, BetUS",
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=Mike&backgroundColor=c0aede`,
+      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&h=150&q=80",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: 2,
-      client: "PointSpreads",
+      client: "Global Fintech",
       quote: "The technical execution was flawless. We saw immediate lift in indexation rates within weeks.",
       author: "David Miller",
       role: "Product Lead",
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=Dave&backgroundColor=d1d4f7`,
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80",
       image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop"
     },
     {
       id: 3,
-      client: "BetUS",
-      quote: "Scalable architecture that handled our Super Bowl traffic spikes without a hitch.",
+      client: "Crypto Exchange",
+      quote: "Scalable architecture that handled our massive traffic spikes without a single dropped request.",
       author: "James Chen",
       role: "VP Engineering",
-      avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=James&backgroundColor=ffdfbf`,
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
     }
   ];
@@ -164,7 +164,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white overflow-hidden">
+    <main className="min-h-screen bg-[#050505] text-white overflow-hidden selection:bg-[#FF3300] selection:text-black">
       
       {/* --- HERO SECTION --- */}
       <div className="relative w-full min-h-[80vh] flex flex-col items-center justify-center pt-32 pb-24 px-6 md:px-12">
@@ -242,7 +242,7 @@ export default function AboutPage() {
             {[...skillMarquee, ...skillMarquee, ...skillMarquee].map((item, i) => (
               <div key={i} className="shrink-0 flex items-center">
                 {item.type === "text" ? (
-                  <span className="text-6xl md:text-9xl font-medium tracking-tighter text-white whitespace-nowrap">
+                  <span className="text-6xl md:text-9xl font-medium tracking-tighter text-white whitespace-nowrap opacity-80">
                     {item.value}
                   </span>
                 ) : (
@@ -274,7 +274,6 @@ export default function AboutPage() {
               </p>
             </div>
             
-            {/* UPDATED: Clean SVG Arrow on the button */}
             <button className="self-start bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#FF3300] transition-colors flex items-center gap-2 group">
                Start a Project <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
@@ -298,7 +297,6 @@ export default function AboutPage() {
                           </p>
                         </div>
                         
-                        {/* UPDATED: Clean SVG Arrow here as well */}
                         <div className="mt-2 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300 text-[#FF3300]">
                           <ArrowUpRight className="w-8 h-8" />
                         </div>
@@ -311,7 +309,7 @@ export default function AboutPage() {
       </div>
 
       {/* --- THE SLIDER SECTION --- */}
-      <section className="bg-[#0a0a0a] py-32 mb-32 relative overflow-hidden border-t border-b border-gray-800">
+      <section className="bg-[#0a0a0a] py-32 mb-32 relative overflow-hidden border-t border-b border-gray-800" id="testimonials">
         <div className="text-center mb-16 px-6">
           <div className="flex justify-center gap-1 mb-6 text-[#FF3300] text-xl tracking-[0.2em] uppercase font-bold">
             ★★★★★
@@ -362,8 +360,9 @@ export default function AboutPage() {
                      <span className="text-[#FF3300] font-serif pr-1 opacity-50">“</span>{t.quote}<span className="text-[#FF3300] font-serif pl-1 opacity-50">”</span>
                    </blockquote>
                    <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-800">
-                     <div className="w-12 h-12 rounded-full bg-gray-800 relative overflow-hidden shrink-0 border border-gray-700">
-                        <Image src={t.avatar} alt={t.author} fill sizes="48px" className="object-cover" />
+                     <div className="w-12 h-12 rounded-full bg-[#111] relative overflow-hidden shrink-0 border border-gray-700">
+                        {/* THE FIX: Professional Unsplash Avatar */}
+                        <Image src={t.avatar} alt={t.author} fill sizes="48px" className="object-cover grayscale" />
                      </div>
                      <div>
                        <p className="font-bold uppercase tracking-widest text-[11px] text-white mb-1">{t.author}</p>
@@ -402,7 +401,6 @@ export default function AboutPage() {
              Technical <span className="inline-block w-12 h-10 bg-[#FF3300] rounded-xl align-middle mx-2 overflow-hidden relative"><Image src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=100&h=100" fill alt="icon" className="object-cover opacity-50 mix-blend-overlay"/></span> Insights
            </h2>
            
-           {/* UPDATED: Clean SVG Arrow on the button */}
            <button className="hidden md:flex text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors border border-gray-800 px-6 py-3 rounded-full hover:border-white items-center gap-2 group">
              Read the Blog <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
            </button>
@@ -427,7 +425,6 @@ export default function AboutPage() {
           ))}
         </div>
         
-        {/* UPDATED: Clean SVG Arrow on the mobile button */}
         <button className="md:hidden mt-12 w-full text-xs font-bold uppercase tracking-widest text-gray-400 border border-gray-800 px-6 py-4 rounded-full flex justify-center items-center gap-2 group">
            Read the Blog <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>

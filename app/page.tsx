@@ -33,7 +33,7 @@ export default async function Home() {
   return (
    <main className="flex min-h-screen flex-col items-center w-full">
       <Hero />
-      <Services services={servicesData} />
+      <Services/>
       <About  />
       <Work caseStudies={workData} />
     </main>

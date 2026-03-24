@@ -61,17 +61,15 @@ export default function Footer() {
           {/* Column 2: Resources */}
           <div className="flex flex-col gap-4">
             <Link href="/blog" className="hover:text-[#FF3300] transition-colors font-light">Blog / Insights</Link>
-            <Link href="/careers" className="hover:text-[#FF3300] transition-colors font-light">Careers</Link>
-            <Link href="#" className="hover:text-[#FF3300] transition-colors font-light">Testimonials</Link>
-            <Link href="#" className="hover:text-[#FF3300] transition-colors font-light">Webinars</Link>
+            <Link href="/about#testimonials" className="hover:text-[#FF3300] transition-colors font-light">Testimonials</Link>
+
           </div>
           
           {/* Column 3: Locations */}
           <div className="flex flex-col gap-4 text-gray-500">
             <span className="font-light text-white">Montreal</span>
-            <span className="font-light hover:text-white transition-colors cursor-pointer">New York</span>
-            <span className="font-light hover:text-white transition-colors cursor-pointer">London</span>
-            <span className="font-light hover:text-white transition-colors cursor-pointer">Toronto</span>
+            <span className="font-light hover:text-white transition-colors cursor-pointer">Vancouver</span>
+
           </div>
           
         </div>
