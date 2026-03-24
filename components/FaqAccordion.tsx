@@ -7,7 +7,7 @@ export default function FaqAccordion() {
   // 1. The strategic questions you want to rank for
   const faqs = [
     {
-      question: "What does the agency actually do?",
+      question: "What do you actually do?",
       answer: "We engineer digital footprints designed to steal market share. We don't just chase vanity metrics; we build highly technical, scalable search architectures paired with aggressive Digital PR to drive serious organic revenue."
     },
     {
@@ -65,7 +65,7 @@ export default function FaqAccordion() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }} // Buttery smooth agency easing
+                    transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
                     className="overflow-hidden"
                   >
                     <p className="text-lg md:text-xl font-light text-gray-400 pb-8 pr-12 leading-relaxed">

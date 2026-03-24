@@ -16,3 +16,24 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* launchatdawn wordmark — slow gradient drift on “dawn” (footer) */
+@keyframes brand-dawn-ambient {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.12) saturate(1.08);
+  }
+}
+
+.brand-wordmark-dawn--ambient {
+  animation: brand-dawn-ambient 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-wordmark-dawn--ambient {
+    animation: none;
+  }
+}

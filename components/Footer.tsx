@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ArrowUpRight from "@/components/icons/ArrowUpRight";
+import BrandWordmark from "@/components/BrandWordmark";
 
 export default function Footer() {
   return (
@@ -11,10 +13,10 @@ export default function Footer() {
         {/* Left Side: Newsletter Signup */}
         <div className="w-full lg:w-1/3">
           <h3 className="text-2xl font-medium tracking-tight mb-6">
-            Stay updated with AGENCY. news
+            Stay updated with launchatdawn news
           </h3>
           
-          <form className="flex items-center bg-[#111] rounded-full p-1 border border-gray-800 focus-within:border-[#A855F7] transition-colors mb-8">
+          <form className="flex items-center bg-[#111] rounded-full p-1 border border-gray-800 focus-within:border-[#FF3300] transition-colors mb-8">
             <input 
               type="email" 
               placeholder="Your Email Address" 
@@ -22,9 +24,9 @@ export default function Footer() {
             />
             <button 
               type="button" 
-              className="bg-[#A855F7] text-black w-10 h-10 rounded-full flex items-center justify-center shrink-0 hover:bg-white transition-colors"
+              className="bg-[#FF3300] text-black w-10 h-10 rounded-full flex items-center justify-center shrink-0 hover:bg-white transition-colors"
             >
-              ↗
+              <ArrowUpRight className="w-4 h-4" />
             </button>
           </form>
           
@@ -34,9 +36,12 @@ export default function Footer() {
               <a 
                 key={social} 
                 href="#" 
-                className="border border-gray-800 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-[#A855F7] hover:text-black hover:border-[#A855F7] transition-all"
+                className="border border-gray-800 rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-[#FF3300] hover:text-black hover:border-[#FF3300] transition-all"
               >
-                {social} ↗
+                <span className="inline-flex items-center gap-1">
+                  <span>{social}</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </span>
               </a>
             ))}
           </div>
@@ -47,18 +52,18 @@ export default function Footer() {
           
           {/* Column 1: Main Pages */}
           <div className="flex flex-col gap-4">
-            <Link href="/services" className="hover:text-[#A855F7] transition-colors font-light">Services</Link>
-            <Link href="/work" className="hover:text-[#A855F7] transition-colors font-light">Work</Link>
-            <Link href="/about" className="hover:text-[#A855F7] transition-colors font-light">About</Link>
-            <Link href="/contact" className="hover:text-[#A855F7] transition-colors font-light">Contact</Link>
+            <Link href="/services" className="hover:text-[#FF3300] transition-colors font-light">Services</Link>
+            <Link href="/work" className="hover:text-[#FF3300] transition-colors font-light">Work</Link>
+            <Link href="/about" className="hover:text-[#FF3300] transition-colors font-light">About</Link>
+            <Link href="/contact" className="hover:text-[#FF3300] transition-colors font-light">Contact</Link>
           </div>
           
           {/* Column 2: Resources */}
           <div className="flex flex-col gap-4">
-            <Link href="/blog" className="hover:text-[#A855F7] transition-colors font-light">Blog / Insights</Link>
-            <Link href="/careers" className="hover:text-[#A855F7] transition-colors font-light">Careers</Link>
-            <Link href="#" className="hover:text-[#A855F7] transition-colors font-light">Testimonials</Link>
-            <Link href="#" className="hover:text-[#A855F7] transition-colors font-light">Webinars</Link>
+            <Link href="/blog" className="hover:text-[#FF3300] transition-colors font-light">Blog / Insights</Link>
+            <Link href="/careers" className="hover:text-[#FF3300] transition-colors font-light">Careers</Link>
+            <Link href="#" className="hover:text-[#FF3300] transition-colors font-light">Testimonials</Link>
+            <Link href="#" className="hover:text-[#FF3300] transition-colors font-light">Webinars</Link>
           </div>
           
           {/* Column 3: Locations */}
@@ -72,17 +77,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Middle: MASSIVE Agency Typography */}
-      {/* We use 'text-[15vw]' so the text scales perfectly with the width of the browser */}
-      <div className="w-full flex justify-center items-center mb-8 border-b border-gray-900 pb-8">
-        <h1 className="text-[18vw] leading-none font-medium tracking-tighter text-white whitespace-nowrap select-none">
-          AGENCY.
+      {/* Middle: wordmark */}
+      <div className="w-full flex justify-center items-center mb-8 border-b border-gray-900 pb-8 px-2">
+        <h1 className="m-0 text-center font-normal">
+          <BrandWordmark variant="footer" as="span" />
         </h1>
       </div>
 
       {/* Bottom: Legal & Copyright */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 font-bold tracking-widest uppercase gap-4">
-        <p>© {new Date().getFullYear()} AGENCY LTD. ALL RIGHTS RESERVED.</p>
+        <p>© {new Date().getFullYear()} launchatdawn. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>

@@ -5,14 +5,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-
-// --- SLEEK CUSTOM SVG ARROWS ---
-const ArrowUpRight = ({ className = "w-5 h-5" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M7 17L17 7" />
-    <path d="M7 7h10v10" />
-  </svg>
-);
+import ArrowUpRight from "./icons/ArrowUpRight";
+import BrandWordmark from "./BrandWordmark";
 
 const ChevronDown = ({ className = "w-3 h-3" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -73,9 +67,7 @@ export default function Navbar() {
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex justify-between items-center relative">
           
           {/* LOGO */}
-          <Link href="/" className="text-2xl font-bold tracking-tighter text-white relative group">
-            AGENCY<span className="text-[#FF3300] group-hover:text-white transition-colors">.</span>
-          </Link>
+          <BrandWordmark variant="nav" />
 
           {/* --- DESKTOP NAVIGATION --- */}
           <div className="hidden md:flex items-center gap-10">
@@ -193,9 +185,10 @@ export default function Navbar() {
             className="fixed inset-0 z-[70] bg-[#050505] flex flex-col pt-8 px-6 pb-12 overflow-y-auto font-sans"
           >
             <div className="flex justify-between items-center w-full mb-12">
-               <span className="text-2xl font-bold tracking-tighter text-white">
-                 AGENCY<span className="text-[#FF3300]">.</span>
-               </span>
+               <BrandWordmark
+                 variant="mobile"
+                 onNavigate={() => setIsMobileMenuOpen(false)}
+               />
                <button 
                  onClick={() => setIsMobileMenuOpen(false)}
                  className="p-2 text-white hover:text-[#FF3300] transition-colors"

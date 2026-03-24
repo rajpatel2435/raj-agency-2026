@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 // --- DUMMY DATA (Replace with sanity fetch later) ---
 const post = {
-  title: "The Agency Model Is Resetting - why I am hiring more client side leaders",
+  title: "The old model is resetting — why I am hiring more client-side leaders",
   publishedAt: "2026-02-14",
   author: "Carrie Rose",
   image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1600&auto=format&fit=crop",
@@ -99,7 +99,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             </div>
             <div>
               <p className="text-sm font-bold uppercase tracking-widest text-[#FF3300]">
-                {post.author || "Agency Team"}
+                {post.author || "launchatdawn"}
               </p>
               <p className="text-xs text-gray-500 font-mono mt-1">
                 {new Date(post.publishedAt).toLocaleDateString()} • 5 min read

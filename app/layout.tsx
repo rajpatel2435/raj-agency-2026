@@ -11,8 +11,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Agency | Technical SEO & Development",
-  description: "Engineering Search Dominance.",
+  title: "launchatdawn | Technical SEO & Development",
+  description: "Engineering search dominance — built to launch.",
 };
 
 export default function RootLayout({
