@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Work from "../components/Work";
 import { client } from "../sanity/lib/client";
+import Insights from "@/components/Insights";
 
 export default async function Home() {
   // Fetch Services
@@ -24,6 +25,20 @@ export default async function Home() {
     summary
   }`;
 
+  const query = `*[_type == "insight"] | order(publishedAt desc) [0..3] {
+    _id,
+    title,
+    slug,
+    category,
+    publishedAt,
+    mainImage
+  }`;
+  
+  const data = await client.fetch(query);
+  
+  // Then pass it:
+  <Insights data={data} />
+
   // Run both fetches simultaneously for better performance
   const [servicesData, workData] = await Promise.all([
     client.fetch(servicesQuery),
@@ -36,6 +51,7 @@ export default async function Home() {
       <Services/>
       <About  />
       <Work caseStudies={workData} />
+      <Insights data={data} />
     </main>
   );
 }
