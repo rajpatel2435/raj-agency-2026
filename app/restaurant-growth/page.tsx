@@ -42,7 +42,7 @@ export default function RestaurantEnginePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white selection:bg-[#F95D0A] selection:text-black font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-[#050505] text-white selection:bg-[#F95D0A] selection:text-black font-sans overflow-x-hidden mt-24 md:mt-10">
       
       {/* --- 1. HERO: CLEAR VALUE --- */}
       <section className="relative min-h-screen flex items-center px-6 lg:px-12 border-b border-white/5">
