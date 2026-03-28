@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Insights from "@/components/Insights";
+import { Analytics } from '@vercel/analytics/next';
 
 // The Primary Brand Font (Engineered, Geometric, Modern)
 const spaceGrotesk = Space_Grotesk({ 
@@ -34,6 +35,7 @@ export default function RootLayout({
         {children}
      
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
