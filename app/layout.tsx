@@ -18,9 +18,14 @@ const spaceMono = Space_Mono({
   variable: "--font-mono"
 });
 
+// app/layout.tsx
 export const metadata = {
-  title: "Launch at Dawn | Enterprise Architecture",
-  description: "Technical SEO and Next.js Infrastructure.",
+  title: 'Launch at Dawn // Revenue Engineering',
+  description: 'Digital infrastructure for Montreal & Vancouver kitchens.',
+  icons: {
+    icon: '/favicon.svg', // Points to public/favicon.svg
+    apple: '/apple-touch-icon.png', // For iPhone bookmarks
+  },
 };
 
 export default function RootLayout({
