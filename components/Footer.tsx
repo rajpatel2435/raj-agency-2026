@@ -23,6 +23,14 @@ export default function Footer() {
     return () => observer.disconnect();
   }, []);
 
+  // MATCHING CONTENT ARRAY: Label vs Slug
+  const services = [
+    { label: "Growth Strategy", slug: "strategy" },
+    { label: "Local Visibility", slug: "seo" },
+    { label: "Premium Experience", slug: "design" },
+    { label: "Reliable Systems", slug: "engineering" }
+  ];
+
   return (
     <footer className="w-full bg-[#050505] text-white pt-16 md:pt-24 border-t border-white/5 overflow-hidden font-sans selection:bg-[#F95D0A] selection:text-black">
       
@@ -49,10 +57,16 @@ export default function Footer() {
         {/* Links: High Contrast White, Standard Size */}
         <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-10 border-l border-white/10 pl-8 md:pl-16">
            <div className="flex flex-col gap-5">
-             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Services</h4>
+             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Service Divisions</h4>
              <div className="flex flex-col gap-3">
-               {['Strategy', 'SEO', 'Design', 'Engineering'].map((item) => (
-                 <Link key={item} href="#" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">{item}</Link>
+               {services.map((service) => (
+                 <Link 
+                   key={service.slug} 
+                   href={`/services/${service.slug}`} 
+                   className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors"
+                 >
+                   {service.label}
+                 </Link>
                ))}
              </div>
            </div>
@@ -60,22 +74,22 @@ export default function Footer() {
            <div className="flex flex-col gap-5">
              <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Resources</h4>
              <div className="flex flex-col gap-3">
-               <Link href="/blog" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Archive</Link>
-               <Link href="/about" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Testimonials</Link>
+               <Link href="/blog" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Digital Archive</Link>
+               <Link href="/about" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Client Outcomes</Link>
              </div>
            </div>
 
            <div className="flex flex-col gap-5">
              <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Operational</h4>
              <div className="flex flex-col gap-3">
-               <span className="text-sm font-medium text-white">Montreal</span>
-               <span className="text-sm font-medium text-white/20">Vancouver</span>
+               <span className="text-sm font-medium text-white">Montreal, QC</span>
+               <span className="text-sm font-medium text-white/20">Vancouver, BC</span>
              </div>
            </div>
         </div>
       </div>
 
-      {/* FOOTER LOGO: RESTORED TO YOUR ORIGINAL DESIGN */}
+      {/* FOOTER LOGO */}
       <div ref={logoRef} className="w-full border-t border-white/5 pt-12 text-center pb-8 group cursor-default select-none overflow-hidden px-4">
         <h2 className={`text-[13vw] font-black tracking-tighter leading-[0.7] flex items-center justify-center uppercase whitespace-nowrap transition-all duration-1000 ease-out ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <span className="text-white">launch</span>
@@ -87,8 +101,8 @@ export default function Footer() {
         </h2>
         
         <div className="mt-8 flex justify-between items-center px-6 md:px-12 opacity-20">
-           <p className="font-mono text-[8px] uppercase tracking-[0.5em]">© 2026 // Technical Architecture</p>
-           <p className="font-mono text-[8px] uppercase tracking-[0.5em]">MTL // YVR // USA</p>
+           <p className="font-mono text-[8px] uppercase tracking-[0.5em]">© 2026 // Revenue Engineering</p>
+           <p className="font-mono text-[8px] uppercase tracking-[0.5em]">MTL // YVR // INTERNATIONAL</p>
         </div>
       </div>
 

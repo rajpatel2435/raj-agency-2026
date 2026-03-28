@@ -44,12 +44,21 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'News', value: 'News' },
+          { title: 'Engineering', value: 'Tech' },
           { title: 'Case Studies', value: 'Case Studies' },
-          { title: 'Opinion', value: 'Opinion' },
-          { title: 'Tech', value: 'Tech' },
-          { title: 'Culture', value: 'Culture' },
+          { title: 'Medical/Dental', value: 'Medical' },
+          { title: 'iGaming', value: 'iGaming' },
+          { title: 'Intelligence', value: 'Opinion' },
         ],
+      },
+    }),
+    defineField({
+      name: 'seoKeywords',
+      title: 'SEO Keywords / Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
       },
     }),
   ],
