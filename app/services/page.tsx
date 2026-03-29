@@ -23,9 +23,17 @@ const ArrowUpRight = () => (
 );
 
 const ServiceRow = ({ id, title, desc, tags, slug }: any) => (
-  <div className="group border-b border-white/5 py-16 md:py-24 hover:bg-white/[0.02] transition-colors relative z-10">
+  <Link 
+    href={`/services/${slug}`}
+    className="group block border-b border-white/5 py-16 md:py-24 hover:bg-white/[0.02] transition-colors relative z-10"
+  >
     <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      <div className="lg:col-span-1 font-mono text-[#F95D0A] text-sm font-bold opacity-50">{id}</div>
+      {/* ID / Numbering */}
+      <div className="lg:col-span-1 font-mono text-[#F95D0A] text-sm font-bold opacity-50">
+        {id}
+      </div>
+
+      {/* Main Content */}
       <div className="lg:col-span-7">
         <h2 className="text-[clamp(2.2rem,6vw,5rem)] font-black uppercase tracking-tighter leading-[0.9] mb-6 group-hover:italic transition-all duration-500">
           {title}
@@ -33,6 +41,8 @@ const ServiceRow = ({ id, title, desc, tags, slug }: any) => (
         <p className="text-lg md:text-xl text-zinc-500 max-w-xl mb-8 leading-snug font-medium">
           {desc}
         </p>
+        
+        {/* Tags */}
         <div className="flex flex-wrap gap-2">
           {tags.map((tag: string) => (
             <span key={tag} className="px-3 py-1 border border-white/10 rounded-full font-mono text-[9px] uppercase tracking-widest text-white/40 group-hover:border-[#F95D0A]/30 transition-colors">
@@ -41,16 +51,17 @@ const ServiceRow = ({ id, title, desc, tags, slug }: any) => (
           ))}
         </div>
       </div>
+
+      {/* Arrow Visual (No longer a Link, now a Div inside the parent Link) */}
       <div className="lg:col-span-4 flex lg:justify-end items-center h-full">
-        <Link 
-          href={`/services/${slug}`} 
-          className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#F95D0A] group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(249,93,10,0)] group-hover:shadow-[0_0_30px_rgba(249,93,10,0.3)]"
+        <div 
+          className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-[#F95D0A] group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(249,93,10,0)] group-hover:shadow-[0_0_30px_rgba(249,93,10,0.3)] group-hover:scale-110"
         >
           <ArrowUpRight />
-        </Link>
+        </div>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default function ServicesHub() {
@@ -154,29 +165,58 @@ export default function ServicesHub() {
       </section>
 
       {/* --- FAQ SECTION --- */}
-      <section className="py-32 px-6 bg-[#080808]/80 relative z-10 backdrop-blur-md">
-        <div className="max-w-[1400px] mx-auto">
-           <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-20">Common <br /> <span className="text-[#F95D0A]">Questions</span></h2>
-           <div className="divide-y divide-white/5">
-              {[
-                { q: "What does Launch at Dawn actually do?", a: "We build digital pipelines that move people from a Google search straight into your reservation book." },
-                { q: "Do you work with small businesses?", a: "We work with businesses ready to scale. If you have the capacity for more customers, we have the system to find them." },
-                { q: "How much does this cost?", a: "Engagements are tailored to your goals. We focus on ROI—the system should pay for itself multiple times over." }
-              ].map((faq, i) => (
-                <div key={i} className="py-10 group cursor-pointer">
-                  <div className="flex justify-between items-center group-hover:text-[#F95D0A] transition-colors">
-                    <h4 className="text-xl md:text-3xl font-black uppercase">{faq.q}</h4>
-                    <span className="text-3xl group-hover:rotate-45 transition-transform">+</span>
-                  </div>
-                  <p className="mt-6 text-zinc-500 max-w-2xl font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    {faq.a}
-                  </p>
-                </div>
-              ))}
-           </div>
+{/* --- FAQ SECTION (Overlap Fix) --- */}
+<section className="py-32 md:py-48 px-6 bg-[#050505] relative z-10 text-white overflow-hidden">
+  <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-y-16">
+    
+    {/* Left Side: Title - Set a hard max-width to prevent bleed */}
+    <div className="lg:col-span-5 z-20">
+      <div className="max-w-xl md:max-w-2xl">
+        <h2 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black uppercase tracking-tighter leading-[0.8] mb-8">
+          Frequent <br /> 
+          <span className="text-[#F95D0A] italic">Asked</span> <br /> 
+          Questions
+        </h2>
+        
+        <div className="mt-16">
+          <div className="w-12 h-[1px] bg-[#F95D0A] mb-4" />
+          <p className="font-mono text-[9px] uppercase tracking-[0.5em] text-white/20">
+            SYS.SUPPORT // READY_FOR_DEPLOYMENT
+          </p>
         </div>
-      </section>
+      </div>
+    </div>
 
+    {/* Right Side: List - Added lg:pl-20 to push away from the text */}
+    <div className="lg:col-span-7 flex flex-col gap-4 lg:pl-24 relative z-10">
+      {[
+        { q: "What does Launch at Dawn actually do?", a: "We build digital pipelines that move people from a Google search straight into your reservation book." },
+        { q: "Do you handle bilingual content?", a: "Every system we build is optimized for both French and English search intent for Montreal and Vancouver markets." },
+        { q: "How long before we see results?", a: "While SEO is a long-term engine, our technical audits often show traffic lift within the first 30–60 days." },
+        { q: "Do you work with small businesses?", a: "We partner with growth-phase kitchens and clinics ready to scale their operations." },
+        { q: "How much does this cost?", a: "Engagements are tailored to ROI—the system should pay for itself multiple times over through high-intent traffic." },
+        { q: "Do we own the data and systems?", a: "100%. We build the machine, show you how to drive it, and hand you the keys." }
+      ].map((faq, i) => (
+        <div 
+          key={i} 
+          className="group bg-[#0A0A0A] border border-white/5 rounded-2xl p-7 md:p-10 flex flex-col cursor-pointer transition-all duration-500 hover:border-[#F95D0A]/30 hover:bg-[#0D0D0D] hover:-translate-y-1"
+        >
+          <div className="flex justify-between items-center gap-10">
+            <h4 className="text-lg md:text-2xl font-black uppercase tracking-tight group-hover:text-[#F95D0A] transition-colors leading-tight">
+              {faq.q}
+            </h4>
+            <span className="text-2xl font-light text-white/10 group-hover:text-[#F95D0A] group-hover:rotate-45 transition-all flex-shrink-0">+</span>
+          </div>
+          
+          <p className="max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-8 text-zinc-500 font-medium leading-relaxed transition-all duration-500 overflow-hidden text-lg border-l border-[#F95D0A]/20 pl-6">
+            {faq.a}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
       {/* --- FOOTER CTA --- */}
       <section className="py-40 px-6 bg-[#F95D0A] text-black text-center relative overflow-hidden z-10">
         <motion.div 

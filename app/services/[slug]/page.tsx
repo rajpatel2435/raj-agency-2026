@@ -31,6 +31,35 @@ const serviceData = {
     sectors: ["Local Restaurants", "Medical Practices", "Real Estate Groups", "Service Franchises"],
     stats: [{ val: "400%", label: "Organic Growth" }, { val: "Top 3", label: "Avg. Ranking" }]
   },
+  pr: {
+    title: "Digital PR & Social",
+    tagline: "Move the Culture, Control the Revenue.",
+    heroDesc: "Standard social media is noise. We solve digital invisibility by engineering content that forces conversation and earns high-authority mentions from the city's top tastemakers.",
+    auditTitle: "The Authority Engine",
+    auditDesc: "We don't post for likes; we post for authority. We bridge the gap between a viral moment and a long-term ranking boost.",
+    steps: [
+      { label: "Viral Mystery Hooks", desc: "We create 'The Hunt'—content that triggers the Instagram algorithm and puts you on the Montreal bucket list." },
+      { label: "High-Tier Backlinking", desc: "Earning mentions from major local and national publications to skyrocket your domain's trust score." },
+      { label: "Bilingual Social SEO", desc: "Optimizing your social presence in both French and English to dominate localized search intent." }
+    ],
+    sectors: ["Fine Dining", "Nightlife & Bars", "Boutique Retail", "Lifestyle Brands"],
+    stats: [{ val: "4.8M", label: "Monthly Reach" }, { val: "70+", label: "Avg. Domain Authority" }]
+  },
+
+  data: {
+    title: "Data & Insights",
+    tagline: "Zero Speculation. Total Attribution.",
+    heroDesc: "Most agencies guess. We bridge the data gap by connecting your website's technical logs directly to your real-world revenue. If a pixel doesn't perform, it's removed.",
+    auditTitle: "Revenue Intelligence",
+    auditDesc: "Our reporting doesn't show 'clicks.' It shows customers. We track the entire journey from the first impression to the final transaction.",
+    steps: [
+      { label: "Custom ROI Dashboards", desc: "Live, 24/7 access to your revenue metrics. No more waiting for end-of-month PDF reports." },
+      { label: "Predictive Modeling", desc: "Using historical data to forecast your busiest nights and optimizing your ad spend to fill the quiet ones." },
+      { label: "Multi-Channel Attribution", desc: "Knowing exactly which TikTok, Search, or PR mention resulted in that $400 table booking." }
+    ],
+    sectors: ["SaaS Founders", "Multi-Unit Restaurants", "Medical Networks", "E-commerce Giants"],
+    stats: [{ val: "100%", label: "Exact Attribution" }, { val: "-40%", label: "Wasted Ad Spend" }]
+  }
   // Add design and engineering here following the same pattern...
 };
 
@@ -109,18 +138,27 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       {/* 4. THE ULTIMATE CTA */}
       <section className="py-40 px-6 bg-[#F95D0A] text-black text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-          <p className="text-[20vw] font-black uppercase leading-none whitespace-nowrap">GROWTH GROWTH GROWTH GROWTH</p>
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-6xl md:text-[10vw] font-black uppercase leading-[0.8] mb-12 italic">
-            STOP GUESSING. <br /> START WINNING.
-          </h2>
-          <Link href="/restaurant-engine#get-started" className="inline-block bg-black text-white px-16 py-8 font-black uppercase tracking-widest text-xl hover:scale-105 transition-transform shadow-[20px_20px_0px_0px_rgba(0,0,0,0.2)]">
-            Analyze My Revenue Now
-          </Link>
-        </div>
-      </section>
+  {/* Background Layer */}
+  <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none z-0">
+    <p className="text-[20vw] font-black uppercase leading-none whitespace-nowrap">
+      GROWTH GROWTH GROWTH GROWTH
+    </p>
+  </div>
+
+  {/* Content Layer */}
+  <div className="relative z-10 max-w-4xl mx-auto">
+    <h2 className="text-6xl md:text-[10vw] font-black uppercase leading-[0.8] mb-12 italic">
+      STOP GUESSING. <br /> START WINNING.
+    </h2>
+    
+    <Link 
+      href="/contact/hello" 
+      className="relative z-20 inline-block bg-black text-white px-16 py-8 font-black uppercase tracking-widest text-xl hover:scale-105 transition-transform shadow-[20px_20px_0px_0px_rgba(0,0,0,0.2)] active:translate-y-1 active:shadow-none"
+    >
+      Analyze My Revenue Now
+    </Link>
+  </div>
+</section>
 
     </main>
   );
