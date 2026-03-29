@@ -52,6 +52,8 @@ export default function Footer() {
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>
+
+          
         </div>
 
         {/* Links: High Contrast White, Standard Size */}
@@ -85,7 +87,12 @@ export default function Footer() {
                <span className="text-sm font-medium text-white">Montreal, QC</span>
                <span className="text-sm font-medium text-white/20">Vancouver, BC</span>
              </div>
+             <Link href="https://www.instagram.com/launchatdawn/" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">Instagram</Link>
+  <Link href="https://linkedin.com/company/launchatdawn" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">LinkedIn</Link>
+
            </div>
+
+
         </div>
       </div>
 
@@ -104,6 +111,8 @@ export default function Footer() {
            <p className="font-mono text-[8px] uppercase tracking-[0.5em]">© 2026 // Revenue Engineering</p>
            <p className="font-mono text-[8px] uppercase tracking-[0.5em]">MTL // YVR // INTERNATIONAL</p>
         </div>
+
+        
       </div>
 
     </footer>
