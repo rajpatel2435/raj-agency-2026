@@ -16,7 +16,7 @@ export default async function Home() {
   }`;
   
   // Fetch Case Studies and expand the image URL directly in the query
-  const workQuery = `*[_type == "caseStudy"] | order(_createdAt desc) {
+  const workQuery = `*[_type == "workbyld"] | order(_createdAt desc) {
     _id,
     title,
     client,
