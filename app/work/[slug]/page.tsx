@@ -10,15 +10,16 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     title: "Orchestrating a 98% Surge in Organic Volume for a Declining QSR Giant",
     client: "ALTOS GRILL",
     year: "2024-2026",
-    industry: "Fast Casual, E-commerce",
-    metric: "98%",
+    industry: "Gastro-Retail",
+    metric: "95% Lift",
     category: "Search Strategy, Digital PR",
-    heroGallery: ["https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2000&auto=format&fit=crop"],
+    // Replace with the URL of the "Burger" image we generated
+    heroGallery: ["/images/work/altos-hero.jpg"], 
     challenge: "Altos Grill occupied a 'dead zone' in search. We pivoted from brand-heavy reliance to a non-brand infrastructure that captured high-intent 'midnight-craving' searchers in the Griffintown area.",
     stats: [
-      { label: "Organic Traffic Velocity", value: "98%" },
+      { label: "Organic Traffic Velocity", value: "95%" },
       { label: "High-Authority Backlinks", value: "81%" },
-      { label: "New Referring Domains", value: "2.3K" },
+      { label: "Search Visibility", value: "Dominant" },
       { label: "Market-Leading Keywords", value: "228K" },
     ],
     whatWeDid: {
@@ -27,7 +28,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
       description: "By restructuring the site architecture around 'Mood-Based Categories,' we bypassed saturated 'Best Burger' keywords and dominated conversational searches that drive 70% of modern Montreal conversions."
     },
     testimonial: {
-      text: "LaunchAtDawn didn't just give us a report; they gave us a new language to speak to our customers. Our digital footprint is now our strongest asset.",
+      text: "LaunchAtDawn didn't just give us a report; they gave us a new language to speak to our customers.",
       author: "M. Holmes",
       role: "Operations Director, Altos"
     }
@@ -36,24 +37,25 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     title: "Dominating the Plateau: How a Local Clinic Captured 40% of Neighborhood Search",
     client: "CLINIQUE DR. ARIS",
     year: "2025",
-    industry: "Healthcare, Local Services",
+    industry: "Medical // Dominance",
     metric: "+310%",
     category: "Local SEO, Google Maps, Lead Gen",
-    heroGallery: ["https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop"],
-    challenge: "A high-rated Plateau clinic was losing to generic dental chains. They had zero visibility for 'Emergency Dentist Montreal' or 'Invisalign Plateau' despite superior patient care.",
+    // Replace with the URL of the "Dental UI" image we generated
+    heroGallery: ["/images/work/aris-dental-hero.jpg"],
+    challenge: "A high-rated Plateau clinic was losing to generic dental chains. They had zero visibility for 'Emergency Dentist Montreal' despite superior patient care.",
     stats: [
       { label: "Local Map Pack Rank", value: "#1" },
       { label: "New Patient Leads", value: "+310%" },
-      { label: "Google Review Velocity", value: "4.9/5" },
       { label: "CPA Reduction", value: "-55%" },
+      { label: "Market Share", value: "40%" },
     ],
     whatWeDid: {
       headline: "The 'Hyper-Local' Authority Model",
       points: ["Geofenced Google Ads", "Bilingual Content Optimization", "Automated Patient Review Funnels"],
-      description: "We hijacked traffic from national chains by focusing on neighborhood-specific intent. By dominating the 'Mile End' and 'Plateau' geolocations, we turned a local clinic into a community landmark."
+      description: "We hijacked traffic from national chains by focusing on neighborhood-specific intent. By dominating the 'Plateau' geolocations, we turned a local clinic into a community landmark."
     },
     testimonial: {
-      text: "My phone doesn't stop ringing. They actually understand how people in Montreal search in both languages.",
+      text: "They actually understand how people in Montreal search in both languages.",
       author: "Dr. Marc Aris",
       role: "Founder, Clinique Dr. Aris"
     }
@@ -62,11 +64,12 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     title: "From 'Hidden' to 'Booked Out': Scaling an Old Montreal Speakeasy via Social SEO",
     client: "LE PETIT SECRET",
     year: "2025-2026",
-    industry: "Hospitality, Nightlife",
+    industry: "Hospitality // Visit",
     metric: "4.8M Views",
     category: "Social SEO, Short-Form Video, PR",
-    heroGallery: ["https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop"],
-    challenge: "An elite speakeasy in Old Montreal had the best product but zero digital footprint. They were a 'hidden gem' that was staying too hidden from the high-spending tourist demographic.",
+    // Replace with the URL of the "Alleyway Sign" image we generated
+    heroGallery: ["/images/work/petit-secret-hero.jpg"],
+    challenge: "An elite speakeasy in Old Montreal was a 'hidden gem' staying too hidden from the high-spending tourist demographic.",
     stats: [
       { label: "Cumulative Video Reach", value: "4.8M" },
       { label: "Direct Booking Increase", value: "+420%" },
@@ -88,16 +91,17 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     title: "Re-Engineering Trust: A 140% Increase in FinTech Acquisition Velocity",
     client: "NEXUS FINANCE",
     year: "2025",
-    industry: "FinTech, SaaS",
+    industry: "Tech Giant // Acquisition",
     metric: "140%",
     category: "UI/UX, Performance Marketing",
-    heroGallery: ["https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2000&auto=format&fit=crop"],
-    challenge: "Nexus Finance suffered from a 'conversion cliff.' Users were interested but abandoned the platform during the complex KYC onboarding process.",
+    // Replace with the URL of the "Hologram Globe/Hand" image we generated
+    heroGallery: ["/images/work/nexus-finance-hero.jpg"],
+    challenge: "Nexus Finance suffered from a 'conversion cliff.' Users abandoned the platform during the complex KYC onboarding process.",
     stats: [
       { label: "Onboarding Completion", value: "140%" },
       { label: "Cost Per Acquisition", value: "-45%" },
       { label: "User Trust Rating", value: "9.8/10" },
-      { label: "Quarterly Transaction Vol", value: "$12M" },
+      { label: "Quarterly Volume", value: "$12M" },
     ],
     whatWeDid: {
       headline: "Frictionless Financial Logic",
@@ -109,9 +113,61 @@ const LOCAL_WORK_DATA: Record<string, any> = {
       author: "S. Chen",
       role: "CMO, Nexus Finance"
     }
-  }
+  },
+  "festival-cyberk-launch": {
+    title: "Breaking the Sound Barrier: 100% Sell-Through Velocity for 50k Units",
+    client: "FESTIVAL CYBERK",
+    year: "2026",
+    industry: "Hospitality // Visit",
+    metric: "SELL-OUT",
+    category: "Guerilla Orchestration, AR Integration",
+    heroGallery: ["/images/work/cyberk-headset.jpg"], // The headset image
+    challenge: "Executing a bilingual guerilla campaign to achieve 100% sell-through velocity within a 12-hour deployment window for a massive 50k unit festival launch.",
+    stats: [
+      { label: "Deployment Window", value: "12H" },
+      { label: "Sell-Through Velocity", value: "100%" },
+      { label: "Unit Volume", value: "50K" },
+      { label: "AR Node Triggers", value: "Global" },
+    ],
+    whatWeDid: {
+      headline: "The 'Sound Barrier' Protocol",
+      points: ["Augmented Reality Nodes", "Bilingual Guerilla Orchestration", "Underground Street-Art Triggers"],
+      description: "We integrated digital AR nodes with physical street-art triggers across Montreal, creating a scavenger-hunt hype cycle that resulted in a total sell-out in record time."
+    },
+    testimonial: {
+      text: "A masterclass in high-velocity deployment. They didn't just sell tickets; they integrated the city into the experience.",
+      author: "L. Thorne",
+      role: "Operations, Cyberk"
+    }
+  },
+  "maison-lumiere-global": {
+    title: "The Aspiration Engine: Global ROAS Scaling for Luxury Lighting",
+    client: "MAISON LUMIÈRE",
+    year: "2025",
+    industry: "Luxury // Scaling",
+    metric: "ROAS 3.5x",
+    category: "Brand Identity, Performance Marketing",
+    heroGallery: ["/images/work/maison-lumiere-hero.jpg"],
+    challenge: "Scaling a boutique Montreal atelier into a global luxury competitor while maintaining a 3.5x ROAS and high-end brand perception.",
+    stats: [
+      { label: "Return on Ad Spend", value: "3.5x" },
+      { label: "Global Acquisition", value: "+115%" },
+      { label: "Market Position", value: "Elite" },
+      { label: "Brand Equity", value: "High" },
+    ],
+    whatWeDid: {
+      headline: "Aspiration Engineering",
+      points: ["Global Scalability Audit", "Prestige-First Funnel Design", "High-Couture Visual Identity"],
+      description: "We built an 'Aspiration Engine' that targeted high-net-worth hubs, shifting the brand from a local maker to a global luxury authority."
+    },
+    testimonial: {
+      text: "They managed to scale our volume without ever compromising our luxury status.",
+      author: "J. Dupont",
+      role: "Creative Director"
+    }
+  },
+  
 };
-
 const ptComponents = {
   block: {
     h2: ({ children }: any) => <h2 className="text-3xl md:text-5xl font-medium mt-24 mb-8 text-white tracking-tight">{children}</h2>,
@@ -139,13 +195,32 @@ export default async function WorkDetailsPage(props: { params: Promise<{ slug: s
     <main className="min-h-screen bg-[#050505] text-white pt-32 md:pt-48 pb-24 w-full overflow-x-hidden">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
         
-        {/* --- 1. META HEADER --- */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-900 pb-12 mb-16 text-[10px] uppercase tracking-[0.3em] text-gray-600 font-bold">
-          <div><p className="mb-2">Deployment Year</p><p className="text-white">{project.year || "2026"}</p></div>
-          <div><p className="mb-2">Core Capabilities</p><p className="text-white">{project.category}</p></div>
-          <div><p className="mb-2">Vertical</p><p className="text-white">{project.industry || "Retail"}</p></div>
-          <div className="text-right"><p className="mb-2 text-[#FF3300]">Direct Link ↗</p></div>
-        </div>
+   {/* --- 1. META HEADER --- */}
+{/* --- 1. META HEADER (Agency Refined) --- */}
+<div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-white/5 pb-12 mb-16 font-sans">
+  <div>
+    <p className="text-[9px] uppercase tracking-[0.4em] text-gray-500 font-bold mb-4 opacity-70 italic">Deployment Year</p>
+    <p className="text-[11px] text-white font-medium tracking-[0.2em]">{project.year || "2025-2026"}</p>
+  </div>
+  
+  <div>
+    <p className="text-[9px] uppercase tracking-[0.4em] text-gray-500 font-bold mb-4 opacity-70 italic">Core Capabilities</p>
+    <p className="text-[11px] text-white font-medium tracking-[0.2em] uppercase leading-relaxed">{project.category}</p>
+  </div>
+  
+  <div>
+    <p className="text-[9px] uppercase tracking-[0.4em] text-gray-500 font-bold mb-4 opacity-70 italic">Vertical</p>
+    <p className="text-[11px] text-white font-medium tracking-[0.2em] uppercase">{project.industry || "Retail"}</p>
+  </div>
+
+  <div className="flex flex-col items-end">
+    <p className="text-[9px] uppercase tracking-[0.4em] text-[#FF3300] font-bold mb-4 italic">SYS.ARCHIVE // DEPLOYED</p>
+    <div className="flex items-center gap-3">
+      <span className="text-[10px] text-gray-400 font-mono">STATUS: 200 OK</span>
+      <div className="w-1.5 h-1.5 rounded-full bg-[#00A3FF] animate-pulse shadow-[0_0_8px_#00A3FF]" />
+    </div>
+  </div>
+</div>
 
         {/* --- 2. MAIN HEADLINE --- */}
         <h1 className="text-5xl md:text-8xl lg:text-[7rem] font-medium tracking-tighter leading-[0.9] mb-24 max-w-6xl">
