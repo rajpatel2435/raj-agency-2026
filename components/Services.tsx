@@ -44,7 +44,7 @@ const services = [
     desc: "Stop using monolithic systems. I engineer decoupled, serverless architectures built purely for speed and total frontend control.",
     metrics: ["Next.js 14+", "Bun Runtime", "Edge Caching"],
     status: "OPTIMIZED",
-    slug: "/services/architecture"
+    slug: "/services/strategy"
   },
   {
     id: "03",
@@ -53,7 +53,7 @@ const services = [
     desc: "Programmatic link building at an enterprise level. We secure high-DR global publication placements to force immediate algorithmic trust.",
     metrics: ["DR 80+ Targets", "Zero Toxicity", "Manual Outreach"],
     status: "ACTIVE",
-    slug: "/services/digital-pr"
+    slug: "/services/pr"
   },
   {
     id: "04",
@@ -62,7 +62,7 @@ const services = [
     desc: "Server-side tracking, advanced attribution models, and edge A/B testing designed to capture revenue, not just vanity traffic metrics.",
     metrics: ["Server-Side GTM", "Edge A/B Testing", "ROAS Modeling"],
     status: "TRACKING",
-    slug: "/services/conversion"
+    slug: "/services/data"
   }
 ];
 

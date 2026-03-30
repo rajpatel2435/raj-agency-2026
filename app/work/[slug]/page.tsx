@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -347,4 +348,17 @@ export default async function WorkDetailsPage(props: { params: Promise<{ slug: s
       </section>
     </main>
   );
+}
+
+// app/work/[slug]/page.tsx
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  
+  // Use a fallback if the project isn't in your local array
+  const projectTitle = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+  return {
+    title: `${projectTitle} Case Study`,
+    description: `Deep dive into the digital deployment and SEO strategy for ${projectTitle}.`,
+  };
 }
