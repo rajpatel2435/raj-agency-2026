@@ -37,7 +37,7 @@ export default function Hero() {
         <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-500 flex items-center gap-2">
            <span className="w-1.5 h-1.5 bg-[#F95D0A] rounded-full animate-pulse" /> Sys.Online
         </span>
-        <span className="text-[10px] font-bold uppercase tracking-widest text-white">Montreal, QC</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-white">Vancouver, BC </span>
       </motion.div>
 
       {/* Bottom Left */}

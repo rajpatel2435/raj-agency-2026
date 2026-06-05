@@ -24,6 +24,23 @@ const nextConfig = {
       },
     ],
   },
+
+  // 👇 Added rewrites below to handle the subdirectory routing
+  async rewrites() {
+    return [
+      {
+        // When a user types launchatdawn.com/apps/crypto-pulse
+        source: '/apps/crypto-pulse',
+        // Silently pull the homepage from your background app deployment
+        destination: 'https://crypto-pulse-app.vercel.app/apps/crypto-pulse', 
+      },
+      {
+        // This handles all assets, chunks, sub-pages, and API calls seamlessly
+        source: '/apps/crypto-pulse/:path*',
+        destination: 'https://crypto-pulse-app.vercel.app/apps/crypto-pulse/:path*', 
+      },
+    ];
+  },
 };
 
 export default nextConfig;
