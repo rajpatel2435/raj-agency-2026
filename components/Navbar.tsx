@@ -25,7 +25,9 @@ export default function Navbar() {
     { name: 'Services', href: '/services' },
     { name: 'Work', href: '/work' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Blog', href: '/blog' },
+    { name: 'Trading', href: '/apps/trading' },
+    { name: 'Crypto Pulse', href: '/apps/crypto-pulse' }
   ];
 
   return (

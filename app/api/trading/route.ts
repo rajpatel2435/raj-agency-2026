@@ -1,15 +1,17 @@
-// app/api/trading/route.ts
 import { NextResponse } from 'next/server';
 import { createClient } from '@alpacahq/typescript-sdk';
 
-// Initialize the Alpaca Client targeting the Free Paper Trading Gateway
-const alpaca = createClient({
-  key: process.env.ALPACA_KEY_ID || '',
-  secret: process.env.ALPACA_KEY_SECRET || '',
-});
+// 1. Remove the global variable initialization
+// const alpaca = createClient({ ... }); 
 
 export async function POST(req: Request) {
   try {
+    // 2. Initialize inside the function
+    const alpaca = createClient({
+      key: process.env.ALPACA_KEY_ID || '',
+      secret: process.env.ALPACA_KEY_SECRET || '',
+    });
+
     const { ticker } = await req.json();
     if (!ticker) {
       return NextResponse.json({ error: 'Ticker symbol is required' }, { status: 400 });

@@ -39,6 +39,14 @@ const nextConfig = {
         source: '/apps/crypto-pulse/:path*',
         destination: 'https://crypto-pulse-app.vercel.app/apps/crypto-pulse/:path*', 
       },
+      {
+        source:'/apps/trading',
+        destination: 'https://crypto-pulse-chi-gold.vercel.app/apps/trading',
+      },
+      {
+        source:'/apps/trading/:path*',
+        destination: 'https://crypto-pulse-chi-gold.vercel.app/apps/trading/:path*',
+      }
     ];
   },
 };
