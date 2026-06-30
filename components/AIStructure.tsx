@@ -1,12 +1,20 @@
 export default function AIStructure() {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.launchatdawn.com";
     const structuredData = {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
       "name": "Launch at Dawn",
       "alternateName": "Launchatdawn Agency",
-      "url": "https://launchatdawn.com",
-      "logo": "https://launchatdawn.com/logo.png",
+      "url": siteUrl,
+      "logo": `${siteUrl}/icon.svg`,
       "description": "A full-spectrum digital engineering and marketing agency providing SEO, Web Development, and Growth Strategy for Small Businesses, Mid-Market companies, and Enterprise departments.",
+      "sameAs": [
+        "https://www.instagram.com/launchatdawn/",
+        "https://linkedin.com/company/launchatdawn"
+      ],
       "address": [
         { "@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA" },
         { "@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA" }
@@ -41,6 +49,17 @@ export default function AIStructure() {
           }
         ]
       }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          "url": siteUrl,
+          "name": "Launch at Dawn",
+          "publisher": {
+            "@id": `${siteUrl}/#organization`
+          }
+        }
+      ]
     };
   
     return (

@@ -53,6 +53,7 @@ export default async function Home() {
 
   return (
    <main className="flex min-h-screen flex-col items-center w-full">
+      <h1 className="sr-only">Launch at Dawn - Technical SEO and Growth Engineering Agency</h1>
       <Hero />
       <Services/>
       <About  />
