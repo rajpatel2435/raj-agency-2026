@@ -1,6 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client"; // Adjust path to your sanity client
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/app/seo";
+import { LOCAL_BLOG_POSTS, type LocalBlogPost } from "./localPosts";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Blog and Case Insights",
+  description:
+    "Explore technical SEO insights, engineering deep dives, and case studies from Launch at Dawn.",
+  pathname: "/blog",
+});
 
 async function getPosts() {
   const query = `*[_type == "post"] | order(publishedAt desc) {
@@ -18,8 +28,38 @@ async function getPosts() {
   return await client.fetch(query);
 }
 
+type BlogCardPost = {
+  _id: string;
+  title: string;
+  slug: string;
+  tag?: string;
+  publishedAt: string;
+  excerpt?: string;
+  image?: string;
+  author?: string;
+  authorImage?: string;
+  readTime?: string;
+};
+
+function mergePostsWithFallback(sanityPosts: BlogCardPost[]): BlogCardPost[] {
+  const merged = new Map<string, BlogCardPost>();
+
+  for (const post of LOCAL_BLOG_POSTS) {
+    merged.set(post.slug, post);
+  }
+
+  for (const post of sanityPosts) {
+    if (post?.slug) merged.set(post.slug, post);
+  }
+
+  return Array.from(merged.values()).sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+}
+
 export default async function BlogPage() {
-  const posts = await getPosts();
+  const sanityPosts = await getPosts();
+  const posts = mergePostsWithFallback(sanityPosts);
 
   // Logic to separate posts based on your design
   const featuredPost = posts[0];
@@ -85,7 +125,7 @@ export default async function BlogPage() {
               Trending
             </h3>
             <div className="flex flex-col gap-8">
-              {trendingPosts.map((post: any) => (
+              {trendingPosts.map((post: BlogCardPost) => (
                 <Link href={`/blog/${post.slug}`} key={post._id} className="flex gap-6 group cursor-pointer items-start">
                   <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-[#111] border border-gray-800">
                     <Image src={post.image} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
@@ -105,7 +145,7 @@ export default async function BlogPage() {
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
         <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-12 border-b border-gray-800 pb-4">Archive</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16">
-          {archivePosts.map((post: any) => (
+          {archivePosts.map((post: BlogCardPost) => (
             <Link href={`/blog/${post.slug}`} key={post._id} className="group cursor-pointer flex flex-col h-full">
               <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-[#111] border border-gray-800">
                 <div className="absolute top-4 left-4 bg-[#FF3300] text-black px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] z-10 shadow-lg">{post.tag}</div>

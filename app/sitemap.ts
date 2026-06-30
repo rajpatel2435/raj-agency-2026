@@ -1,35 +1,65 @@
 import { MetadataRoute } from 'next';
 import { client } from "@/sanity/lib/client";
+import { SITE_URL } from './seo';
+import { LOCAL_BLOG_SLUGS } from './blog/localPosts';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://launchatdawn.com";
+  const now = new Date();
 
-  // 1. Fetch all active project slugs from Sanity
-  // We filter by _type == "work" (or "caseStudy" depending on your schema name)
-  const query = `*[_type == "work" && defined(slug.current)] {
-    "slug": slug.current,
-    _updatedAt
-  }`;
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'weekly', priority: 1 },
+    { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE_URL}/services`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/work`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${SITE_URL}/contact/hello`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${SITE_URL}/careers`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
+    { url: `${SITE_URL}/restaurant-growth`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+  ];
 
-  const projects = await client.fetch(query);
+  const [workItems, blogPosts, servicePages] = await Promise.all([
+    client.fetch(`*[_type == "work" && defined(slug.current)] { "slug": slug.current, _updatedAt }`),
+    client.fetch(`*[_type == "post" && defined(slug.current)] { "slug": slug.current, _updatedAt }`),
+    client.fetch(`*[_type == "service" && defined(slug.current)] { "slug": slug.current, _updatedAt }`),
+  ]);
 
-  // 2. Map Static Routes
-  const staticRoutes = ["", "/services", "/work", "/about", "/blog", "/contact/hello"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: route === "" ? 1 : 0.8,
-    })
-  );
+  const defaultServiceSlugs = ["strategy", "seo", "pr", "data", "design", "engineering"];
+  const serviceSlugSet = new Set<string>(defaultServiceSlugs);
+  for (const service of servicePages) {
+    if (service?.slug) serviceSlugSet.add(service.slug);
+  }
 
-  // 3. Map Dynamic Project Routes from Sanity
-  const dynamicRoutes = projects.map((project: any) => ({
-    url: `${baseUrl}/work/${project.slug}`,
-    lastModified: new Date(project._updatedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
+  const workRoutes: MetadataRoute.Sitemap = workItems.map((project: { slug: string; _updatedAt: string }) => ({
+    url: `${SITE_URL}/work/${project.slug}`,
+    lastModified: new Date(project._updatedAt || now),
+    changeFrequency: 'weekly',
+    priority: 0.8,
   }));
 
-  return [...staticRoutes, ...dynamicRoutes];
+  const blogSlugSet = new Set<string>(LOCAL_BLOG_SLUGS);
+  for (const post of blogPosts) {
+    if (post?.slug) blogSlugSet.add(post.slug);
+  }
+
+  const blogLastModifiedMap = new Map<string, string>();
+  for (const post of blogPosts) {
+    if (post?.slug) blogLastModifiedMap.set(post.slug, post._updatedAt);
+  }
+
+  const blogRoutes: MetadataRoute.Sitemap = Array.from(blogSlugSet).map((slug) => ({
+    url: `${SITE_URL}/blog/${slug}`,
+    lastModified: new Date(blogLastModifiedMap.get(slug) || now),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
+  const servicesRoutes: MetadataRoute.Sitemap = Array.from(serviceSlugSet).map((slug) => ({
+    url: `${SITE_URL}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...workRoutes, ...blogRoutes, ...servicesRoutes];
 }

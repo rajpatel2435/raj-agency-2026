@@ -1,9 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "../../sanity/lib/client";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/app/seo";
 
 // Force fresh data on every load
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Case Studies and Client Work",
+  description:
+    "Review SEO and growth case studies showing how Launch at Dawn drives measurable visibility and revenue outcomes.",
+  pathname: "/work",
+});
 
 // --- CUSTOM TECH ARROW ---
 const ArrowUpRight = ({ className = "w-5 h-5" }) => (

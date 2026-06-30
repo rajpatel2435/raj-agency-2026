@@ -3,8 +3,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Insights from "@/components/Insights";
+import AIStructure from "@/components/AIStructure";
 import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL } from "./seo";
 
 // The Primary Brand Font (Engineered, Geometric, Modern)
 const spaceGrotesk = Space_Grotesk({ 
@@ -22,23 +24,26 @@ const spaceMono = Space_Mono({
 // app/layout.tsx
 export const metadata: Metadata = {
   title: {
-    default: "launchatdawn // Digital Architecture & SEO Orchestration",
-    template: "%s | launchatdawn"
+    default: "Launch at Dawn | Digital Architecture and SEO Orchestration",
+    template: "%s | Launch at Dawn"
   },
-  description: "Montreal-based digital agency specializing in hyper-local SEO, high-intent conversion funnels, and technical brand deployments.",
-  // ADD THIS SECTION:
+  description: "Montreal-based digital agency specializing in technical SEO, conversion architecture, and full-stack growth systems.",
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   verification: {
     google: "GtKa9v21eY7SRL3JEV94r_eZ9VOrPWkT2_g8Wg6n-PA",
   },
-  keywords: ["SEO Montreal", "Digital Agency Montreal", "Web Development", "Conversion Rate Optimization"],
+  keywords: ["SEO Montreal", "Digital Agency Montreal", "Web Development", "Conversion Rate Optimization", "Technical SEO"],
   openGraph: {
-    title: "launchatdawn",
+    title: "Launch at Dawn",
     description: "Orchestrating digital growth for high-impact brands.",
-    url: "https://launchatdawn.com",
-    siteName: "launchatdawn",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: "/og-image.jpg", // Create a cool 1200x630 orange/black image for this
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
       },
@@ -48,13 +53,30 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "launchatdawn",
+    title: "Launch at Dawn",
     description: "Technical SEO and Digital Growth.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/icon.svg",
+  },
+  manifest: "/manifest.webmanifest",
+  themeColor: "#F95D0A",
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   }
 };
 export default function RootLayout({
@@ -65,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${spaceMono.variable}`}>
       <body className="font-sans bg-[#050505] text-white antialiased selection:bg-[#F95D0A] selection:text-black">
+        <AIStructure />
       <Navbar />
         {children}
      
