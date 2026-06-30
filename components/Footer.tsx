@@ -39,21 +39,29 @@ export default function Footer() {
         {/* Newsletter Section */}
         <div className="lg:col-span-5 flex flex-col gap-6">
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight uppercase leading-[1.1] text-white">
-            Stay updated with <br/> <span className="text-[#F95D0A]">launchatdawn</span> news
+            Need more leads this month? <br/> <span className="text-[#F95D0A]">Book a growth call.</span>
           </h3>
-          
-          <div className="relative flex items-center max-w-sm">
-            <input
-              type="email"
-              placeholder="Your Email Address"
-              className="w-full bg-white/5 border border-white/10 rounded-full pl-6 pr-14 py-3.5 text-white text-sm focus:outline-none focus:border-[#F95D0A] transition-colors placeholder:text-white/30"
-            />
-            <button className="absolute right-1.5 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#F95D0A] rounded-full flex items-center justify-center text-black hover:bg-white transition-all group">
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
+
+          <p className="text-sm text-zinc-400 max-w-md leading-relaxed">
+            In one 20-minute call, we will map your current growth bottlenecks and show you the fastest path to qualified inbound leads.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+            <Link
+              href="/contact/hello"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#F95D0A] px-6 py-3 text-[11px] font-black uppercase tracking-[0.18em] text-black hover:bg-white transition-colors"
+            >
+              Book a 20-min Call
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/work"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white hover:border-white transition-colors"
+            >
+              View Results
+            </Link>
           </div>
 
-          
         </div>
 
         {/* Links: High Contrast White, Standard Size */}

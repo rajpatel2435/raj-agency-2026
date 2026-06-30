@@ -41,11 +41,20 @@ export default function HelloPage() {
               ← Back to options
             </Link>
             <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-[0.8] uppercase italic">
-              Let's <br/> <span className="text-[#F95D0A] not-italic">Talk.</span>
+              Book Your <br/> <span className="text-[#F95D0A] not-italic">Growth Call.</span>
             </h1>
             <p className="text-xl md:text-2xl text-zinc-400 font-medium max-w-md leading-tight">
-              Ready to scale your organic revenue? Drop your details below and our team will get back to you within 24 hours.
+              Share your goals in 2 minutes. We will reply within 24 hours with the next best step for leads and revenue growth.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/services" className="text-[10px] uppercase tracking-[0.2em] border border-zinc-700 px-4 py-2 hover:border-[#F95D0A] transition-colors">
+                View Packages
+              </Link>
+              <Link href="mailto:hello@launchatdawn.com" className="text-[10px] uppercase tracking-[0.2em] border border-zinc-700 px-4 py-2 hover:border-[#F95D0A] transition-colors">
+                Email Direct
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -85,7 +94,18 @@ export default function HelloPage() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <label htmlFor="budget" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">03. Estimated Budget?</label>
+                <label htmlFor="website" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">03. Website URL</label>
+                <input
+                  type="url"
+                  id="website"
+                  name="Website"
+                  placeholder="https://yourdomain.com"
+                  className="bg-transparent border-b border-zinc-800 pb-4 focus:outline-none focus:border-[#F95D0A] transition-colors placeholder:text-zinc-800 text-white font-medium"
+                />
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <label htmlFor="budget" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">04. Estimated Monthly Budget?</label>
                 <select 
                   id="budget" 
                   name="Estimated Budget"
@@ -100,7 +120,22 @@ export default function HelloPage() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <label htmlFor="message" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">04. Tell us about your project</label>
+                <label htmlFor="timeline" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">05. Ideal Timeline</label>
+                <select
+                  id="timeline"
+                  name="Timeline"
+                  required
+                  className="bg-transparent border-b border-zinc-800 pb-4 focus:outline-none focus:border-[#F95D0A] transition-colors text-white appearance-none cursor-pointer font-medium uppercase"
+                >
+                  <option value="" className="bg-[#050505]">Select timeline...</option>
+                  <option value="ASAP" className="bg-[#050505]">ASAP</option>
+                  <option value="2-4 weeks" className="bg-[#050505]">2-4 Weeks</option>
+                  <option value="1-2 months" className="bg-[#050505]">1-2 Months</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <label htmlFor="message" className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600">06. What result do you want most?</label>
                 <textarea 
                   id="message" 
                   name="Project Details"
@@ -123,7 +158,7 @@ export default function HelloPage() {
   disabled={status === "loading"}
   className="mt-8 bg-[#F95D0A] text-black px-12 py-6 text-xs font-black uppercase tracking-[0.2em] hover:bg-white transition-all self-start disabled:opacity-50 disabled:cursor-not-allowed shadow-[8px_8px_0px_0px_rgba(249,93,10,0.2)] active:translate-x-1 active:translate-y-1 active:shadow-none flex items-center gap-4 group"
 >
-  <span>{status === "loading" ? "Processing..." : "Send Request"}</span>
+  <span>{status === "loading" ? "Processing..." : "Book My 20-min Growth Call"}</span>
   
   {/* Custom SVG Arrow - Replaces the blue emoji */}
   {status !== "loading" && (

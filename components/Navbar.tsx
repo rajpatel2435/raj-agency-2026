@@ -62,10 +62,10 @@ export default function Navbar() {
           {/* CTA & MOBILE TOGGLE */}
           <div className="flex items-center gap-4">
             <Link 
-              href="/contact" 
+              href="/contact/hello" 
               className="hidden md:flex bg-[#F95D0A] text-black px-7 py-3 rounded-full font-mono text-[11px] font-black uppercase tracking-widest hover:bg-white hover:scale-[1.03] transition-all duration-300 items-center gap-2 group shadow-[0_0_25px_rgba(249,93,10,0.2)]"
             >
-              Say Hi 
+              Book Growth Call 
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
 
@@ -131,11 +131,11 @@ export default function Navbar() {
               className="mt-12 w-full"
             >
                <Link 
-                href="/contact"
+                href="/contact/hello"
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-between w-full border-b border-white/10 pb-6 group"
               >
-                <span className="text-xl font-mono uppercase tracking-widest">Start a Project</span>
+                <span className="text-xl font-mono uppercase tracking-widest">Book 20-min Call</span>
                 <ArrowUpRight className="w-8 h-8 text-[#F95D0A] group-hover:translate-x-2 transition-transform" />
               </Link>
             </motion.div>

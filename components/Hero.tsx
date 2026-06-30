@@ -117,22 +117,22 @@ export default function Hero() {
           className="mt-12 flex flex-col items-center max-w-2xl text-center px-4"
         >
           <p className="text-base md:text-xl font-light text-gray-400 leading-relaxed mb-10">
-            Disruptive marketing is dead. In high-stakes niches, traffic is won in the codebase. I engineer the Next.js infrastructure that forces Google to pay attention.
+              We help growth-stage brands turn search traffic into booked calls and real revenue. If you want predictable leads, we build the technical SEO and conversion system to get you there.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             {/* FIX: Updated button color */}
             <Link
-              href="/contact"
+                href="/contact/hello"
               className="bg-[#F95D0A] text-black px-10 py-4 md:py-5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-white transition-all flex items-center justify-center gap-3 group w-full sm:w-auto"
             >
-              Initialize Project <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                Book a 20-min Growth Call <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
             <Link
-              href="/work"
+                href="/services"
               className="bg-transparent text-white border border-gray-800 px-10 py-4 md:py-5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:border-white transition-all w-full sm:w-auto text-center"
             >
-              View Case Studies
+                See Service Packages
             </Link>
           </div>
         </motion.div>

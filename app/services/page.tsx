@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -65,9 +64,6 @@ const ServiceRow = ({ id, title, desc, tags, slug }: any) => (
 );
 
 export default function ServicesHub() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => { setIsLoaded(true); }, []);
-
   const packageItems = [
     { title: "Dedicated Strategy Lead", img: "/services/lead.png", desc: "A human expert assigned to bridge your business and our engine." },
     { title: "Everything is Data Backed", img: "/services/inn.png", desc: "Zero speculation. Every decision is hard-coded into performance metrics." },
@@ -115,6 +111,63 @@ export default function ServicesHub() {
         <ServiceRow id="02" slug="seo" title="Onsite SEO & Experience" desc="Building a digital foundation that Google loves and customers find easy to use. No lag. No friction. Just reservations." tags={["Technical SEO", "Speed Optimization", "Content Structure"]} />
         <ServiceRow id="03" slug="pr" title="Digital PR & Social" desc="We put your brand IN the conversation, not just ON the screen. We earn high-quality mentions that drive authority and trust." tags={["Link Building", "Viral Strategy", "Social Discovery"]} />
         <ServiceRow id="04" slug="data" title="Data & Insights" desc="We track every dollar spent. Our reporting shows you exactly how your digital presence is turning into real-world revenue." tags={["ROI Tracking", "Live Dashboards", "AI Analytics"]} />
+      </section>
+
+      <section className="relative z-10 border-y border-white/5 bg-[#070707] py-24 px-6">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-14 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[#F95D0A]">Conversion Plans</p>
+              <h2 className="mt-4 text-4xl md:text-6xl font-black uppercase tracking-tighter">Choose your growth sprint</h2>
+            </div>
+            <p className="max-w-md text-sm md:text-base text-zinc-400">Simple starting packages for businesses ready to generate predictable leads. No long contracts required to start.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Starter Sprint",
+                price: "$900",
+                desc: "Best for early-stage businesses that need a quick technical reset.",
+                bullets: ["Technical homepage + service page audit", "On-page SEO fixes for 5 pages", "14-day action roadmap"],
+              },
+              {
+                name: "Growth Engine",
+                price: "$1,900",
+                desc: "Best for teams that need lead growth and stronger rankings.",
+                bullets: ["Technical SEO + conversion pass", "Keyword map + content brief set", "Analytics and lead attribution setup"],
+                featured: true,
+              },
+              {
+                name: "Authority Build",
+                price: "$3,500",
+                desc: "Best for aggressive scaling with weekly execution support.",
+                bullets: ["Full-stack growth architecture", "Internal linking + schema rollout", "Weekly strategy + implementation sync"],
+              },
+            ].map((plan) => (
+              <div
+                key={plan.name}
+                className={`rounded-3xl border p-8 md:p-10 ${plan.featured ? "border-[#F95D0A] bg-[#120d0a]" : "border-white/10 bg-black/50"}`}
+              >
+                <p className="text-[10px] font-mono uppercase tracking-[0.32em] text-zinc-400">{plan.name}</p>
+                <p className="mt-4 text-5xl font-black tracking-tighter text-[#F95D0A]">{plan.price}<span className="ml-1 text-sm text-zinc-400">/ start</span></p>
+                <p className="mt-4 text-zinc-400 text-sm leading-relaxed">{plan.desc}</p>
+                <ul className="mt-6 space-y-3">
+                  {plan.bullets.map((item) => (
+                    <li key={item} className="text-sm text-white/90 border-l border-[#F95D0A]/50 pl-3">{item}</li>
+                  ))}
+                </ul>
+                <Link
+                  href="/contact/hello"
+                  className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-colors ${plan.featured ? "bg-[#F95D0A] text-black hover:bg-white" : "border border-white/20 text-white hover:border-white"}`}
+                >
+                  Book 20-min Call
+                  <ArrowUpRight />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* --- INFINITE AUTO-SCROLLING SLIDER --- */}
