@@ -129,10 +129,10 @@ export default function Hero() {
                 Book a 20-min Growth Call <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
             <Link
-                href="/services"
+              href="/case-study-teardown"
               className="bg-transparent text-white border border-gray-800 px-10 py-4 md:py-5 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:border-white transition-all w-full sm:w-auto text-center"
             >
-                See Service Packages
+              Get Free Teardown
             </Link>
           </div>
         </motion.div>
