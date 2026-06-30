@@ -90,6 +90,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   if (!post) notFound();
 
+  const authorName = post.author ?? "Launch at Dawn Editorial";
+  const authorImage =
+    post.authorImage ??
+    `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(authorName)}`;
+  const heroImage = post.image ?? "/og-image.svg";
+
   return (
     <main className="min-h-screen bg-[#050505] text-white pt-24 md:pt-40 pb-32 font-sans selection:bg-[#FF3300] selection:text-black">
       
@@ -109,12 +115,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
            <div className="flex items-center gap-4">
              <div className="w-10 h-10 rounded-full bg-white/5 overflow-hidden relative grayscale">
                {post.authorImage ? (
-                 <Image src={post.authorImage} alt={post.author} fill className="object-cover" />
+                 <Image src={authorImage} alt={authorName} fill className="object-cover" />
                ) : (
-                 <div className="w-full h-full flex items-center justify-center font-bold text-xs bg-zinc-800">{post.author?.[0]}</div>
+                 <div className="w-full h-full flex items-center justify-center font-bold text-xs bg-zinc-800">{authorName[0]}</div>
                )}
              </div>
-             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#FF3300]">{post.author}</p>
+             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#FF3300]">{authorName}</p>
            </div>
            <div className="w-[1px] h-4 bg-white/10" />
            <p className="text-[11px] font-mono text-gray-500 uppercase tracking-[0.3em]">
@@ -127,7 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="max-w-[1600px] mx-auto px-4 md:px-8 mb-24">
         <div className="relative w-full aspect-video md:aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl">
           <Image 
-            src={post.image} 
+            src={heroImage} 
             alt={post.title} 
             fill 
             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out" 
@@ -141,7 +147,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="bg-[#0A0A0A] rounded-[3.5rem] p-8 md:p-20 border border-white/5">
           <div className="prose prose-invert prose-lg md:prose-xl max-w-none">
             <PortableText 
-              value={post.body} 
+              value={post.body as any} 
               components={{
                 block: {
                   h2: ({children}) => <h2 className="text-4xl md:text-6xl font-black mt-20 mb-10 tracking-tighter leading-[0.9] text-white uppercase italic">{children}</h2>,
@@ -172,9 +178,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {post.related?.map((rel) => (
-            <Link href={`/blog/${rel.slug}`} key={rel._id} className="group block">
+            <Link href={`/blog/${rel.slug}`} key={rel._id || rel.slug} className="group block">
               <div className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden mb-6 border border-white/5 bg-[#0A0A0A]">
-                <Image src={rel.image} alt={rel.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                <Image src={rel.image || "/og-image.svg"} alt={rel.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
               </div>
               <p className="text-[9px] font-bold uppercase tracking-widest text-[#FF3300] mb-3">{rel.tag || "Analysis"}</p>
               <h4 className="text-2xl font-black leading-[1.1] text-zinc-300 group-hover:text-white transition-colors uppercase italic tracking-tighter">

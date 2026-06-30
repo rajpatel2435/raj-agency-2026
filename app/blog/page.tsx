@@ -63,6 +63,7 @@ export default async function BlogPage() {
 
   // Logic to separate posts based on your design
   const featuredPost = posts[0];
+  const featuredImage = featuredPost?.image || "/og-image.svg";
   const trendingPosts = posts.slice(1, 4);
   const archivePosts = posts.slice(4);
 
@@ -101,7 +102,7 @@ export default async function BlogPage() {
             <Link href={`/blog/${featuredPost.slug}`} className="lg:col-span-8 group cursor-pointer">
               <div className="relative w-full aspect-[16/10] md:aspect-[21/9] rounded-3xl overflow-hidden mb-8 bg-[#111] border border-gray-800">
                 <Image 
-                  src={featuredPost.image} 
+                  src={featuredImage} 
                   alt={featuredPost.title} 
                   fill 
                   className="object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
@@ -128,7 +129,7 @@ export default async function BlogPage() {
               {trendingPosts.map((post: BlogCardPost) => (
                 <Link href={`/blog/${post.slug}`} key={post._id} className="flex gap-6 group cursor-pointer items-start">
                   <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-[#111] border border-gray-800">
-                    <Image src={post.image} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                    <Image src={post.image || "/og-image.svg"} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                   </div>
                   <div>
                     <span className="text-[#FF3300] text-[9px] font-bold uppercase tracking-[0.2em] block mb-2">{post.tag}</span>
@@ -149,13 +150,13 @@ export default async function BlogPage() {
             <Link href={`/blog/${post.slug}`} key={post._id} className="group cursor-pointer flex flex-col h-full">
               <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-[#111] border border-gray-800">
                 <div className="absolute top-4 left-4 bg-[#FF3300] text-black px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] z-10 shadow-lg">{post.tag}</div>
-                <Image src={post.image} alt={post.title} fill className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                <Image src={post.image || "/og-image.svg"} alt={post.title} fill className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
               </div>
               <div className="flex items-center gap-3 text-gray-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">
                 <span className="w-5 h-5 rounded-full bg-gray-800 relative overflow-hidden border border-gray-700">
-                  <Image src={post.authorImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} fill alt={post.author}/>
+                  <Image src={post.authorImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author || "launchatdawn"}`} fill alt={post.author || "Launch at Dawn Editorial"}/>
                 </span>
-                {post.author} <span className="w-1 h-1 bg-gray-700 rounded-full" /> {post.readTime || "5 MIN"} READ
+                {post.author || "Launch at Dawn Editorial"} <span className="w-1 h-1 bg-gray-700 rounded-full" /> {post.readTime || "5 MIN"} READ
               </div>
               <h3 className="text-2xl font-medium leading-snug group-hover:text-[#FF3300] transition-colors mt-auto">{post.title}</h3>
             </Link>

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Insights from "@/components/Insights";
 import AIStructure from "@/components/AIStructure";
 import { Analytics } from '@vercel/analytics/next';
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SITE_NAME, SITE_URL } from "./seo";
 
 // The Primary Brand Font (Engineered, Geometric, Modern)
@@ -66,7 +66,6 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   manifest: "/manifest.webmanifest",
-  themeColor: "#F95D0A",
   robots: {
     index: true,
     follow: true,
@@ -78,6 +77,12 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   }
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#F95D0A",
 };
 export default function RootLayout({
   children,
