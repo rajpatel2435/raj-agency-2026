@@ -2,11 +2,35 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/app/seo";
+import { getLocalBlogPostBySlug, getLocalRelatedPosts } from "../localPosts";
+
+type BlogPostDetails = {
+  _id?: string;
+  title: string;
+  excerpt?: string;
+  publishedAt: string;
+  author?: string;
+  authorImage?: string;
+  image?: string;
+  body: unknown;
+  tag?: string;
+  related?: Array<{
+    _id?: string;
+    title: string;
+    slug: string;
+    image?: string;
+    tag?: string;
+  }>;
+};
 
 // 1. Technical Editorial GROQ Query
 async function getPost(slug: string) {
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title,
+    excerpt,
     publishedAt,
     "author": author->name,
     "authorImage": author->image.asset->url,
@@ -21,18 +45,50 @@ async function getPost(slug: string) {
       "tag": categories[0]->title
     }
   }`;
-  return await client.fetch(query, { slug });
+  const sanityPost = await client.fetch(query, { slug });
+  if (sanityPost) return sanityPost as BlogPostDetails;
+
+  const localPost = getLocalBlogPostBySlug(slug);
+  if (!localPost) return null;
+
+  return {
+    ...localPost,
+    related: getLocalRelatedPosts(slug).map((item) => ({
+      _id: item._id,
+      title: item.title,
+      slug: item.slug,
+      image: item.image,
+      tag: item.tag,
+    })),
+  } as BlogPostDetails;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return buildPageMetadata({
+      title: "Blog Post Not Found",
+      description: "The requested blog post could not be found.",
+      pathname: `/blog/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return buildPageMetadata({
+    title: post.title,
+    description: post.excerpt || `Read ${post.title} on the Launch at Dawn blog.`,
+    pathname: `/blog/${slug}`,
+    images: post.image ? [post.image] : undefined,
+  });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPost(slug);
 
-  if (!post) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center font-mono uppercase tracking-widest text-white">
-      Entry Not Found // 404
-    </div>
-  );
+  if (!post) notFound();
 
   return (
     <main className="min-h-screen bg-[#050505] text-white pt-24 md:pt-40 pb-32 font-sans selection:bg-[#FF3300] selection:text-black">
@@ -115,7 +171,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {post.related?.map((rel: any) => (
+          {post.related?.map((rel) => (
             <Link href={`/blog/${rel.slug}`} key={rel._id} className="group block">
               <div className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden mb-6 border border-white/5 bg-[#0A0A0A]">
                 <Image src={rel.image} alt={rel.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />

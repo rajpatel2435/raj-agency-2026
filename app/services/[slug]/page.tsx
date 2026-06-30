@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "@/app/seo";
 
 // --- FULL DEPTH CONTENT DATA ---
 const serviceData = {
@@ -59,9 +61,57 @@ const serviceData = {
     ],
     sectors: ["SaaS Founders", "Multi-Unit Restaurants", "Medical Networks", "E-commerce Giants"],
     stats: [{ val: "100%", label: "Exact Attribution" }, { val: "-40%", label: "Wasted Ad Spend" }]
+  },
+  design: {
+    title: "Premium Experience",
+    tagline: "Design That Converts, Not Just Decorates.",
+    heroDesc: "Your brand should feel premium before a customer reads a single word. We design high-trust experiences that reduce friction, improve clarity, and increase bookings.",
+    auditTitle: "Conversion Experience Audit",
+    auditDesc: "We evaluate your full customer journey from first click to final action, then redesign weak moments that cause drop-offs and low intent conversions.",
+    steps: [
+      { label: "Journey Mapping", desc: "We map every click path and identify where users hesitate, abandon, or lose trust." },
+      { label: "Trust-Layer Design", desc: "We implement visual hierarchy, social proof, and UX patterns that increase confidence instantly." },
+      { label: "Mobile Conversion UX", desc: "We optimize for thumb-first interactions so key actions stay effortless on mobile devices." }
+    ],
+    sectors: ["Luxury Hospitality", "Healthcare Clinics", "Local Services", "High-Ticket Brands"],
+    stats: [{ val: "+38%", label: "Avg. CVR Lift" }, { val: "<2s", label: "UX Response Time" }]
+  },
+  engineering: {
+    title: "Reliable Systems",
+    tagline: "Build Once. Scale Forever.",
+    heroDesc: "Performance and reliability are ranking factors and revenue drivers. We engineer resilient systems that load fast, stay stable, and support long-term growth.",
+    auditTitle: "Technical Architecture Review",
+    auditDesc: "From rendering strategy to infrastructure bottlenecks, we harden your stack for speed, uptime, and predictable scale.",
+    steps: [
+      { label: "Core Web Vitals Hardening", desc: "We reduce LCP, INP, and CLS regressions with a code-level performance plan." },
+      { label: "Rendering Strategy", desc: "We choose and tune SSR, SSG, ISR, and caching to match your business and content velocity." },
+      { label: "Reliability Guardrails", desc: "We add monitoring, fail-safes, and release controls to prevent costly outages and SEO drops." }
+    ],
+    sectors: ["SaaS", "eCommerce", "Publishing", "Enterprise Web Apps"],
+    stats: [{ val: "99.9%", label: "Uptime Target" }, { val: "-55%", label: "Perf Bottlenecks" }]
   }
   // Add design and engineering here following the same pattern...
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = serviceData[slug as keyof typeof serviceData];
+
+  if (!service) {
+    return buildPageMetadata({
+      title: "Service Not Found",
+      description: "The requested service page was not found.",
+      pathname: `/services/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return buildPageMetadata({
+    title: `${service.title} Services`,
+    description: service.heroDesc,
+    pathname: `/services/${slug}`,
+  });
+}
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -103,7 +153,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <div>
             <h2 className="text-4xl md:text-6xl font-black uppercase mb-8 leading-tight">{service.auditTitle}</h2>
             <p className="text-zinc-400 text-xl leading-relaxed mb-10">{service.auditDesc}</p>
-            <Link href="/restaurant-engine#get-started" className="inline-block border-b-2 border-[#F95D0A] pb-2 font-black uppercase tracking-widest hover:text-[#F95D0A] transition-colors">
+            <Link href="/restaurant-growth#get-started" className="inline-block border-b-2 border-[#F95D0A] pb-2 font-black uppercase tracking-widest hover:text-[#F95D0A] transition-colors">
               Request a Sector Audit
             </Link>
           </div>

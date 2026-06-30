@@ -4,6 +4,15 @@ import Services from "../components/Services";
 import Work from "../components/Work";
 import { client } from "../sanity/lib/client";
 import Insights from "@/components/Insights";
+import type { Metadata } from "next";
+import { buildPageMetadata } from "./seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Technical SEO and Growth Engineering Agency",
+  description:
+    "Launch at Dawn builds technical SEO infrastructure, conversion-ready websites, and data systems that turn organic traffic into revenue.",
+  pathname: "/",
+});
 
 export default async function Home() {
   // Fetch Services
@@ -35,9 +44,6 @@ export default async function Home() {
   }`;
   
   const data = await client.fetch(query);
-  
-  // Then pass it:
-  <Insights data={data} />
 
   // Run both fetches simultaneously for better performance
   const [servicesData, workData] = await Promise.all([

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import { Metadata } from "next";
+import { buildPageMetadata } from "@/app/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -353,12 +354,39 @@ export default async function WorkDetailsPage(props: { params: Promise<{ slug: s
 // app/work/[slug]/page.tsx
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  
-  // Use a fallback if the project isn't in your local array
-  const projectTitle = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const localProject = LOCAL_WORK_DATA[slug];
 
-  return {
-    title: `${projectTitle} Case Study`,
-    description: `Deep dive into the digital deployment and SEO strategy for ${projectTitle}.`,
-  };
+  if (localProject) {
+    return buildPageMetadata({
+      title: `${localProject.client} Case Study`,
+      description: localProject.challenge || `Case study for ${localProject.client}.`,
+      pathname: `/work/${slug}`,
+      images: Array.isArray(localProject.heroGallery) && localProject.heroGallery.length > 0
+        ? [localProject.heroGallery[0]]
+        : undefined,
+    });
+  }
+
+  const project = await client.fetch(
+    `*[_type == "work" && slug.current == $slug][0] { title, client, metric, "image": mainImage.asset->url }`,
+    { slug }
+  );
+
+  if (!project) {
+    return buildPageMetadata({
+      title: "Case Study Not Found",
+      description: "The requested case study could not be found.",
+      pathname: `/work/${slug}`,
+      noIndex: true,
+    });
+  }
+
+  return buildPageMetadata({
+    title: `${project.client || project.title} Case Study`,
+    description: project.metric
+      ? `${project.client || project.title} achieved ${project.metric}.`
+      : `Deep dive into the digital deployment and SEO strategy for ${project.client || project.title}.`,
+    pathname: `/work/${slug}`,
+    images: project.image ? [project.image] : undefined,
+  });
 }
