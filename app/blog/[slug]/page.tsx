@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/app/seo";
-import { getLocalBlogPostBySlug, getLocalRelatedPosts } from "../localPosts";
+import { LOCAL_BLOG_SLUGS, getLocalBlogPostBySlug, getLocalRelatedPosts } from "../localPosts";
 
 type BlogPostDetails = {
   _id?: string;
@@ -15,6 +15,7 @@ type BlogPostDetails = {
   author?: string;
   authorImage?: string;
   image?: string;
+  seoKeywords?: string[];
   body: unknown;
   tag?: string;
   related?: Array<{
@@ -35,6 +36,7 @@ async function getPost(slug: string) {
     "author": author->name,
     "authorImage": author->image.asset->url,
     "image": mainImage.asset->url,
+    seoKeywords,
     body,
     "tag": categories[0]->title,
     "related": *[_type == "post" && slug.current != $slug][0...3]{
@@ -81,7 +83,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: post.excerpt || `Read ${post.title} on the Launch at Dawn blog.`,
     pathname: `/blog/${slug}`,
     images: post.image ? [post.image] : undefined,
+    keywords: post.seoKeywords,
   });
+}
+
+export async function generateStaticParams() {
+  const sanitySlugs = await client.fetch(`*[_type == "post" && defined(slug.current)] { "slug": slug.current }`);
+  const slugSet = new Set<string>(LOCAL_BLOG_SLUGS);
+
+  for (const item of sanitySlugs) {
+    if (item?.slug) slugSet.add(item.slug);
+  }
+
+  return Array.from(slugSet).map((slug) => ({ slug }));
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

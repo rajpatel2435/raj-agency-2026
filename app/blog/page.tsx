@@ -10,6 +10,13 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Explore technical SEO insights, engineering deep dives, and case studies from Launch at Dawn.",
   pathname: "/blog",
+  keywords: [
+    "technical seo blog",
+    "local seo insights",
+    "nextjs seo",
+    "seo case studies",
+    "launch at dawn blog",
+  ],
 });
 
 async function getPosts() {
@@ -20,6 +27,7 @@ async function getPosts() {
     "tag": categories[0]->title,
     publishedAt,
     excerpt,
+    seoKeywords,
     "image": mainImage.asset->url,
     "author": author->name,
     "authorImage": author->image.asset->url,
@@ -35,6 +43,7 @@ type BlogCardPost = {
   tag?: string;
   publishedAt: string;
   excerpt?: string;
+  seoKeywords?: string[];
   image?: string;
   author?: string;
   authorImage?: string;
