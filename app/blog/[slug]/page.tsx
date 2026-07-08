@@ -5,7 +5,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { buildPageMetadata, absoluteUrl, SITE_URL } from "@/app/seo";
-import { LOCAL_BLOG_SLUGS, getLocalBlogPostBySlug, getLocalRelatedPosts } from "../localPosts";
+import { LOCAL_BLOG_SLUGS, getLocalBlogPostBySlug, getLocalRelatedPosts, buildBlogFaqs, type BlogFaq } from "../localPosts";
+import FaqSection from "@/components/FaqSection";
 
 type BlogPostDetails = {
   _id?: string;
@@ -18,6 +19,7 @@ type BlogPostDetails = {
   seoKeywords?: string[];
   body: unknown;
   tag?: string;
+  faqs?: BlogFaq[];
   related?: Array<{
     _id?: string;
     title: string;
@@ -107,7 +109,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const authorName = post.author ?? "Launch at Dawn Editorial";
   const authorImage =
     post.authorImage ??
-    `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(authorName)}`;
+    `https://api.dicebear.com/7.x/avataaars/png?seed=${encodeURIComponent(authorName)}`;
   const heroImage = post.image ?? "/og-image.svg";
 
   const articleJsonLd = {
@@ -214,6 +216,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </article>
+
+      {/* --- FAQ (with FAQPage schema) --- */}
+      <FaqSection
+        faqs={
+          post.faqs ??
+          buildBlogFaqs(
+            post.title,
+            post.seoKeywords?.[0] ?? post.title,
+            post.seoKeywords?.slice(1) ?? []
+          )
+        }
+        eyebrow="Blog FAQ"
+      />
 
       {/* --- RELATED INTELLIGENCE --- */}
       <footer className="max-w-[1400px] mx-auto px-6 mt-40">

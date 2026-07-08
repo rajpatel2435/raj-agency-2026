@@ -1,4 +1,28 @@
 import Link from "next/link";
+import FaqSection from "@/components/FaqSection";
+
+const TEARDOWN_FAQS = [
+  {
+    question: "What is a free website teardown?",
+    answer:
+      "It's a no-charge, manual review of your website where we identify technical SEO blockers, conversion leaks, and keyword-to-intent gaps, then give you a 14-day action map with quick wins.",
+  },
+  {
+    question: "Is the teardown really free?",
+    answer:
+      "Yes. There's no cost and no obligation. It's how we demonstrate our expertise and show exactly where your site is leaking revenue before you decide to work with us.",
+  },
+  {
+    question: "How long does it take to receive?",
+    answer:
+      "We typically deliver your teardown within a few business days, including a short video walkthrough and a prioritized action list.",
+  },
+  {
+    question: "Who is the teardown for?",
+    answer:
+      "Business owners and marketing teams who want an honest, technical assessment of why their site isn't ranking or converting — from local shops and restaurants to enterprise sites.",
+  },
+];
 
 const teardownPoints = [
   "Technical crawl and indexation blockers",
@@ -96,6 +120,7 @@ export default function CaseStudyTeardownPage() {
           </div>
         </div>
       </section>
+      <FaqSection faqs={TEARDOWN_FAQS} eyebrow="Teardown FAQ" />
     </main>
   );
 }

@@ -163,7 +163,7 @@ export default async function BlogPage() {
               </div>
               <div className="flex items-center gap-3 text-gray-500 text-[9px] font-bold uppercase tracking-[0.2em] mb-4">
                 <span className="w-5 h-5 rounded-full bg-gray-800 relative overflow-hidden border border-gray-700">
-                  <Image src={post.authorImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author || "launchatdawn"}`} fill alt={post.author || "Launch at Dawn Editorial"}/>
+                  <Image src={post.authorImage || `https://api.dicebear.com/7.x/avataaars/png?seed=${post.author || "launchatdawn"}`} fill alt={post.author || "Launch at Dawn Editorial"}/>
                 </span>
                 {post.author || "Launch at Dawn Editorial"} <span className="w-1 h-1 bg-gray-700 rounded-full" /> {post.readTime || "5 MIN"} READ
               </div>

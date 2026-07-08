@@ -26,10 +26,37 @@ export type LocalBlogPost = {
   readTime: string;
   seoKeywords: string[];
   body: PortableBlock[];
+  faqs: BlogFaq[];
 };
 
+export type BlogFaq = { question: string; answer: string };
+
+// Generates 4 topic-relevant FAQs for a blog post so every article ships
+// with FAQPage structured data and long-tail question coverage.
+export function buildBlogFaqs(title: string, keyword: string, secondaryKeywords: string[] = []): BlogFaq[] {
+  const related = secondaryKeywords.slice(0, 2).join(" and ") || keyword;
+  return [
+    {
+      question: `What is ${keyword}?`,
+      answer: `${keyword} is the practice covered in "${title}". It focuses on improving crawlability, relevance, and conversion so the right pages rank for the right intent and turn traffic into qualified leads.`,
+    },
+    {
+      question: `How long does ${keyword} take to show results?`,
+      answer: `Most sites see early directional gains within 2 to 6 weeks and stronger compound gains over 8 to 16 weeks, depending on domain authority, competition, and how consistently the changes are implemented.`,
+    },
+    {
+      question: `What are common mistakes with ${keyword}?`,
+      answer: `The biggest mistakes are publishing thin or duplicated pages, ignoring search intent, and separating SEO from conversion. Focus on ${related} and make sure every change improves both discoverability and the offer's clarity.`,
+    },
+    {
+      question: `Can Launch at Dawn help with ${keyword}?`,
+      answer: `Yes. Launch at Dawn is a technical SEO and web development agency in Montreal and Vancouver. We implement ${keyword} end to end — audits, architecture, on-page execution, and measurement tied to revenue. Book a free website teardown to get started.`,
+    },
+  ];
+}
+
 const AUTHOR = "Launch at Dawn Editorial";
-const AUTHOR_IMAGE = "https://api.dicebear.com/7.x/avataaars/svg?seed=launchatdawn-editorial";
+const AUTHOR_IMAGE = "https://api.dicebear.com/7.x/avataaars/png?seed=launchatdawn-editorial";
 
 const TOPIC_BLUEPRINTS: Array<{
   slug: string;
@@ -151,6 +178,7 @@ export const LOCAL_BLOG_POSTS: LocalBlogPost[] = TOPIC_BLUEPRINTS.map((topic, i)
     readTime: `${10 + (i % 4)} MIN`,
     seoKeywords: [topic.keyword, ...topic.secondaryKeywords, "Launch at Dawn", "technical SEO"],
     body: createBody(topic.title, topic.keyword, topic.secondaryKeywords, i + 1),
+    faqs: buildBlogFaqs(topic.title, topic.keyword, topic.secondaryKeywords),
   };
 });
 

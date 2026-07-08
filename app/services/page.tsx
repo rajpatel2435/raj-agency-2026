@@ -3,6 +3,35 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FaqSection from "@/components/FaqSection";
+
+const SERVICES_FAQS = [
+  {
+    question: "What services does Launch at Dawn offer?",
+    answer:
+      "We provide technical SEO, local SEO, web design and development, Core Web Vitals optimization, digital PR and link building, and conversion strategy. We work with small businesses, restaurants, clinics, and enterprise teams across Canada and the USA.",
+  },
+  {
+    question: "How much do your services cost?",
+    answer:
+      "Engagements are scoped to your goals and market. We build custom roadmaps rather than fixed packages, so pricing depends on how aggressively you want to grow. Book a free teardown and we'll give you a clear, honest range.",
+  },
+  {
+    question: "How long until I see SEO results?",
+    answer:
+      "Most clients see early directional gains within 2 to 6 weeks and stronger compound gains over 8 to 16 weeks, depending on competition and current site health.",
+  },
+  {
+    question: "Do you work with businesses outside Montreal and Vancouver?",
+    answer:
+      "Yes. We're based in Montreal and Vancouver but work remotely with clients across Canada and the United States.",
+  },
+  {
+    question: "Do you build the website and handle the SEO?",
+    answer:
+      "Yes — that's our advantage. We're both engineers and marketers, so we build high-performance Next.js sites engineered for search and conversion from the first line of code.",
+  },
+];
 
 // --- REUSABLE COMPONENTS ---
 
@@ -286,6 +315,8 @@ export default function ServicesHub() {
           </Link>
         </div>
       </section>
+
+      <FaqSection faqs={SERVICES_FAQS} eyebrow="Services FAQ" />
 
     </main>
   );

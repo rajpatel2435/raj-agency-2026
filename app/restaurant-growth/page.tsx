@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import FaqSection from "@/components/FaqSection";
 
 const SectionLabel = ({ text }: { text: string }) => (
   <div className="flex items-center gap-3 mb-6">
@@ -8,6 +9,29 @@ const SectionLabel = ({ text }: { text: string }) => (
     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-[#F95D0A]">{text}</span>
   </div>
 );
+
+const RESTAURANT_FAQS = [
+  {
+    question: "How do you help restaurants get more customers?",
+    answer:
+      "We combine local SEO, Google Business Profile optimization, and a high-converting website so your restaurant shows up in the Google map pack and turns searches into reservations — especially for high-intent queries like 'best dinner near me'.",
+  },
+  {
+    question: "Will this fill my slow nights?",
+    answer:
+      "That's the goal. We map your revenue gaps and build campaigns targeting the exact times you want to fill, using local search, social hooks, and offers designed to drive covers on your quietest nights.",
+  },
+  {
+    question: "How fast will I see more bookings?",
+    answer:
+      "Local SEO and profile optimization often produce visible movement within a few weeks, with stronger, compounding results over 2 to 4 months.",
+  },
+  {
+    question: "Do you work with restaurants outside Montreal and Vancouver?",
+    answer:
+      "Yes. We're based in Montreal and Vancouver but work with restaurants and hospitality brands across Canada and the USA.",
+  },
+];
 
 export default function RestaurantEnginePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -149,6 +173,7 @@ export default function RestaurantEnginePage() {
           </div>
         </div>
       </section>
+      <FaqSection faqs={RESTAURANT_FAQS} eyebrow="Restaurant FAQ" />
     </main>
   );
 }
