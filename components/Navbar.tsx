@@ -22,13 +22,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Free Teardown', href: '/case-study-teardown' },
     { name: 'Services', href: '/services' },
     { name: 'Work', href: '/work' },
+    { name: 'Tools', href: '/tools' },
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Trading', href: '/apps/trading' },
-    { name: 'Crypto Pulse', href: '/apps/crypto-pulse' }
+    { name: 'Blog', href: '/blog' }
   ];
 
   return (

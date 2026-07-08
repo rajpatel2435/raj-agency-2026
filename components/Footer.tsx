@@ -94,6 +94,7 @@ export default function Footer() {
              <div className="flex flex-col gap-3">
                <span className="text-sm font-medium text-white">Montreal, QC</span>
                <span className="text-sm font-medium text-white/20">Vancouver, BC</span>
+               <a href="tel:+15146992435" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">(514) 699-2435</a>
              </div>
              <Link href="https://www.instagram.com/launchatdawn/" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">Instagram</Link>
   <Link href="https://linkedin.com/company/launchatdawn" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">LinkedIn</Link>

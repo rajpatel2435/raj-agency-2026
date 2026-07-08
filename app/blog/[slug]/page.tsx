@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { buildPageMetadata } from "@/app/seo";
+import { buildPageMetadata, absoluteUrl, SITE_URL } from "@/app/seo";
 import { LOCAL_BLOG_SLUGS, getLocalBlogPostBySlug, getLocalRelatedPosts } from "../localPosts";
 
 type BlogPostDetails = {
@@ -110,8 +110,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(authorName)}`;
   const heroImage = post.image ?? "/og-image.svg";
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": absoluteUrl(`/blog/${slug}#article`),
+        headline: post.title,
+        description: post.excerpt,
+        image: post.image ? [post.image] : undefined,
+        datePublished: post.publishedAt,
+        author: {
+          "@type": post.author ? "Person" : "Organization",
+          name: authorName,
+        },
+        publisher: { "@id": `${SITE_URL}/#organization` },
+        mainEntityOfPage: absoluteUrl(`/blog/${slug}`),
+        keywords: post.seoKeywords?.join(", "),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+          { "@type": "ListItem", position: 3, name: post.title, item: absoluteUrl(`/blog/${slug}`) },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#050505] text-white pt-24 md:pt-40 pb-32 font-sans selection:bg-[#FF3300] selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       
       {/* --- EDITORIAL HEADER --- */}
       <header className="max-w-[1400px] mx-auto px-6 text-center mb-16 md:mb-24">

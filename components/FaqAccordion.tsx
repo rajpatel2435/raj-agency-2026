@@ -31,8 +31,22 @@ export default function FaqAccordion() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <div className="w-full max-w-[1400px] mx-auto px-6 md:px-12 py-32 border-t border-gray-800">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       
       <div className="flex flex-col md:flex-row gap-16 md:gap-24">
         {/* Left Side: Massive Heading */}

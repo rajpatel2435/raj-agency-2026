@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
@@ -117,27 +118,33 @@ export default function AboutPage() {
   const capabilities = [
     {
       title: "Enterprise Technical SEO",
-      desc: "Deep architectural audits, log file analysis, and complex schema implementation designed for high-volume sites."
+      desc: "Deep architectural audits, log file analysis, and complex schema implementation designed for high-volume sites.",
+      href: "/services/seo"
     },
     {
       title: "Next.js & React Development",
-      desc: "Lightning-fast frontend architectures that ace Core Web Vitals and convert traffic instantly."
+      desc: "Lightning-fast frontend architectures that ace Core Web Vitals and convert traffic instantly.",
+      href: "/services/engineering"
     },
     {
       title: "Custom CMS & Headless",
-      desc: "Sanity, Contentful, and bespoke WordPress builds engineered for editorial speed and total scalability."
+      desc: "Sanity, Contentful, and bespoke WordPress builds engineered for editorial speed and total scalability.",
+      href: "/services/engineering"
     },
     {
       title: "High-Intent Growth Strategy",
-      desc: "Targeting bottom-of-funnel revenue queries instead of chasing meaningless vanity traffic metrics."
+      desc: "Targeting bottom-of-funnel revenue queries instead of chasing meaningless vanity traffic metrics.",
+      href: "/services/strategy"
     },
     {
       title: "Digital PR & Link Building",
-      desc: "Data-driven campaigns that secure powerful placements on top-tier global publications to drive authority."
+      desc: "Data-driven campaigns that secure powerful placements on top-tier global publications to drive authority.",
+      href: "/services/pr"
     },
     {
       title: "Web3 & Blockchain Integration",
-      desc: "Future-proofing brands with secure, decentralized technologies and smart contract integrations."
+      desc: "Future-proofing brands with secure, decentralized technologies and smart contract integrations.",
+      href: "/services"
     }
   ];
 
@@ -274,17 +281,18 @@ export default function AboutPage() {
               </p>
             </div>
             
-            <button className="self-start bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#FF3300] transition-colors flex items-center gap-2 group">
+            <Link href="/contact" className="self-start bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#FF3300] transition-colors flex items-center gap-2 group">
                Start a Project <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           <div className="bg-[#0a0a0a] border border-gray-800 rounded-[2.5rem] p-8 md:p-14 shadow-2xl">
               <div className="flex flex-col">
                  {capabilities.map((cap, idx) => (
-                   <div 
+                   <Link 
+                     href={cap.href}
                      key={idx} 
-                     className="group relative border-b border-gray-800 py-8 first:pt-0 last:border-0 last:pb-0 cursor-pointer"
+                     className="group relative border-b border-gray-800 py-8 first:pt-0 last:border-0 last:pb-0 cursor-pointer block"
                    >
                      <div className="flex items-start justify-between gap-6">
                         <div className="flex-1">
@@ -301,7 +309,7 @@ export default function AboutPage() {
                           <ArrowUpRight className="w-8 h-8" />
                         </div>
                      </div>
-                   </div>
+                   </Link>
                  ))}
               </div>
           </div>
