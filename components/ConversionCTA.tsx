@@ -83,7 +83,7 @@ export default function ConversionCTA() {
     <>
       {/* --- STICKY CTA BAR --- */}
       {showBar && !showExit && (
-        <div className="fixed bottom-0 left-0 right-0 z-[60] px-3 pb-3 md:px-6 md:pb-6 pointer-events-none">
+        <div className="fixed bottom-0 left-0 right-0 z-[60] px-3 pb-3 md:px-6 md:pb-6 pr-20 md:pr-24 pointer-events-none">
           <div className="pointer-events-auto max-w-[1400px] mx-auto bg-[#F95D0A] text-black rounded-2xl shadow-[0_10px_40px_rgba(249,93,10,0.35)] flex flex-col sm:flex-row items-center gap-4 px-5 py-4 md:px-8 md:py-5">
             <div className="flex-1 text-center sm:text-left">
               <p className="font-black uppercase tracking-tight text-lg md:text-xl leading-tight">
