@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { buildPageMetadata } from "@/app/seo";
+import { buildPageMetadata, SITE_URL } from "@/app/seo";
+import FaqSection from "@/components/FaqSection";
 
 // --- FULL DEPTH CONTENT DATA ---
 const serviceData = {
@@ -17,7 +18,13 @@ const serviceData = {
       { label: "Competitive Displacement", desc: "We find out why people are choosing the restaurant down the street and technically rewire their journey to you." }
     ],
     sectors: ["Fine Dining", "Fast-Casual Chains", "Luxury Dental Clinics", "Boutique Hospitality"],
-    stats: [{ val: "12X", label: "Avg. ROAS" }, { val: "24/7", label: "Market Pulse" }]
+    stats: [{ val: "12X", label: "Avg. ROAS" }, { val: "24/7", label: "Market Pulse" }],
+    faqs: [
+      { question: "What does a growth strategy engagement include?", answer: "A full audit of your market and competitors, a revenue-gap map, and a prioritized roadmap of the campaigns, content, and technical fixes that will move your numbers fastest." },
+      { question: "How is this different from a normal marketing consultant?", answer: "We don't stop at slides. We architect and execute the revenue systems — SEO, web, content, and analytics — so the strategy actually ships and produces results." },
+      { question: "How soon will I see results?", answer: "Quick wins often appear within the first few weeks, with compounding growth over 3 to 6 months as the strategy matures." },
+      { question: "Do you work with businesses outside Montreal and Vancouver?", answer: "Yes. We're based in Montreal and Vancouver and work with clients across Canada and the USA." }
+    ]
   },
   seo: {
     title: "Local Visibility",
@@ -31,7 +38,13 @@ const serviceData = {
       { label: "Velocity Optimization", desc: "Using Next.js 15 to ensure your site loads in under 400ms—Google's favorite ranking signal." }
     ],
     sectors: ["Local Restaurants", "Medical Practices", "Real Estate Groups", "Service Franchises"],
-    stats: [{ val: "400%", label: "Organic Growth" }, { val: "Top 3", label: "Avg. Ranking" }]
+    stats: [{ val: "400%", label: "Organic Growth" }, { val: "Top 3", label: "Avg. Ranking" }],
+    faqs: [
+      { question: "How much does SEO cost?", answer: "It depends on your competition and goals, but most local businesses start with a focused monthly program. Book a free call for a clear, no-obligation quote." },
+      { question: "How long until I rank on Google?", answer: "Local SEO and Google Business Profile work often show movement within a few weeks. Competitive keywords typically take 3 to 6 months to rank strongly." },
+      { question: "Can you get me into the Google map pack?", answer: "That's our core focus. We optimize your Google Business Profile, citations, and local signals to push you into the top 3 map results where most local bookings happen." },
+      { question: "Do you handle technical SEO too?", answer: "Yes. We fix Core Web Vitals, site speed, crawlability, and schema on top of content and local SEO — all under one roof." }
+    ]
   },
   pr: {
     title: "Digital PR & Social",
@@ -45,7 +58,13 @@ const serviceData = {
       { label: "Bilingual Social SEO", desc: "Optimizing your social presence in both French and English to dominate localized search intent." }
     ],
     sectors: ["Fine Dining", "Nightlife & Bars", "Boutique Retail", "Lifestyle Brands"],
-    stats: [{ val: "4.8M", label: "Monthly Reach" }, { val: "70+", label: "Avg. Domain Authority" }]
+    stats: [{ val: "4.8M", label: "Monthly Reach" }, { val: "70+", label: "Avg. Domain Authority" }],
+    faqs: [
+      { question: "What does digital PR actually do for my rankings?", answer: "High-authority mentions and backlinks from trusted publications raise your domain trust, which directly improves how well your whole site ranks on Google." },
+      { question: "Do you manage our social media too?", answer: "Yes. We create content designed to trigger the algorithm and earn attention, then convert that reach into search visibility and bookings." },
+      { question: "Do you work in both French and English?", answer: "Yes. We optimize social and PR in both languages to dominate localized search intent, especially in the Montreal market." },
+      { question: "How do you measure PR results?", answer: "We track reach, earned mentions, referral traffic, and the domain authority lift — tied back to real business outcomes, not vanity likes." }
+    ]
   },
 
   data: {
@@ -60,7 +79,13 @@ const serviceData = {
       { label: "Multi-Channel Attribution", desc: "Knowing exactly which TikTok, Search, or PR mention resulted in that $400 table booking." }
     ],
     sectors: ["SaaS Founders", "Multi-Unit Restaurants", "Medical Networks", "E-commerce Giants"],
-    stats: [{ val: "100%", label: "Exact Attribution" }, { val: "-40%", label: "Wasted Ad Spend" }]
+    stats: [{ val: "100%", label: "Exact Attribution" }, { val: "-40%", label: "Wasted Ad Spend" }],
+    faqs: [
+      { question: "What kind of reporting do I get?", answer: "Live, 24/7 ROI dashboards that show real revenue and customer journeys — not just clicks or end-of-month PDFs." },
+      { question: "Can you connect marketing spend to actual revenue?", answer: "Yes. We set up multi-channel attribution so you know exactly which search, social, or PR touchpoint drove each booking or sale." },
+      { question: "Do I need to switch tools or platforms?", answer: "Usually not. We work with your existing stack and add the tracking and dashboards on top of it." },
+      { question: "How does this reduce ad spend?", answer: "By identifying which channels and campaigns actually convert, we cut the budget going to underperforming pixels and reinvest it where it works." }
+    ]
   },
   design: {
     title: "Premium Experience",
@@ -74,7 +99,13 @@ const serviceData = {
       { label: "Mobile Conversion UX", desc: "We optimize for thumb-first interactions so key actions stay effortless on mobile devices." }
     ],
     sectors: ["Luxury Hospitality", "Healthcare Clinics", "Local Services", "High-Ticket Brands"],
-    stats: [{ val: "+38%", label: "Avg. CVR Lift" }, { val: "<2s", label: "UX Response Time" }]
+    stats: [{ val: "+38%", label: "Avg. CVR Lift" }, { val: "<2s", label: "UX Response Time" }],
+    faqs: [
+      { question: "Will a redesign hurt my current rankings?", answer: "No — we redesign with SEO in mind, preserving your URLs, content, and technical signals so rankings stay safe and often improve." },
+      { question: "How do you know the new design will convert better?", answer: "We map your customer journey, find where users hesitate or drop off, and redesign those specific moments with proven trust and UX patterns." },
+      { question: "Do you design for mobile first?", answer: "Yes. We optimize for thumb-first mobile interactions since that's where most local customers browse and book." },
+      { question: "How long does a redesign take?", answer: "It varies by scope, but most focused conversion redesigns ship in a few weeks. We'll give you a clear timeline after a quick audit." }
+    ]
   },
   engineering: {
     title: "Reliable Systems",
@@ -88,7 +119,13 @@ const serviceData = {
       { label: "Reliability Guardrails", desc: "We add monitoring, fail-safes, and release controls to prevent costly outages and SEO drops." }
     ],
     sectors: ["SaaS", "eCommerce", "Publishing", "Enterprise Web Apps"],
-    stats: [{ val: "99.9%", label: "Uptime Target" }, { val: "-55%", label: "Perf Bottlenecks" }]
+    stats: [{ val: "99.9%", label: "Uptime Target" }, { val: "-55%", label: "Perf Bottlenecks" }],
+    faqs: [
+      { question: "What technology do you build with?", answer: "We specialize in modern Next.js and React with clean, fast, SEO-friendly architecture, plus API integrations tailored to your business." },
+      { question: "Why does site speed matter for SEO?", answer: "Core Web Vitals like LCP and INP are Google ranking signals. A fast, stable site ranks better and converts more visitors into customers." },
+      { question: "Can you fix an existing site instead of rebuilding?", answer: "Often yes. We start with a technical audit and recommend either targeted hardening or a rebuild, based on what delivers the best ROI." },
+      { question: "Do you handle hosting and reliability?", answer: "Yes. We add monitoring, fail-safes, and release controls so your site stays fast, online, and protected from costly SEO-damaging outages." }
+    ]
   }
   // Add design and engineering here following the same pattern...
 };
@@ -119,8 +156,33 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   if (!service) notFound();
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${SITE_URL}/services/${slug}/#service`,
+    name: `${service.title} — Launch at Dawn`,
+    serviceType: service.title,
+    description: service.heroDesc,
+    url: `${SITE_URL}/services/${slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Launch at Dawn",
+      url: SITE_URL,
+      telephone: "+1-514-699-2435",
+    },
+    areaServed: [
+      { "@type": "City", name: "Montreal" },
+      { "@type": "City", name: "Vancouver" },
+      { "@type": "Country", name: "Canada" },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#050505] text-white selection:bg-[#F95D0A] selection:text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       
       {/* 1. HERO SECTION (BIG HOOK) */}
       <section className="pt-48 pb-32 px-6 md:px-12 border-b border-white/5 relative overflow-hidden">
@@ -209,6 +271,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     </Link>
   </div>
 </section>
+
+      <FaqSection faqs={service.faqs} eyebrow={`${service.title} FAQ`} />
 
     </main>
   );
