@@ -56,7 +56,7 @@ export default function Hero() {
       {/* --- MAIN CENTERPIECE: KINETIC TYPOGRAPHY --- */}
       <div className="relative z-10 w-full px-4 flex flex-col items-center justify-center mt-12 md:mt-0 max-w-[100vw]">
         
-        <h1 className="flex flex-col items-center text-center font-black tracking-tighter leading-[0.85] w-full">
+        <div role="presentation" className="flex flex-col items-center text-center font-black tracking-tighter leading-[0.85] w-full">
           
           {/* LINE 1: OUTLINE TEXT */}
           {/* FIX: Reduced mobile vw from 14vw to 10vw to prevent horizontal overflow */}
@@ -107,7 +107,7 @@ export default function Hero() {
             Rankings.
           </motion.span>
 
-        </h1>
+        </div>
 
         {/* --- SUBTITLE & CTA --- */}
         <motion.div 
