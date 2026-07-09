@@ -92,8 +92,8 @@ export default function Footer() {
            <div className="flex flex-col gap-5">
              <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Operational</h4>
              <div className="flex flex-col gap-3">
-               <span className="text-sm font-medium text-white">Montreal, QC</span>
-               <span className="text-sm font-medium text-white/20">Vancouver, BC</span>
+               <Link href="/montreal-seo-agency" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Montreal, QC</Link>
+               <Link href="/vancouver-digital-agency" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Vancouver, BC</Link>
                <a href="tel:+15146992435" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">(514) 699-2435</a>
              </div>
              <Link href="https://www.instagram.com/launchatdawn/" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">Instagram</Link>
