@@ -12,6 +12,12 @@ export const metadata: Metadata = buildPageMetadata({
 
 const tools = [
   {
+    href: "/tools/ai-visibility-checker",
+    name: "AI Visibility Checker",
+    desc: "See if ChatGPT, Claude, Perplexity and Google AI can find and recommend your business — get an instant AI-readiness score.",
+    tag: "New",
+  },
+  {
     href: "/tools/seo-checker",
     name: "Instant SEO Checker",
     desc: "Paste any URL and get a technical SEO snapshot in seconds — titles, meta, schema, mobile-readiness and more.",

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from './seo';
 import { LOCAL_BLOG_SLUGS } from './blog/localPosts';
+import { LOCAL_SLUGS } from './local/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -19,8 +20,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/restaurant-growth`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/montreal-seo-agency`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${SITE_URL}/vancouver-digital-agency`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/best-seo-agencies-montreal`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE_URL}/best-digital-agencies-vancouver`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/tools`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/tools/ai-visibility-checker`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/tools/seo-checker`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${SITE_URL}/tools/badge`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/tools/meta-generator`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/tools/utm-builder`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/tools/roi-calculator`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
@@ -69,5 +74,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...workRoutes, ...blogRoutes, ...servicesRoutes];
+  const localRoutes: MetadataRoute.Sitemap = LOCAL_SLUGS.map((slug) => ({
+    url: `${SITE_URL}/local/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...workRoutes, ...blogRoutes, ...servicesRoutes, ...localRoutes];
 }

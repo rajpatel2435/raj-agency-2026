@@ -14,14 +14,15 @@ type Check = {
 type Result = {
   url: string;
   score: number;
+  grade: string;
+  summary: string;
   checks: Check[];
-  summary: { pass: number; warn: number; fail: number };
 };
 
-const STATUS_STYLES: Record<Check["status"], { dot: string; text: string; icon: string }> = {
-  pass: { dot: "bg-emerald-400", text: "text-emerald-400", icon: "✓" },
-  warn: { dot: "bg-amber-400", text: "text-amber-400", icon: "!" },
-  fail: { dot: "bg-red-500", text: "text-red-500", icon: "✕" },
+const STATUS_STYLES: Record<Check["status"], { dot: string; icon: string }> = {
+  pass: { dot: "bg-emerald-400", icon: "✓" },
+  warn: { dot: "bg-amber-400", icon: "!" },
+  fail: { dot: "bg-red-500", icon: "✕" },
 };
 
 function scoreColor(score: number) {
@@ -30,15 +31,11 @@ function scoreColor(score: number) {
   return "text-red-500";
 }
 
-export default function SeoCheckerPage() {
+export default function AiVisibilityCheckerPage() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<Result | null>(null);
-  const [email, setEmail] = useState("");
-  const [emailLoading, setEmailLoading] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
-  const [emailError, setEmailError] = useState<string | null>(null);
 
   async function runCheck(e: React.FormEvent) {
     e.preventDefault();
@@ -46,10 +43,8 @@ export default function SeoCheckerPage() {
     setLoading(true);
     setError(null);
     setResult(null);
-    setEmailSent(false);
-    setEmailError(null);
     try {
-      const res = await fetch("/api/seo-check", {
+      const res = await fetch("/api/ai-visibility", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -67,47 +62,20 @@ export default function SeoCheckerPage() {
     }
   }
 
-  async function emailReport(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim() || !result) return;
-    setEmailLoading(true);
-    setEmailError(null);
-    try {
-      const res = await fetch("/api/email-audit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          url: result.url,
-          score: result.score,
-          checks: result.checks,
-          source: "SEO Checker",
-        }),
-      });
-      const data = await res.json();
-      if (data.error) setEmailError(data.error);
-      else setEmailSent(true);
-    } catch {
-      setEmailError("Could not send the report. Please try again.");
-    } finally {
-      setEmailLoading(false);
-    }
-  }
-
   return (
     <main className="min-h-screen bg-[#050505] text-white pt-32 md:pt-44 pb-32 px-6 md:px-12 selection:bg-[#F95D0A] selection:text-black">
       <div className="max-w-[1000px] mx-auto">
         {/* Header */}
         <div className="text-center mb-14">
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-[#F95D0A]">
-            Free Tool
+            Free AI Tool
           </span>
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] mt-6 mb-6">
-            Instant SEO Checker
+            AI Visibility Checker
           </h1>
           <p className="text-lg md:text-xl text-white/50 font-light max-w-2xl mx-auto">
-            Paste any website URL and get a technical SEO snapshot in seconds — the same
-            checks we run in a full teardown.
+            Can ChatGPT, Claude, Perplexity, and Google AI find and recommend your business?
+            Paste your URL to get an instant AI-readiness score.
           </p>
         </div>
 
@@ -125,7 +93,7 @@ export default function SeoCheckerPage() {
             disabled={loading}
             className="bg-[#F95D0A] text-black px-9 py-5 rounded-full text-sm font-black uppercase tracking-widest hover:bg-white transition-colors disabled:opacity-50 shrink-0"
           >
-            {loading ? "Scanning…" : "Analyze"}
+            {loading ? "Scanning…" : "Check AI Score"}
           </button>
         </form>
 
@@ -146,11 +114,7 @@ export default function SeoCheckerPage() {
         {/* Result */}
         <AnimatePresence>
           {result && (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="space-y-8"
-            >
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
               {/* Score card */}
               <div className="bg-[#0A0A0A] border border-white/10 rounded-[2rem] p-8 md:p-12 flex flex-col md:flex-row items-center gap-10">
                 <div className="text-center shrink-0">
@@ -158,16 +122,13 @@ export default function SeoCheckerPage() {
                     {result.score}
                   </div>
                   <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mt-2">
-                    SEO Score / 100
+                    AI Score / 100
                   </div>
                 </div>
                 <div className="flex-1 w-full">
-                  <p className="text-sm text-white/40 font-mono mb-4 break-all">{result.url}</p>
-                  <div className="flex gap-6 text-sm">
-                    <span className="text-emerald-400 font-bold">{result.summary.pass} passed</span>
-                    <span className="text-amber-400 font-bold">{result.summary.warn} warnings</span>
-                    <span className="text-red-500 font-bold">{result.summary.fail} failed</span>
-                  </div>
+                  <p className="text-sm text-white/40 font-mono mb-2 break-all">{result.url}</p>
+                  <p className="text-2xl font-black uppercase tracking-tight text-[#F95D0A] mb-3">{result.grade}</p>
+                  <p className="text-sm text-white/50">{result.summary}</p>
                 </div>
               </div>
 
@@ -191,55 +152,20 @@ export default function SeoCheckerPage() {
                 })}
               </div>
 
-              {/* Email report capture */}
-              <div className="bg-[#0A0A0A] border border-white/10 rounded-[2rem] p-8 md:p-10">
-                {emailSent ? (
-                  <div className="text-center">
-                    <p className="text-2xl font-black tracking-tight mb-2 text-emerald-400">Report on its way ✓</p>
-                    <p className="text-white/50 text-sm">Check your inbox for the full audit.</p>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-2xl font-black tracking-tight mb-2">Email me this report</h3>
-                    <p className="text-white/50 text-sm mb-6">
-                      Get the full breakdown in your inbox — plus a short list of quick wins.
-                    </p>
-                    <form onSubmit={emailReport} className="flex flex-col sm:flex-row gap-4">
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="you@company.com"
-                        required
-                        className="flex-1 bg-[#050505] border border-white/10 rounded-full px-7 py-4 outline-none focus:border-[#F95D0A] transition-colors placeholder:text-white/30"
-                      />
-                      <button
-                        type="submit"
-                        disabled={emailLoading}
-                        className="bg-white text-black px-8 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:bg-[#F95D0A] transition-colors disabled:opacity-50 shrink-0"
-                      >
-                        {emailLoading ? "Sending…" : "Send Report"}
-                      </button>
-                    </form>
-                    {emailError && <p className="text-red-400 text-sm mt-4">{emailError}</p>}
-                  </>
-                )}
-              </div>
-
               {/* CTA */}
               <div className="bg-gradient-to-br from-[#F95D0A] to-[#c74100] text-black rounded-[2rem] p-8 md:p-12 text-center">
                 <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-3">
-                  This is the surface. Want the full teardown?
+                  Want AI assistants to recommend you?
                 </h2>
                 <p className="text-black/70 font-medium max-w-xl mx-auto mb-8">
-                  We&apos;ll manually analyze your speed, rankings, and conversion blockers —
-                  then show you exactly what&apos;s costing you customers.
+                  We make your business the answer AI gives — with structured data, entity SEO, and
+                  content built for the new era of search.
                 </p>
                 <Link
-                  href="/case-study-teardown"
+                  href="/contact"
                   className="inline-block bg-black text-white px-9 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:bg-[#050505] transition-colors"
                 >
-                  Get My Free Teardown
+                  Get AI-Ready
                 </Link>
               </div>
             </motion.div>
@@ -248,7 +174,7 @@ export default function SeoCheckerPage() {
 
         {!result && !loading && (
           <p className="text-center text-white/30 text-sm font-mono">
-            No data leaves your browser except the URL you submit. We only read public page markup.
+            We check public page markup, robots.txt, and llms.txt. Nothing is stored.
           </p>
         )}
       </div>
