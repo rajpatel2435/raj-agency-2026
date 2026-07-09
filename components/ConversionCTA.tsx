@@ -162,11 +162,11 @@ export default function ConversionCTA() {
                 Run Free Audit
               </Link>
               <Link
-                href="/contact/hello"
+                href="/start"
                 onClick={closeExit}
                 className="flex-1 text-center border border-white/20 text-white px-6 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:border-[#F95D0A] hover:text-[#F95D0A] transition-colors"
               >
-                Book a Growth Call
+                Get a Growth Plan
               </Link>
             </div>
           </div>
