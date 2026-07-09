@@ -1,11 +1,10 @@
 // Serves an embeddable SVG badge that clients place on their site.
 // Each embed is a high-relevance backlink to Launch at Dawn.
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const theme = searchParams.get("theme") === "light" ? "light" : "dark";
-
 
   const bg = theme === "light" ? "#ffffff" : "#050505";
   const border = theme === "light" ? "#e5e5e5" : "#1a1a1a";
