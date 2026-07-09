@@ -14,9 +14,10 @@ export function buildPageMetadata({
   title,
   description,
   pathname = "/",
-  images = ["/favicon.svg"],
+  images,
   noIndex = false,
   keywords,
+  ogEyebrow,
 }: {
   title: string;
   description: string;
@@ -24,8 +25,17 @@ export function buildPageMetadata({
   images?: string[];
   noIndex?: boolean;
   keywords?: string[];
+  ogEyebrow?: string;
 }): Metadata {
   const canonical = absoluteUrl(pathname);
+
+  const ogImages =
+    images ??
+    [
+      `${SITE_URL}/api/og?title=${encodeURIComponent(title)}${
+        ogEyebrow ? `&eyebrow=${encodeURIComponent(ogEyebrow)}` : ""
+      }`,
+    ];
 
   return {
     title,
@@ -40,13 +50,13 @@ export function buildPageMetadata({
       url: canonical,
       siteName: SITE_NAME,
       type: "website",
-      images,
+      images: ogImages,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images,
+      images: ogImages,
     },
     robots: noIndex
       ? {

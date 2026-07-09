@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: "/og-image.svg",
+        url: `${SITE_URL}/api/og?title=${encodeURIComponent("Digital Architecture & SEO Orchestration")}`,
         width: 1200,
         height: 630,
       },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Launch at Dawn",
     description: "Technical SEO and Digital Growth.",
-    images: ["/og-image.svg"],
+    images: [`${SITE_URL}/api/og?title=${encodeURIComponent("Digital Architecture & SEO Orchestration")}`],
   },
   icons: {
     icon: [
