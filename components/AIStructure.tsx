@@ -1,5 +1,17 @@
 export default function AIStructure() {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.launchatdawn.com";
+
+    // Once your Google Business Profile is live, paste its Google Maps share URL
+    // into NEXT_PUBLIC_GBP_URL. This is the #1 signal that links your website to
+    // your GBP so the profile panel shows when people search "Launch at Dawn".
+    const gbpUrl = process.env.NEXT_PUBLIC_GBP_URL;
+
+    const sameAs = [
+      "https://www.instagram.com/launchatdawn/",
+      "https://linkedin.com/company/launchatdawn",
+      ...(gbpUrl ? [gbpUrl] : []),
+    ];
+
     const structuredData = {
       "@context": "https://schema.org",
       "@graph": [
@@ -7,14 +19,11 @@ export default function AIStructure() {
           "@type": "Organization",
           "@id": `${siteUrl}/#organization`,
       "name": "Launch at Dawn",
-      "alternateName": "Launchatdawn Agency",
+      "alternateName": ["Launchatdawn", "Launch At Dawn Agency", "Launch at Dawn Digital Agency"],
       "url": siteUrl,
       "logo": `${siteUrl}/icon.svg`,
       "description": "A full-spectrum digital engineering and marketing agency providing SEO, Web Development, and Growth Strategy for Small Businesses, Mid-Market companies, and Enterprise departments.",
-      "sameAs": [
-        "https://www.instagram.com/launchatdawn/",
-        "https://linkedin.com/company/launchatdawn"
-      ],
+      "sameAs": sameAs,
       "address": [
         { "@type": "PostalAddress", "addressLocality": "Montreal", "addressRegion": "QC", "addressCountry": "CA" },
         { "@type": "PostalAddress", "addressLocality": "Vancouver", "addressRegion": "BC", "addressCountry": "CA" }
@@ -55,6 +64,7 @@ export default function AIStructure() {
           "@id": `${siteUrl}/#website`,
           "url": siteUrl,
           "name": "Launch at Dawn",
+          "alternateName": "Launchatdawn",
           "publisher": {
             "@id": `${siteUrl}/#organization`
           }
@@ -69,6 +79,7 @@ export default function AIStructure() {
           "parentOrganization": { "@id": `${siteUrl}/#organization` },
           "url": siteUrl,
           "image": `${siteUrl}/icon.svg`,
+          ...(gbpUrl ? { "sameAs": gbpUrl, "hasMap": gbpUrl } : {}),
           "description": "Digital engineering and marketing agency in Montreal offering technical SEO, web development, and growth marketing.",
           "address": {
             "@type": "PostalAddress",
