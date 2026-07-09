@@ -12,6 +12,12 @@ export const metadata: Metadata = buildPageMetadata({
 
 const tools = [
   {
+    href: "/tools/graphic-generator",
+    name: "Social Graphic Generator",
+    desc: "Create on-brand Instagram posts, story covers and ad banners in seconds — type your message, pick a format, download a PNG.",
+    tag: "New",
+  },
+  {
     href: "/tools/ai-visibility-checker",
     name: "AI Visibility Checker",
     desc: "See if ChatGPT, Claude, Perplexity and Google AI can find and recommend your business — get an instant AI-readiness score.",
