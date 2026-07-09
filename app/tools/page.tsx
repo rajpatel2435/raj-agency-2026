@@ -12,6 +12,12 @@ export const metadata: Metadata = buildPageMetadata({
 
 const tools = [
   {
+    href: "/tools/authority-checker",
+    name: "Website Authority Checker",
+    desc: "Get an instant authority score from real trust signals — domain age, security, indexability, structured data and content depth.",
+    tag: "New",
+  },
+  {
     href: "/tools/graphic-generator",
     name: "Social Graphic Generator",
     desc: "Create on-brand Instagram posts, story covers and ad banners in seconds — type your message, pick a format, download a PNG.",
