@@ -66,7 +66,6 @@ export default function AIStructure() {
           "@type": "ProfessionalService",
           "@id": `${siteUrl}/#localbusiness-montreal`,
           "name": "Launch at Dawn",
-          "telephone": "+1-514-699-2435",
           "parentOrganization": { "@id": `${siteUrl}/#organization` },
           "url": siteUrl,
           "image": `${siteUrl}/icon.svg`,

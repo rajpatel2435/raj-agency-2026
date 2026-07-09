@@ -37,7 +37,6 @@ export default function LocationLanding({ config }: { config: LocationConfig }) 
     url: pageUrl,
     image: `${SITE_URL}/icon.svg`,
     description: config.intro,
-    telephone: "+1-514-699-2435",
     priceRange: "$$",
     areaServed: {
       "@type": "City",

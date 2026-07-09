@@ -68,7 +68,6 @@ export default async function LocalServicePage({
           "@type": "ProfessionalService",
           name: "Launch at Dawn",
           url: SITE_URL,
-          telephone: "+1-514-699-2435",
           areaServed: { "@type": "City", name: city.name },
           address: {
             "@type": "PostalAddress",
@@ -101,7 +100,7 @@ export default async function LocalServicePage({
     },
     {
       question: `Where is Launch at Dawn based?`,
-      answer: `We're based in Montreal and Vancouver and serve ${city.name}, ${city.regionFull}, and clients across Canada and the USA. Call us at (514) 699-2435.`,
+      answer: `We're based in Montreal and Vancouver and serve ${city.name}, ${city.regionFull}, and clients across Canada and the USA.`,
     },
   ];
 

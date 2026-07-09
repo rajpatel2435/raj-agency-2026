@@ -171,7 +171,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       "@type": "Organization",
       name: "Launch at Dawn",
       url: SITE_URL,
-      telephone: "+1-514-699-2435",
     },
     areaServed: [
       { "@type": "City", name: "Montreal" },

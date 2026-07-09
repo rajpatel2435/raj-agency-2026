@@ -102,7 +102,7 @@ export async function POST(req: Request) {
           <p style="color:#a1a1aa;font-size:16px;line-height:1.6;">Hi ${esc(name.split(" ")[0] || "there")}, thanks for sharing where you want to grow. A strategist is reviewing your answers and will reply within 24 hours with a clear, no-pressure next step.</p>
           <p style="color:#a1a1aa;font-size:16px;line-height:1.6;">Want to move faster? Book a free 20-minute growth call now:</p>
           <a href="https://www.launchatdawn.com/contact/hello" style="display:inline-block;margin-top:12px;background:#F95D0A;color:#000;padding:14px 32px;border-radius:999px;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1px;">Book a Growth Call</a>
-          <p style="font-size:11px;color:#555;margin-top:28px;">Launch at Dawn · Montreal · Vancouver · (514) 699-2435</p>
+          <p style="font-size:11px;color:#555;margin-top:28px;">Launch at Dawn · Montreal · Vancouver</p>
         </div>`,
     });
 

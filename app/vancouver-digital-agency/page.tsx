@@ -68,7 +68,7 @@ const VANCOUVER: LocationConfig = {
     {
       question: "Where is Launch at Dawn located?",
       answer:
-        "We serve Vancouver, BC and are also based in Montreal, QC, working with clients across Canada and the USA. Call us at (514) 699-2435.",
+        "We serve Vancouver, BC and are also based in Montreal, QC, working with clients across Canada and the USA.",
     },
   ],
 };

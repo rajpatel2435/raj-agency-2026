@@ -123,7 +123,7 @@ const images = [
         <rect x="${w / 2 - 220}" y="610" width="440" height="90" rx="45" fill="${ORANGE}"/>
         <text x="${w / 2}" y="668" text-anchor="middle" fill="#050505" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" letter-spacing="1">BOOK A CALL</text>
       </g>
-      <text x="${w / 2}" y="790" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">launchatdawn.com  //  (514) 699-2435</text>
+      <text x="${w / 2}" y="790" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">launchatdawn.com</text>
     `,
   },
 ];

@@ -63,7 +63,7 @@ export async function POST(req: Request) {
             <p style="color:#000;font-weight:800;font-size:18px;margin:0 0 12px;">Want us to fix these for you?</p>
             <a href="https://www.launchatdawn.com/contact" style="display:inline-block;background:#000;color:#fff;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1px;">Book a Free Call</a>
           </div>
-          <p style="font-size:11px;color:#555;margin-top:24px;">Launch at Dawn · Montreal · Vancouver · (514) 699-2435</p>
+          <p style="font-size:11px;color:#555;margin-top:24px;">Launch at Dawn · Montreal · Vancouver</p>
         </div>`,
     });
 
