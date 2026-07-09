@@ -2,6 +2,7 @@ import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ConversionCTA from "@/components/ConversionCTA";
 import Insights from "@/components/Insights";
 import AIStructure from "@/components/AIStructure";
 import { Analytics } from '@vercel/analytics/next';
@@ -97,6 +98,7 @@ export default function RootLayout({
         {children}
      
         <Footer />
+        <ConversionCTA />
         <Analytics />
       </body>
     </html>
