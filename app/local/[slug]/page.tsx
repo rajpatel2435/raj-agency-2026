@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { buildPageMetadata, SITE_URL } from "@/app/seo";
 import FaqSection from "@/components/FaqSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { getComboBySlug, getAllCombos } from "../data";
 
 export function generateStaticParams() {
@@ -111,6 +112,13 @@ export default async function LocalServicePage({
   return (
     <main className="min-h-screen bg-[#050505] text-white selection:bg-[#F95D0A] selection:text-black font-sans overflow-x-hidden mt-24 md:mt-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <Breadcrumbs
+        items={[
+          { name: "Areas We Serve", href: "/local" },
+          { name: `${service.short} in ${city.name}`, href: `/local/${slug}` },
+        ]}
+      />
 
       {/* HERO */}
       <section className="relative min-h-[80vh] flex items-center px-6 lg:px-12 border-b border-white/5">

@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { buildPageMetadata, SITE_URL } from "@/app/seo";
 import FaqSection from "@/components/FaqSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import RelatedServices from "@/components/RelatedServices";
 
 // --- FULL DEPTH CONTENT DATA ---
 const serviceData = {
@@ -183,9 +185,16 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
+
+      <Breadcrumbs
+        items={[
+          { name: "Services", href: "/services" },
+          { name: service.title, href: `/services/${slug}` },
+        ]}
+      />
       
       {/* 1. HERO SECTION (BIG HOOK) */}
-      <section className="pt-48 pb-32 px-6 md:px-12 border-b border-white/5 relative overflow-hidden">
+      <section className="pt-16 md:pt-20 pb-32 px-6 md:px-12 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#F95D0A]/5 blur-[120px] -z-10" />
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center gap-3 mb-8">
@@ -271,6 +280,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     </Link>
   </div>
 </section>
+
+      <RelatedServices currentSlug={slug} />
 
       <FaqSection faqs={service.faqs} eyebrow={`${service.title} FAQ`} />
 

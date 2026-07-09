@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FaqSection, { type FaqItem } from "@/components/FaqSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { SITE_URL } from "@/app/seo";
 
 export type GuideConfig = {
@@ -48,6 +49,12 @@ export default function BuyersGuide({ config }: { config: GuideConfig }) {
   return (
     <main className="min-h-screen bg-[#050505] text-white selection:bg-[#F95D0A] selection:text-black font-sans overflow-x-hidden mt-24 md:mt-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <Breadcrumbs
+        items={[
+          { name: `Best ${config.serviceLabel} in ${config.city}`, href: `/${config.slug}` },
+        ]}
+      />
 
       {/* HERO */}
       <section className="pt-24 pb-20 px-6 lg:px-12 border-b border-white/5">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import FaqSection, { type FaqItem } from "@/components/FaqSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { SITE_URL } from "@/app/seo";
 
 export type LocationConfig = {
@@ -71,6 +72,8 @@ export default function LocationLanding({ config }: { config: LocationConfig }) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
+
+      <Breadcrumbs items={[{ name: config.city, href: `/${config.slug}` }]} />
 
       {/* HERO */}
       <section className="relative min-h-[85vh] flex items-center px-6 lg:px-12 border-b border-white/5">
