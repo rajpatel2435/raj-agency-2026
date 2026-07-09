@@ -2,6 +2,8 @@ import About from "@/components/About";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Work from "../components/Work";
+import TrustBar from "@/components/TrustBar";
+import Testimonials from "@/components/Testimonials";
 import { client } from "../sanity/lib/client";
 import Insights from "@/components/Insights";
 import type { Metadata } from "next";
@@ -55,9 +57,11 @@ export default async function Home() {
    <main className="flex min-h-screen flex-col items-center w-full">
       <h1 className="sr-only">Launch at Dawn - Technical SEO and Growth Engineering Agency</h1>
       <Hero />
+      <TrustBar />
       <Services/>
       <About  />
       <Work caseStudies={workData} />
+      <Testimonials />
       <Insights data={data} />
     </main>
   );

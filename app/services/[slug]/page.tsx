@@ -5,6 +5,7 @@ import { buildPageMetadata, SITE_URL } from "@/app/seo";
 import FaqSection from "@/components/FaqSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RelatedServices from "@/components/RelatedServices";
+import Testimonials from "@/components/Testimonials";
 
 // --- FULL DEPTH CONTENT DATA ---
 const serviceData = {
@@ -280,6 +281,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     </Link>
   </div>
 </section>
+
+      <Testimonials heading="Proof from our clients" />
 
       <RelatedServices currentSlug={slug} />
 
