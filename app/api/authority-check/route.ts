@@ -109,7 +109,7 @@ async function pathExists(base: URL, path: string): Promise<boolean> {
       res = await fetch(target.toString(), {
         redirect: "follow",
         signal: controller.signal,
-        headers: { "User-Agent": "LaunchAtDawn-Authority-Checker/1.0 (+https://www.launchatdawn.com)" },
+        headers: { "User-Agent": "LaunchAtDawn-Authority-Checker/1.0 (+https://launchatdawn.com)" },
       });
     } finally {
       clearTimeout(timeout);
@@ -154,7 +154,7 @@ export async function POST(req: Request) {
       res = await fetch(url.toString(), {
         redirect: "follow",
         signal: controller.signal,
-        headers: { "User-Agent": "LaunchAtDawn-Authority-Checker/1.0 (+https://www.launchatdawn.com)" },
+        headers: { "User-Agent": "LaunchAtDawn-Authority-Checker/1.0 (+https://launchatdawn.com)" },
       });
     } finally {
       clearTimeout(timeout);

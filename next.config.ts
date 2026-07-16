@@ -54,8 +54,8 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'launchatdawn.com' }],
-        destination: 'https://www.launchatdawn.com/:path*',
+        has: [{ type: 'host', value: 'www.launchatdawn.com' }],
+        destination: 'https://launchatdawn.com/:path*',
         permanent: true,
       },
     ];

@@ -61,7 +61,7 @@ export async function POST(req: Request) {
           <table style="width:100%;border-collapse:collapse;margin-top:20px;">${rows}</table>
           <div style="margin-top:30px;padding:24px;background:#F95D0A;border-radius:12px;text-align:center;">
             <p style="color:#000;font-weight:800;font-size:18px;margin:0 0 12px;">Want us to fix these for you?</p>
-            <a href="https://www.launchatdawn.com/contact" style="display:inline-block;background:#000;color:#fff;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1px;">Book a Free Call</a>
+            <a href="https://launchatdawn.com/contact" style="display:inline-block;background:#000;color:#fff;padding:12px 28px;border-radius:999px;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1px;">Book a Free Call</a>
           </div>
           <p style="font-size:11px;color:#555;margin-top:24px;">Launch at Dawn · Montreal · Vancouver</p>
         </div>`,

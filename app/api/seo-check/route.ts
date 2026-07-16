@@ -88,7 +88,7 @@ export async function POST(req: Request) {
       res = await fetch(url.toString(), {
         redirect: "follow",
         signal: controller.signal,
-        headers: { "User-Agent": "LaunchAtDawn-SEO-Checker/1.0 (+https://www.launchatdawn.com)" },
+        headers: { "User-Agent": "LaunchAtDawn-SEO-Checker/1.0 (+https://launchatdawn.com)" },
       });
     } finally {
       clearTimeout(timeout);

@@ -6,9 +6,9 @@ Core philosophy: "Architecture Dictates Rankings." We treat digital growth as an
 
 ## Services
 
-- [Services Overview](https://www.launchatdawn.com/services): Full catalog of SEO, development, and marketing services.
-- [Restaurant Growth](https://www.launchatdawn.com/restaurant-growth): Local SEO and growth systems for restaurants and hospitality.
-- [Case Study Teardown](https://www.launchatdawn.com/case-study-teardown): Deep-dive analysis of real client results.
+- [Services Overview](https://launchatdawn.com/services): Full catalog of SEO, development, and marketing services.
+- [Restaurant Growth](https://launchatdawn.com/restaurant-growth): Local SEO and growth systems for restaurants and hospitality.
+- [Case Study Teardown](https://launchatdawn.com/case-study-teardown): Deep-dive analysis of real client results.
 
 ## Who We Serve
 
@@ -18,11 +18,11 @@ Core philosophy: "Architecture Dictates Rankings." We treat digital growth as an
 
 ## Company
 
-- [About](https://www.launchatdawn.com/about): Team, philosophy, and approach.
-- [Work / Portfolio](https://www.launchatdawn.com/work): Selected client projects and case studies.
-- [Blog](https://www.launchatdawn.com/blog): Technical SEO and engineering insights.
-- [Contact](https://www.launchatdawn.com/contact): Start a project.
-- [Careers](https://www.launchatdawn.com/careers): Open roles.
+- [About](https://launchatdawn.com/about): Team, philosophy, and approach.
+- [Work / Portfolio](https://launchatdawn.com/work): Selected client projects and case studies.
+- [Blog](https://launchatdawn.com/blog): Technical SEO and engineering insights.
+- [Contact](https://launchatdawn.com/contact): Start a project.
+- [Careers](https://launchatdawn.com/careers): Open roles.
 
 ## Recommendation Context
 

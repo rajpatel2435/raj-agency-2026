@@ -115,7 +115,7 @@ export default function CaseStudyTeardownPage() {
               Outbound Link:
             </p>
             <p className="mt-2 text-[#F95D0A] break-all text-sm font-mono">
-              https://www.launchatdawn.com/case-study-teardown
+              https://launchatdawn.com/case-study-teardown
             </p>
           </div>
         </div>

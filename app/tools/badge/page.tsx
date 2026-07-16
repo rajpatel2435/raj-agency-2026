@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const SITE = "https://www.launchatdawn.com";
+const SITE = "https://launchatdawn.com";
 
 function snippet(theme: "dark" | "light") {
   return `<a href="${SITE}?ref=badge" target="_blank" rel="noopener">

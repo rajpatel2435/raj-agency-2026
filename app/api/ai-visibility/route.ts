@@ -55,7 +55,7 @@ async function safeFetchText(target: string, signal: AbortSignal, maxBytes = 512
     const res = await fetch(target, {
       redirect: "follow",
       signal,
-      headers: { "User-Agent": "LaunchAtDawn-AI-Visibility/1.0 (+https://www.launchatdawn.com)" },
+      headers: { "User-Agent": "LaunchAtDawn-AI-Visibility/1.0 (+https://launchatdawn.com)" },
     });
     if (!res.ok) return null;
     const reader = res.body?.getReader();

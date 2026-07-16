@@ -1,5 +1,5 @@
 export default function AIStructure() {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.launchatdawn.com";
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://launchatdawn.com";
 
     // Once your Google Business Profile is live, paste its Google Maps share URL
     // into NEXT_PUBLIC_GBP_URL. This is the #1 signal that links your website to
