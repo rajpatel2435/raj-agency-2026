@@ -36,6 +36,15 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "GtKa9v21eY7SRL3JEV94r_eZ9VOrPWkT2_g8Wg6n-PA",
+    ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION
+      ? { yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_YAHOO_VERIFICATION
+      ? { yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION } }
+      : {}),
   },
   keywords: ["SEO Montreal", "Digital Agency Montreal", "Web Development", "Conversion Rate Optimization", "Technical SEO"],
   openGraph: {
