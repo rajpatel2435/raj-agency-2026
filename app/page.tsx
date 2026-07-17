@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Work from "../components/Work";
 import TrustBar from "@/components/TrustBar";
+import Capabilities from "@/components/Capabilities";
 import Testimonials from "@/components/Testimonials";
 import { client } from "../sanity/lib/client";
 import Insights from "@/components/Insights";
@@ -60,6 +61,7 @@ export default async function Home() {
       <TrustBar />
       <Services/>
       <About  />
+      <Capabilities />
       <Work caseStudies={workData} />
       <Testimonials />
       <Insights data={data} />
