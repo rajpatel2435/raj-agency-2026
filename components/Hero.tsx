@@ -60,22 +60,16 @@ export default function Hero() {
           
           {/* LINE 1: OUTLINE TEXT */}
           {/* FIX: Reduced mobile vw from 14vw to 10vw to prevent horizontal overflow */}
-          <motion.span 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[10.5vw] md:text-[9vw] text-transparent uppercase"
+          <span
+            className="hero-rise hero-rise-1 text-[10.5vw] md:text-[9vw] text-transparent uppercase"
             style={{ WebkitTextStroke: '2px rgba(255,255,255,0.3)' }}
           >
             Architecture
-          </motion.span>
+          </span>
 
           {/* LINE 2: TEXT + INLINE ANIMATED IMAGE */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-center gap-2 md:gap-4 uppercase text-white text-[10.5vw] md:text-[9vw] w-full"
+          <div
+            className="hero-rise hero-rise-2 flex items-center justify-center gap-2 md:gap-4 uppercase text-white text-[10.5vw] md:text-[9vw] w-full"
           >
             <span>Dictates</span>
             
@@ -90,22 +84,20 @@ export default function Hero() {
                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop" 
                 alt="Server Core" 
                 fill 
+                sizes="18vw"
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110" 
               />
               <div className="absolute inset-0 bg-[#F95D0A] mix-blend-overlay opacity-20" />
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* LINE 3: SOLID ACCENT COLOR */}
           {/* FIX: Updated color to new logo branding */}
-          <motion.span 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[10.5vw] md:text-[9vw] text-[#F95D0A] uppercase"
+          <span
+            className="hero-rise hero-rise-3 text-[10.5vw] md:text-[9vw] text-[#F95D0A] uppercase"
           >
             Rankings.
-          </motion.span>
+          </span>
 
         </div>
 
@@ -113,7 +105,7 @@ export default function Hero() {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12 flex flex-col items-center max-w-2xl text-center px-4"
         >
           <p className="text-base md:text-xl font-light text-gray-400 leading-relaxed mb-10">
