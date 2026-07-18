@@ -32,7 +32,7 @@ export default function Insights({ data }: { data: any[] }) {
         <div className="w-full lg:w-3/5">
           <div className="flex items-center gap-3 mb-12">
             <span className="w-2 h-2 bg-[#F95D0A] rounded-full" />
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-500">
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">
               INTEL.INDEX // {data?.length.toString().padStart(3, '0') || "000"}
             </h2>
           </div>
@@ -48,7 +48,7 @@ export default function Insights({ data }: { data: any[] }) {
               >
                 {/* Number & Category */}
                 <div className="flex items-center gap-8 mb-4 md:mb-0">
-                  <span className="text-gray-700 font-medium text-sm">{(idx + 1).toString().padStart(2, '0')}</span>
+                  <span className="text-gray-400 font-medium text-sm">{(idx + 1).toString().padStart(2, '0')}</span>
                   <span className="text-[10px] font-bold tracking-[0.2em] text-[#F95D0A] bg-[#F95D0A]/5 px-3 py-1 rounded-sm">
                     {item.category || "TECHNICAL"}
                   </span>
@@ -61,7 +61,7 @@ export default function Insights({ data }: { data: any[] }) {
 
                 {/* Date / Arrow */}
                 <div className="flex items-center gap-6 mt-6 md:mt-0">
-                  <span className="text-[10px] font-bold tracking-widest text-gray-600 uppercase">
+                  <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">
                     {formatDate(item.publishedAt)}
                   </span>
                   <div className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center group-hover:bg-[#F95D0A] group-hover:border-[#F95D0A] transition-all">

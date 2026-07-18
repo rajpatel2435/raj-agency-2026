@@ -98,7 +98,7 @@ export default function Services() {
           </div>
           
           <div className="hidden md:flex text-right flex-col items-end">
-            <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">Total Capacity</span>
+            <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Capacity</span>
             <span className="text-2xl font-medium tracking-tighter text-white">100<span className="text-[#FF3300]">%</span></span>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function Services() {
                   animate={{ opacity: isActive ? 0 : 1 }}
                   className="absolute inset-0 flex flex-col items-center justify-between py-8 pointer-events-none"
                 >
-                  <span className="text-gray-600 font-bold text-sm tracking-widest">{service.id}</span>
+                  <span className="text-gray-400 font-bold text-sm tracking-widest">{service.id}</span>
                   
                   <div className="flex-1 flex items-center justify-center w-full">
                     <span className="hidden md:block text-xl font-medium tracking-widest text-gray-400 -rotate-90 whitespace-nowrap uppercase">
@@ -191,7 +191,7 @@ export default function Services() {
                       <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                         <div className="flex items-center gap-3">
                           <span className="w-2 h-2 rounded-full bg-[#FF3300] animate-pulse" />
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                             Status: <span className="text-white">{service.status}</span>
                           </span>
                         </div>

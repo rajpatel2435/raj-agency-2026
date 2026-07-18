@@ -71,6 +71,8 @@ export default function Navbar() {
             {/* NEW: Functional Mobile Toggle Button */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
               className="md:hidden relative z-[70] flex flex-col gap-1.5 p-2 focus:outline-none"
             >
               <motion.span 

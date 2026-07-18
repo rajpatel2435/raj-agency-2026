@@ -99,7 +99,7 @@ export default function Directives() {
           </span>
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9]">
             We don't do fluff. <br />
-            <span className="text-gray-600">We execute code.</span>
+            <span className="text-gray-500">We execute code.</span>
           </h2>
         </motion.div>
 

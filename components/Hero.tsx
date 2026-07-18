@@ -34,7 +34,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.8 }}
         className="hidden md:flex absolute top-32 left-8 flex-col gap-1 z-20"
       >
-        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-500 flex items-center gap-2">
+        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-gray-400 flex items-center gap-2">
            <span className="w-1.5 h-1.5 bg-[#F95D0A] rounded-full animate-pulse" /> Sys.Online
         </span>
         <span className="text-[10px] font-bold uppercase tracking-widest text-white">Vancouver, BC </span>
@@ -140,7 +140,7 @@ export default function Hero() {
       >
         <div className="bg-[#111]/80 backdrop-blur-xl border border-gray-800 p-5 rounded-3xl flex items-center gap-6 shadow-2xl">
            <div>
-             <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-1">Core Web Vitals</p>
+             <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">Core Web Vitals</p>
              <p className="text-2xl font-medium tracking-tighter text-white">100<span className="text-[#F95D0A] text-lg">/100</span></p>
            </div>
            <div className="w-12 h-12 rounded-full border-2 border-[#F95D0A] flex items-center justify-center relative">

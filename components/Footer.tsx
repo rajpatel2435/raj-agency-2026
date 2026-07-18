@@ -67,7 +67,7 @@ export default function Footer() {
         {/* Links: High Contrast White, Standard Size */}
         <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-10 border-l border-white/10 pl-8 md:pl-16">
            <div className="flex flex-col gap-5">
-             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Service Divisions</h4>
+             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/55">Service Divisions</h4>
              <div className="flex flex-col gap-3">
                {services.map((service) => (
                  <Link 
@@ -82,7 +82,7 @@ export default function Footer() {
            </div>
 
            <div className="flex flex-col gap-5">
-             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Resources</h4>
+             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/55">Resources</h4>
              <div className="flex flex-col gap-3">
                <Link href="/blog" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Digital Archive</Link>
                <Link href="/about" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Client Outcomes</Link>
@@ -92,13 +92,13 @@ export default function Footer() {
            </div>
 
            <div className="flex flex-col gap-5">
-             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Operational</h4>
+             <h4 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-white/55">Operational</h4>
              <div className="flex flex-col gap-3">
                <Link href="/montreal-seo-agency" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Montreal, QC</Link>
                <Link href="/vancouver-digital-agency" className="text-sm font-medium text-white hover:text-[#F95D0A] transition-colors">Vancouver, BC</Link>
              </div>
-             <Link href="https://www.instagram.com/launchatdawn/" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">Instagram</Link>
-  <Link href="https://linkedin.com/company/launchatdawn" target="_blank" className="text-sm font-medium text-white/40 hover:text-[#F95D0A] transition-colors">LinkedIn</Link>
+             <Link href="https://www.instagram.com/launchatdawn/" target="_blank" className="text-sm font-medium text-white/60 hover:text-[#F95D0A] transition-colors">Instagram</Link>
+  <Link href="https://linkedin.com/company/launchatdawn" target="_blank" className="text-sm font-medium text-white/60 hover:text-[#F95D0A] transition-colors">LinkedIn</Link>
 
            </div>
 

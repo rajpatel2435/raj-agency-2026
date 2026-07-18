@@ -84,10 +84,10 @@ export default function Work({ caseStudies }: { caseStudies: CaseStudyType[] }) 
           <div className="absolute bottom-12 left-6 right-6 md:left-12 md:right-12">
             <div className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-gray-800 rounded-2xl p-6 shadow-2xl">
                <div className="flex justify-between items-center mb-4 border-b border-gray-800 pb-3">
-                 <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 flex items-center gap-2">
+                 <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400 flex items-center gap-2">
                    <TerminalIcon className="w-3 h-3 text-[#FF3300]" /> Output Log
                  </span>
-                 <span className="text-[9px] text-gray-600 font-mono">STATUS: 200 OK</span>
+                 <span className="text-[9px] text-gray-400 font-mono">STATUS: 200 OK</span>
                </div>
                
                <AnimatePresence mode="wait">
