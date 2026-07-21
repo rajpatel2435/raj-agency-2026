@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConversionCTA from "@/components/ConversionCTA";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import AIAgent from "@/components/AIAgent";
 import Insights from "@/components/Insights";
 import AIStructure from "@/components/AIStructure";
 import { Analytics } from '@vercel/analytics/next';
@@ -110,6 +111,7 @@ export default function RootLayout({
         <Footer />
         <ConversionCTA />
         <WhatsAppButton />
+        <AIAgent />
         <Analytics />
       </body>
     </html>

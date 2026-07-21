@@ -10,18 +10,31 @@ export default function HelloPage() {
     e.preventDefault();
     setStatus("loading");
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_FORM_KEY || ""); 
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("Client Name") || ""),
+      email: String(formData.get("Client Email") || ""),
+      source: "Growth Call Request",
+      fields: {
+        Website: String(formData.get("Website") || ""),
+        "Estimated Budget": String(formData.get("Estimated Budget") || ""),
+        Timeline: String(formData.get("Timeline") || ""),
+        "Project Details": String(formData.get("Project Details") || ""),
+      },
+    };
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/lead", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
         setStatus("success");
-        e.currentTarget.reset();
+        form.reset();
       } else {
         setStatus("error");
       }

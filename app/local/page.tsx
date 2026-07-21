@@ -13,8 +13,8 @@ export default function LocalHubPage() {
             Local, everywhere.
           </h1>
           <p className="text-lg md:text-xl text-white/50 font-light max-w-2xl mx-auto">
-            SEO, web design, and digital marketing built for your city — across Quebec and
-            British Columbia.
+            SEO, web design, software development, and digital marketing built for your
+            city — across Canada.
           </p>
         </div>
 

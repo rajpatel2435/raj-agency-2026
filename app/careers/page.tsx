@@ -10,18 +10,30 @@ export default function CareersPage() {
     e.preventDefault();
     setStatus("loading");
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("access_key", process.env.NEXT_FORM_KEY || ""); 
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("Applicant Name") || ""),
+      email: String(formData.get("Applicant Email") || "no-email-provided"),
+      source: "Career Application",
+      fields: {
+        Position: String(formData.get("Position") || ""),
+        "Portfolio Link": String(formData.get("Portfolio Link") || ""),
+        "Cover Letter / Pitch": String(formData.get("Cover Letter / Pitch") || ""),
+      },
+    };
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/lead", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
       if (res.ok) {
         setStatus("success");
-        e.currentTarget.reset();
+        form.reset();
       } else {
         setStatus("error");
       }
@@ -69,6 +81,18 @@ export default function CareersPage() {
                   required
                   placeholder="Your Name *"
                   className="bg-transparent border-b border-zinc-800 pb-4 focus:outline-none focus:border-[#F95D0A] transition-colors placeholder:text-zinc-800 text-white font-medium uppercase"
+                />
+              </div>
+
+              {/* 01b. Email */}
+              <div className="flex flex-col gap-4">
+                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 text-left">01b. Email</label>
+                <input
+                  type="email"
+                  name="Applicant Email"
+                  required
+                  placeholder="you@email.com *"
+                  className="bg-transparent border-b border-zinc-800 pb-4 focus:outline-none focus:border-[#F95D0A] transition-colors placeholder:text-zinc-800 text-white font-medium"
                 />
               </div>
 

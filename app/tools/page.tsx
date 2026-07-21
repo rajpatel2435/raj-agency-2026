@@ -12,6 +12,12 @@ export const metadata: Metadata = buildPageMetadata({
 
 const tools = [
   {
+    href: "/tools/ai-agent",
+    name: "AI Growth Agent",
+    desc: "Chat with Dawn, our live AI agent. Drop your URL for an instant audit, get real answers, and a tailored growth plan — in seconds.",
+    tag: "AI · Live",
+  },
+  {
     href: "/tools/authority-checker",
     name: "Website Authority Checker",
     desc: "Get an instant authority score from real trust signals — domain age, security, indexability, structured data and content depth.",
