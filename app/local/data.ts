@@ -97,6 +97,96 @@ export const SERVICES: LocalService[] = [
     ],
     relatedHref: "/services/strategy",
   },
+  {
+    slug: "software-development",
+    name: "Software Development",
+    short: "Software Dev",
+    intro: (city) =>
+      `Launch at Dawn builds custom software for ${city} companies — web apps, internal tools, dashboards, and API integrations engineered to run fast and scale cleanly.`,
+    why: (city) =>
+      `Spreadsheets and off-the-shelf tools break down as ${city} businesses grow. We build custom software around your exact workflow so your team moves faster and your data finally works for you.`,
+    steps: [
+      { label: "Discovery & Spec", desc: "We map your workflows and turn them into a clear technical spec with real milestones." },
+      { label: "Engineering", desc: "Type-safe, well-tested code built on modern stacks like Next.js, Node, and Postgres." },
+      { label: "Scale & Support", desc: "Monitoring, CI/CD, and documentation so the system stays reliable as you grow." },
+    ],
+    relatedHref: "/services/engineering",
+  },
+  {
+    slug: "app-development",
+    name: "App Development",
+    short: "App Dev",
+    intro: (city) =>
+      `We design and build mobile and web apps for ${city} businesses — fast, intuitive products your customers actually want to open.`,
+    why: (city) =>
+      `A clunky app costs ${city} businesses users on the first screen. We ship polished, performant apps with clean UX and a backend built to handle real growth.`,
+    steps: [
+      { label: "Product Design", desc: "We prototype the flows and interface before writing code, so we build the right thing once." },
+      { label: "Cross-Platform Build", desc: "One efficient codebase that runs smoothly across web, iOS, and Android." },
+      { label: "Launch & Iterate", desc: "We ship, measure real usage, and refine the app based on how customers actually behave." },
+    ],
+    relatedHref: "/services/engineering",
+  },
+  {
+    slug: "ecommerce-development",
+    name: "E-commerce Development",
+    short: "E-commerce",
+    intro: (city) =>
+      `We build high-converting online stores for ${city} brands — fast, secure e-commerce that turns browsers into buyers and scales with your catalog.`,
+    why: (city) =>
+      `Every slow page and clunky checkout quietly drains sales for ${city} stores. We engineer fast, frictionless storefronts with checkout flows optimized to lift average order value and conversion.`,
+    steps: [
+      { label: "Store Architecture", desc: "We set up the right platform, catalog structure, and payments for how you actually sell." },
+      { label: "Conversion Build", desc: "Fast product pages and a streamlined checkout designed to reduce cart abandonment." },
+      { label: "Growth Systems", desc: "Analytics, email flows, and SEO baked in so the store keeps compounding sales." },
+    ],
+    relatedHref: "/services/design",
+  },
+  {
+    slug: "ai-automation",
+    name: "AI Automation",
+    short: "AI Automation",
+    intro: (city) =>
+      `We help ${city} businesses put AI to work — chatbots, content systems, and automations that cut manual work and speed up how you serve customers.`,
+    why: (city) =>
+      `Most ${city} teams lose hours a week to repetitive tasks. We identify the workflows worth automating and build practical AI systems that save time without breaking what already works.`,
+    steps: [
+      { label: "Opportunity Audit", desc: "We find the highest-ROI tasks to automate and the ones that should stay human." },
+      { label: "Build & Integrate", desc: "Custom AI workflows wired into your existing tools, data, and support channels." },
+      { label: "Guardrails & Tuning", desc: "We add oversight, testing, and refinement so the automation stays accurate and safe." },
+    ],
+    relatedHref: "/services/data",
+  },
+  {
+    slug: "ai-agents",
+    name: "AI Agents",
+    short: "AI Agents",
+    intro: (city) =>
+      `We design and build custom AI agents for ${city} businesses — assistants that audit, answer, qualify leads, and take action on your website 24/7.`,
+    why: (city) =>
+      `Your ${city} customers expect instant answers at 2am. We build AI agents trained on your business that handle questions, capture leads, and route hot prospects to your team — without adding headcount.`,
+    steps: [
+      { label: "Scope & Training Data", desc: "We define what the agent should do and ground it in your real content, offers, and FAQs." },
+      { label: "Build & Integrate", desc: "We wire the agent into your site, CRM, and tools with safe, tested actions." },
+      { label: "Monitor & Improve", desc: "We track conversations, tune responses, and expand what the agent can handle over time." },
+    ],
+    relatedHref: "/tools/ai-agent",
+  },
+  {
+    slug: "ai-chatbots",
+    name: "AI Chatbots",
+    short: "AI Chatbots",
+    intro: (city) =>
+      `We build smart AI chatbots for ${city} businesses that answer customer questions instantly, book appointments, and turn website visitors into leads.`,
+    why: (city) =>
+      `A slow reply loses the sale. We give ${city} businesses an always-on AI chatbot that responds in seconds, qualifies interest, and hands warm leads to your team while you sleep.`,
+    steps: [
+      { label: "Conversation Design", desc: "We map the questions your customers actually ask and the outcomes you want from each chat." },
+      { label: "Trained & Branded", desc: "The chatbot speaks in your brand voice and is grounded in your real products and policies." },
+      { label: "Lead Handoff", desc: "Hot conversations are captured and routed to your inbox or CRM instantly, with full context." },
+    ],
+    relatedHref: "/tools/ai-agent",
+  },
 ];
 
 export const CITIES: LocalCity[] = [
@@ -180,6 +270,51 @@ export const CITIES: LocalCity[] = [
     geo: { lat: 49.3163, lng: -123.0693 },
     neighborhoods: ["Lonsdale", "Lynn Valley", "Deep Cove", "Edgemont"],
     blurb: "An affluent North Shore market with high-value local customers.",
+  },
+  {
+    slug: "toronto",
+    name: "Toronto",
+    region: "ON",
+    regionFull: "Ontario",
+    geo: { lat: 43.6532, lng: -79.3832 },
+    neighborhoods: ["Downtown", "King West", "Yorkville", "Liberty Village", "The Beaches", "North York"],
+    blurb: "Canada's largest and most competitive market, where technical SEO and authority win.",
+  },
+  {
+    slug: "ottawa",
+    name: "Ottawa",
+    region: "ON",
+    regionFull: "Ontario",
+    geo: { lat: 45.4215, lng: -75.6972 },
+    neighborhoods: ["ByWard Market", "Centretown", "Kanata", "Westboro", "Barrhaven"],
+    blurb: "The capital's steady, high-trust market with strong local search demand.",
+  },
+  {
+    slug: "calgary",
+    name: "Calgary",
+    region: "AB",
+    regionFull: "Alberta",
+    geo: { lat: 51.0447, lng: -114.0719 },
+    neighborhoods: ["Downtown", "Beltline", "Kensington", "Inglewood", "Mission"],
+    blurb: "A fast-moving Prairie market where digital-first businesses are pulling ahead.",
+  },
+  {
+    slug: "quebec-city",
+    name: "Quebec City",
+    region: "QC",
+    regionFull: "Quebec",
+    geo: { lat: 46.8139, lng: -71.2080 },
+    neighborhoods: ["Vieux-Québec", "Saint-Roch", "Sainte-Foy", "Limoilou", "Montcalm"],
+    blurb: "A bilingual heritage market with loyal local demand and beatable competition.",
+  },
+  {
+    slug: "victoria",
+    name: "Victoria",
+    region: "BC",
+    regionFull: "British Columbia",
+    geo: { lat: 48.4284, lng: -123.3656 },
+    neighborhoods: ["Downtown", "Oak Bay", "Fernwood", "James Bay", "Fairfield"],
+    blurb: "A refined Island market where quality brands stand out fast.",
   },
 ];
 
