@@ -15,8 +15,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Gastro-Retail",
     metric: "95% Lift",
     category: "Search Strategy, Digital PR",
-    // Replace with the URL of the "Burger" image we generated
-    heroGallery: ["/images/work/altos-hero.jpg"], 
+    heroGallery: ["https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop"], 
     challenge: "Altos Grill occupied a 'dead zone' in search. We pivoted from brand-heavy reliance to a non-brand infrastructure that captured high-intent 'midnight-craving' searchers in the Griffintown area.",
     stats: [
       { label: "Organic Traffic Velocity", value: "95%" },
@@ -42,8 +41,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Medical // Dominance",
     metric: "+310%",
     category: "Local SEO, Google Maps, Lead Gen",
-    // Replace with the URL of the "Dental UI" image we generated
-    heroGallery: ["/images/work/aris-dental-hero.jpg"],
+    heroGallery: ["https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1600&auto=format&fit=crop"],
     challenge: "A high-rated Plateau clinic was losing to generic dental chains. They had zero visibility for 'Emergency Dentist Montreal' despite superior patient care.",
     stats: [
       { label: "Local Map Pack Rank", value: "#1" },
@@ -69,8 +67,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Hospitality // Visit",
     metric: "4.8M Views",
     category: "Social SEO, Short-Form Video, PR",
-    // Replace with the URL of the "Alleyway Sign" image we generated
-    heroGallery: ["/images/work/petit-secret-hero.jpg"],
+    heroGallery: ["https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1600&auto=format&fit=crop"],
     challenge: "An elite speakeasy in Old Montreal was a 'hidden gem' staying too hidden from the high-spending tourist demographic.",
     stats: [
       { label: "Cumulative Video Reach", value: "4.8M" },
@@ -96,8 +93,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Tech Giant // Acquisition",
     metric: "140%",
     category: "UI/UX, Performance Marketing",
-    // Replace with the URL of the "Hologram Globe/Hand" image we generated
-    heroGallery: ["/images/work/nexus-finance-hero.jpg"],
+    heroGallery: ["https://images.unsplash.com/photo-1642790551116-18e150f248e5?q=80&w=1600&auto=format&fit=crop"],
     challenge: "Nexus Finance suffered from a 'conversion cliff.' Users abandoned the platform during the complex KYC onboarding process.",
     stats: [
       { label: "Onboarding Completion", value: "140%" },
@@ -123,7 +119,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Hospitality // Visit",
     metric: "SELL-OUT",
     category: "Guerilla Orchestration, AR Integration",
-    heroGallery: ["/images/work/cyberk-headset.jpg"], // The headset image
+    heroGallery: ["https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1600&auto=format&fit=crop"], // Festival crowd
     challenge: "Executing a bilingual guerilla campaign to achieve 100% sell-through velocity within a 12-hour deployment window for a massive 50k unit festival launch.",
     stats: [
       { label: "Deployment Window", value: "12H" },
@@ -149,7 +145,7 @@ const LOCAL_WORK_DATA: Record<string, any> = {
     industry: "Luxury // Scaling",
     metric: "ROAS 3.5x",
     category: "Brand Identity, Performance Marketing",
-    heroGallery: ["/images/work/maison-lumiere-hero.jpg"],
+    heroGallery: ["https://images.unsplash.com/photo-1524634126442-357e0eac3c14?q=80&w=1600&auto=format&fit=crop"],
     challenge: "Scaling a boutique Montreal atelier into a global luxury competitor while maintaining a 3.5x ROAS and high-end brand perception.",
     stats: [
       { label: "Return on Ad Spend", value: "3.5x" },
