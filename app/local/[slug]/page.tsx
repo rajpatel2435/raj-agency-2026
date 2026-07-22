@@ -28,9 +28,12 @@ export async function generateMetadata({
   }
 
   const { service, city } = combo;
+  const description = city.keyIndustries && city.keyIndustries.length > 0
+    ? `${service.intro(city.name)} Trusted by ${city.name} businesses in ${city.keyIndustries.slice(0, 3).join(", ")} and more.`
+    : service.intro(city.name);
   return buildPageMetadata({
     title: `${service.name} in ${city.name} | Launch at Dawn`,
-    description: service.intro(city.name),
+    description,
     pathname: `/local/${slug}`,
     ogEyebrow: `${service.short} · ${city.name}, ${city.region}`,
     keywords: [
@@ -94,6 +97,16 @@ export default async function LocalServicePage({
       question: `How long until I see results from ${service.name.toLowerCase()} in ${city.name}?`,
       answer: `Local work often shows movement within a few weeks, with stronger, compounding results over 3 to 6 months as your authority in the ${city.name} market grows.`,
     },
+    ...(city.keyIndustries && city.keyIndustries.length > 0
+      ? [
+          {
+            question: `Do you have experience with ${city.name} businesses in my industry?`,
+            answer: `We work across ${city.name}'s core sectors — including ${city.keyIndustries
+              .slice(0, 4)
+              .join(", ")} — and adapt the ${service.name.toLowerCase()} strategy to how customers in your specific industry actually search and buy.`,
+          },
+        ]
+      : []),
     {
       question: `Do you work with small businesses in ${city.name}?`,
       answer: `Yes. We work with local ${city.name} businesses of every size, from independent shops to multi-location brands, and tailor the strategy and budget to fit.`,
@@ -160,6 +173,9 @@ export default async function LocalServicePage({
               Why {service.short} matters in {city.name}
             </h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-6">{service.why(city.name)}</p>
+            {city.localInsight ? (
+              <p className="text-zinc-400 text-lg leading-relaxed mb-6">{city.localInsight}</p>
+            ) : null}
             <p className="text-zinc-500 text-base leading-relaxed">{city.blurb}</p>
           </div>
           <div className="grid grid-cols-1 gap-1">
@@ -173,6 +189,78 @@ export default async function LocalServicePage({
           </div>
         </div>
       </section>
+
+      {/* LOCAL MARKET INTELLIGENCE */}
+      {city.marketOverview ? (
+        <section className="py-24 px-6 lg:px-12 border-b border-white/5">
+          <div className="max-w-[1200px] mx-auto">
+            <p className="text-[10px] font-mono text-[#F95D0A] uppercase mb-6 tracking-[0.4em]">
+              The {city.name} market
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+              <div className="lg:col-span-2">
+                <h2 className="text-3xl md:text-4xl font-black uppercase mb-8 leading-tight">
+                  What it takes to win {service.short} in {city.name}
+                </h2>
+                <p className="text-zinc-400 text-lg leading-relaxed mb-6">{city.marketOverview}</p>
+                {city.keyIndustries && city.keyIndustries.length > 0 ? (
+                  <>
+                    <p className="text-[10px] font-mono text-white/40 uppercase mt-10 mb-4 tracking-[0.3em]">
+                      Industries we work with in {city.name}
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      {city.keyIndustries.map((ind, i) => (
+                        <span
+                          key={i}
+                          className="border border-white/10 px-4 py-2 text-sm font-bold text-zinc-300"
+                        >
+                          {ind}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                ) : null}
+              </div>
+
+              {/* Market stat card */}
+              <div className="border border-white/10 bg-white/[0.03] p-8">
+                {city.stat ? (
+                  <div className="mb-8">
+                    <div className="text-5xl md:text-6xl font-black text-[#F95D0A] leading-none mb-3">
+                      {city.stat.value}
+                    </div>
+                    <p className="text-zinc-400 text-sm leading-snug">{city.stat.label}</p>
+                  </div>
+                ) : null}
+                <div className="space-y-4 border-t border-white/10 pt-6">
+                  {city.population ? (
+                    <div className="flex justify-between gap-4 text-sm">
+                      <span className="text-white/40 uppercase font-mono text-[10px] tracking-widest pt-1">
+                        Market size
+                      </span>
+                      <span className="text-zinc-200 font-bold text-right">{city.population}</span>
+                    </div>
+                  ) : null}
+                  {city.competitionLevel ? (
+                    <div className="flex justify-between gap-4 text-sm">
+                      <span className="text-white/40 uppercase font-mono text-[10px] tracking-widest pt-1">
+                        Competition
+                      </span>
+                      <span className="text-zinc-200 font-bold text-right">{city.competitionLevel}</span>
+                    </div>
+                  ) : null}
+                  <div className="flex justify-between gap-4 text-sm">
+                    <span className="text-white/40 uppercase font-mono text-[10px] tracking-widest pt-1">
+                      Region
+                    </span>
+                    <span className="text-zinc-200 font-bold text-right">{city.regionFull}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* AREAS SERVED */}
       <section className="py-24 px-6 lg:px-12 border-b border-white/5">
